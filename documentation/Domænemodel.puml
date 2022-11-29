@@ -1,0 +1,25 @@
+@startuml
+
+class Customer {
+- Username
+- Email
+- Password
+- Role
+}
+
+class Carport {
+- Price
+- Measurements
+- Components
+}
+
+class Order {
+- Date
+- Price
+- Username
+- Email
+- Carport
+- ComponentList
+}
+
+@enduml
