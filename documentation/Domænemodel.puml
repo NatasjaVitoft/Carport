@@ -1,25 +1,35 @@
 @startuml
 
 class Customer {
-- Username
+- Brugernavn
 - Email
 - Password
 - Role
+- Adresse
+- By
+- Postnummer
+- Navn
+- Telefonnr
 }
 
 class Carport {
-- Price
-- Measurements
-- Components
+- Pris
+- Tagtype
+- Tagtype mål
+- Tag hældning
+- Carport Bredde
+- Carport Længde
+- Redskabs bredde
+- Redskabs længde
 }
 
 class Order {
-- Date
-- Price
-- Username
+- Dato
+- Pris
+- Brugernavn
 - Email
 - Carport
-- ComponentList
+- Materiale liste
 }
 
 @enduml
