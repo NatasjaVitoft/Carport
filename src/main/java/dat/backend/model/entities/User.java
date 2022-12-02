@@ -7,12 +7,27 @@ public class User
     private String username;
     private String password;
     private String role;
+    private String email;
+    private String address;
+    private String city;
+    private int postcode;
+    private String name;
+    private int phoneNumber;
 
-    public User(String username, String password, String role)
-    {
+    public User(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+        this.postcode = postcode;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public User() {
+
     }
 
     public String getUsername()
@@ -45,6 +60,54 @@ public class User
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -62,12 +125,17 @@ public class User
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode=" + postcode +
+                ", name='" + name + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 }

@@ -27,7 +27,15 @@ class UserMapper
                 if (rs.next())
                 {
                     String role = rs.getString("role");
-                    user = new User(username, password, role);
+                    String email = rs.getString("email");
+                    String address = rs.getString("adresse");
+                    String city = rs.getString("by");
+                    int postcode = rs.getInt("postnummer");
+                    String name = rs.getString("name");
+                    int phoneNumber = rs.getInt("telefonnr");
+
+                    user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
+
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -40,11 +48,11 @@ class UserMapper
         return user;
     }
 
-    static User createUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException
+    static User createUser(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, password, role) values (?,?,?)";
+        String sql = "insert into user (username, password, role, email, adresse, by, postnummer, navn, telefonnr) values (?,?,?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -52,10 +60,17 @@ class UserMapper
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setString(3, role);
+                ps.setString(4, email);
+                ps.setString(5, address);
+                ps.setString(6, city);
+                ps.setInt(7, postcode);
+                ps.setString(8, name);
+                ps.setInt(9, phoneNumber);
+
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, password, role);
+                    user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
@@ -67,6 +82,38 @@ class UserMapper
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return user;
+    }
+
+    static User getUserByUsername(String username, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "SELECT * FROM user WHERE username = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, username);
+
+                ResultSet resultSet = ps.executeQuery();
+
+                if (resultSet.next()) {
+
+                    String username2 = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+                    String role = resultSet.getString("role");
+                    String email = resultSet.getString("email");
+                    String address = resultSet.getString("adresse");
+                    String city = resultSet.getString("by");
+                    int postcode = resultSet.getInt("postnummer");
+                    String name = resultSet.getString("name");
+                    int phoneNumber = resultSet.getInt("telefonnr");
+
+                    User user = new User(username2, password, role, email, address, city, postcode, name, phoneNumber);
+                    return user;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong");
+        }
+        return null;
     }
 
 
