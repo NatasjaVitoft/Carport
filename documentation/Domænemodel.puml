@@ -29,7 +29,6 @@ class Order {
 - Brugernavn
 - Email
 - Carport
-- Materiale liste
 }
 
 @enduml
