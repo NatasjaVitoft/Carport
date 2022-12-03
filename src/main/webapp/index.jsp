@@ -5,16 +5,30 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:body>
+        <div class="d-flex justify-content-center">
+                <img src="${pageContext.request.contextPath}/images/2022-engerikatalog-vejleder-prio.jpg" width="1620px;"
+                     class="img-fluid"/>
+            </div>
 
-        <p>Startcode for 2nd semester </p>
+        <br>
+
+        <h4>Se vores produkt side på carporte</h4>
+
+        <br>
+
+        <div class="d-flex justify-content-start">
+            <img src="${pageContext.request.contextPath}/images/fog-dobbelt-carport-car01du-large.jpeg" width="720px;"
+                 class="img-fluid"/>
+        </div>
+
 
         <c:if test="${sessionScope.user != null}">
             <p>You are logged in with the role of "${sessionScope.user.role}".</p>
