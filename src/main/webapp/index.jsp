@@ -49,9 +49,6 @@
                 <div class="carousel-item">
                     <img alt="..." class="d-block w-100" src="images/media.jpg">
                     <div class="carousel-caption">
-                        <h5>Flytte salg</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt
-                            excepturi quas vero.</p>
                         <p><a class="btn btn-primary mt-3" href="#">Se avisen her</a></p>
                     </div>
                 </div>

@@ -41,7 +41,7 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Værktøj</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Maling</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Erhverv</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Carport</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/produkt.jsp">Carport</a>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -98,6 +98,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js" defer></script>
 
 
 </body>
