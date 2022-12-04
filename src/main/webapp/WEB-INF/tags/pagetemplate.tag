@@ -22,7 +22,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/FOGLogo-2610826421.jpg" width="120px;"
@@ -75,7 +75,8 @@
     <div class="row mt-4">
         <div class="col">
             Firskovvej 20<br/>
-            2800 Kongens Lyngby
+            2800 Kongens Lyngby <br>
+            CVR-nr. 16314439
         </div>
         <div class="col">
             <jsp:invoke fragment="footer"/>
@@ -97,6 +98,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
 
 </body>
 </html>
