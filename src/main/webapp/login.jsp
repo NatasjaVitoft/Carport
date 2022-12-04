@@ -13,7 +13,8 @@
     </jsp:attribute>
 
     <jsp:body>
-
+        <br>
+        <br>
 
         <section class="container">
             <div class="row content d-flex justify-content-center align-items-center">
@@ -46,7 +47,7 @@
                                         Password?</a>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#" title="Not a user" class="text-decoration-none">SignUp</a>
+                                    <a href="opret.jsp" title="Not a user" class="text-decoration-none">Sign up</a>
                                 </div>
                             </div>
                         </form>
