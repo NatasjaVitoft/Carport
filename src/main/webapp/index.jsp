@@ -14,6 +14,10 @@
 
     <jsp:body>
 
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="carousel slide" data-bs-ride="carousel" id="carouselExampleIndicators">
             <div class="carousel-indicators">
                 <button aria-label="Slide 1" class="active" data-bs-slide-to="0"
