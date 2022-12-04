@@ -1,20 +1,22 @@
 /* CSS stylesheet  for application */
 
+
 body {
     margin: 0;
     padding: 0;
+    background: #f1fbff;
 }
 
-.content{
+.content {
     height: 75vh;
 }
 
-.form-check-input:checked{
+.form-check-input:checked {
     background: #673AB7;
     border-color: #673AB7;
 }
 
-.fa{
+.fa {
     padding: 11px;
     width: 38px;
     text-align: center;
@@ -24,33 +26,99 @@ body {
 
 }
 
-.fa-facebook{
+.fa-facebook {
     background: #3b5998;
     color: #fff;
 }
-.fa-twitter{
+
+.fa-twitter {
     background: #55acee;
     color: #fff;
 }
-.fa-google{
+
+.fa-google {
     background: #dd4b39;
     color: #fff;
 }
 
-
-
-
+.section-padding {
+    padding: 100px 0;
+}
+.carousel-item {
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption {
+    bottom: 220px;
+    z-index: 2;
+}
+.carousel-caption h5 {
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+.carousel-caption p {
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+}
+.carousel-inner:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
 
 table {
     border-collapse: collapse;
     border: 1px solid silver;
-    padding:15px;
+    padding: 15px;
 }
 
 th, td {
     border: 1px solid silver;
-    padding:15px;
+    padding: 15px;
 }
 
+
+/* === responsive css === */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .carousel-caption {
+        bottom: 370px;
+    }
+    .carousel-caption p {
+        width: 100%;
+    }
+
+}
+@media only screen and (max-width: 767px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    .carousel-caption {
+        bottom: 125px;
+    }
+    .carousel-caption h5 {
+        font-size: 17px;
+    }
+    .carousel-caption a {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+    .carousel-caption p {
+        width: 100%;
+        line-height: 1.6;
+        font-size: 12px;
+    }
+    .about-text {
+        padding-top: 50px;
+    }
+}
 
 
