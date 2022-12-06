@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserMapperTest
 {
+    /*
     // TODO: Change mysql login credentials if needed below
 
     private final static String USER = "root";
@@ -113,6 +114,8 @@ class UserMapperTest
         assertEquals(expectedUser, logInUser);
 
     }
+<<<<<<< HEAD
 }
 
  */
+

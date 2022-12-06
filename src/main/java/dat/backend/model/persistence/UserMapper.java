@@ -23,16 +23,17 @@ class UserMapper
             {
                 ps.setString(1, username);
                 ps.setString(2, password);
+
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
                     String role = rs.getString("role");
                     String email = rs.getString("email");
-                    String address = rs.getString("adresse");
-                    String city = rs.getString("by");
-                    int postcode = rs.getInt("postnummer");
+                    String address = rs.getString("address");
+                    String city = rs.getString("city");
+                    int postcode = rs.getInt("postcode");
                     String name = rs.getString("name");
-                    int phoneNumber = rs.getInt("telefonnr");
+                    int phoneNumber = rs.getInt("phonenumber");
 
                     user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
 
@@ -52,7 +53,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, password, role, email, adresse, by, postnummer, navn, telefonnr) values (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into user (username, password, role, email, address, city, postcode, name, phonenumber) values (?,?,?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -100,11 +101,11 @@ class UserMapper
                     String password = resultSet.getString("password");
                     String role = resultSet.getString("role");
                     String email = resultSet.getString("email");
-                    String address = resultSet.getString("adresse");
-                    String city = resultSet.getString("by");
-                    int postcode = resultSet.getInt("postnummer");
+                    String address = resultSet.getString("address");
+                    String city = resultSet.getString("city");
+                    int postcode = resultSet.getInt("postcode");
                     String name = resultSet.getString("name");
-                    int phoneNumber = resultSet.getInt("telefonnr");
+                    int phoneNumber = resultSet.getInt("phonenumber");
 
                     User user = new User(username2, password, role, email, address, city, postcode, name, phoneNumber);
                     return user;

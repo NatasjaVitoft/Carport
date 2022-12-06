@@ -18,10 +18,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/FOGLogo-2610826421.jpg" width="120px;"
@@ -40,7 +41,7 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Værktøj</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Maling</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Erhverv</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Carport</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/produkt.jsp">Carport</a>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -48,7 +49,7 @@
                     <c:if test="${sessionScope.user != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Min side</a>
                     </c:if>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Opret</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/opret.jsp">Opret</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
@@ -73,17 +74,24 @@
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            <div style="text-align: left">
+            Firskovvej 20<br/>
+            2800 Kongens Lyngby <br>
+            CVR-nr. 16314439
+            </div>
         </div>
         <div class="col">
+            <div style="text-align: center">
             <jsp:invoke fragment="footer"/>
-            <br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            Holder i længden<br/>
+            <p>&copy; 2022 Fog</p>
+            </div>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester efterår 2022
+            <div style="text-align: right">
+            Kontakt os<br/>
+            info@johannesfog.dk
+            </div>
         </div>
     </div>
 
@@ -95,6 +103,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js" defer></script>
+
 
 </body>
 </html>

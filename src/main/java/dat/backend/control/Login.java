@@ -35,7 +35,7 @@ public class Login extends HttpServlet
     {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        session.setAttribute("user", null); // invalidating user object in session scope
+        session.setAttribute("user", null);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -43,7 +43,7 @@ public class Login extends HttpServlet
         {
             User user = UserFacade.login(username, password, connectionPool);
             session = request.getSession();
-            session.setAttribute("user", user); // adding user object to session scope
+            session.setAttribute("user", user);
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
         }
         catch (DatabaseException e)
@@ -52,5 +52,4 @@ public class Login extends HttpServlet
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
-
 }

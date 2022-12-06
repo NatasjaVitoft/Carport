@@ -38,11 +38,11 @@ public class Opret extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
-        String address = request.getParameter("address");
-        String city = request.getParameter("city");
-        int postcode = Integer.parseInt(request.getParameter("postcode"));
-        String name = request.getParameter("name");
-        int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+        String address = request.getParameter("adresse");
+        String city = request.getParameter("by");
+        int postcode = Integer.parseInt(request.getParameter("postnummer"));
+        String name = request.getParameter("fuldenavn");
+        int phoneNumber = Integer.parseInt(request.getParameter("telefon"));
 
         User user = new User();
 
@@ -56,14 +56,16 @@ public class Opret extends HttpServlet {
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
 
+        System.out.println(password);
+
         try {
             if(UserFacade.getUserByUsername(username, connectionPool)!=null) {
                 System.out.println("Already taken");
             } else {
                 userFacade.createUser(username, password, email, role, address, city, postcode, name, phoneNumber, connectionPool);
                 session = request.getSession();
-                session.setAttribute("user", user); // adding user object to session scope
-                request.getRequestDispatcher("welcome.jsp").forward(request, response);
+                session.setAttribute("user", user);
+                request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
             }
         } catch (DatabaseException e) {
             e.printStackTrace();
