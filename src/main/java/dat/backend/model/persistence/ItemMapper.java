@@ -40,6 +40,12 @@ public class ItemMapper {
                 SQLException | DatabaseException ex) {
             throw new DatabaseException(ex, "Error with items. Something went wrong with the database");
         }
+<<<<<<< HEAD
         //return itemList;
+=======
+
+        //return itemList;
+
+>>>>>>> 60ed7aa4d84d23cde78aad60d1bd8a390406ec0d
     }
 }
