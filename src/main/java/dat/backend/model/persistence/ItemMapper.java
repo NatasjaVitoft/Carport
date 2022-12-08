@@ -41,7 +41,7 @@ public class ItemMapper {
             throw new DatabaseException(ex, "Error with items. Something went wrong with the database");
         }
 
-        return itemList;
+        //return itemList;
 
     }
 
