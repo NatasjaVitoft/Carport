@@ -1,44 +1,27 @@
 package dat.backend.model.entities;
 
+import java.util.ArrayList;
+
 public class Carport {
 
-    private int stolpe;
-    private int rem;
-    private int spær;
-    private int tagplade;
-    private int lægte;
-    private int brædt;
+    final int height;
+    final int length;
+    final int price;
 
-    public Carport(int stolpe, int rem, int spær, int tagplade, int lægte, int brædt) {
-        this.stolpe = stolpe;
-        this.rem = rem;
-        this.spær = spær;
-        this.tagplade = tagplade;
-        this.lægte = lægte;
-        this.brædt = brædt;
+    ArrayList<Item> itemList = new ArrayList<>();
+
+    public Carport(int height, int length, int price, ArrayList<Item> itemList) {
+        this.height = height;
+        this.length = length;
+        this.price  = price;
+        this.itemList = itemList;
     }
 
-    public int getStolpe() {
-        return stolpe;
+    public int getHeight() {
+        return height;
     }
 
-    public int getRem() {
-        return rem;
-    }
-
-    public int getSpær() {
-        return spær;
-    }
-
-    public int getTagplade() {
-        return tagplade;
-    }
-
-    public int getLægte() {
-        return lægte;
-    }
-
-    public int getBrædt() {
-        return brædt;
+    public int getLength() {
+        return length;
     }
 }
