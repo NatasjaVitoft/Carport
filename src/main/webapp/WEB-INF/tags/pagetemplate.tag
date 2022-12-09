@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Min side</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/minSide.jsp">Min side</a>
                     </c:if>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/opret.jsp">Opret</a>

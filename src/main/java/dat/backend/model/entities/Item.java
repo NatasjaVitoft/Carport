@@ -51,7 +51,7 @@ public class Item {
     public int getLength() {
         return length;
     }
-
+    
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
