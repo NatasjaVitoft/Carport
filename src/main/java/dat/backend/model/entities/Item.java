@@ -20,6 +20,10 @@ public class Item {
         this.length = length;
     }
 
+    public Item() {
+
+    }
+
     public int getItem_id() {
         return item_id;
     }
@@ -46,5 +50,33 @@ public class Item {
 
     public int getLength() {
         return length;
+    }
+
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
+    }
+
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
+    }
+
+    public void setItem_description(String item_description) {
+        this.item_description = item_description;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 }
