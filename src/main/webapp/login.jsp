@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control rounded-0" id="password"
-                                       name="Password" placeholder="Password" required>
+                                       name="password" placeholder="Password" required>
                                 <label for="password">Password </label>
                             </div>
                             <div class="form-check mb-3">

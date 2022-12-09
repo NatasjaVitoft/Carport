@@ -11,7 +11,7 @@
 
     <jsp:body>
 
-       l
+
 
     </jsp:body>
 </t:pagetemplate>

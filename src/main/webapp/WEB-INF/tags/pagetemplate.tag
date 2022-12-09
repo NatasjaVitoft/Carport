@@ -49,12 +49,14 @@
                     <c:if test="${sessionScope.user != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Min side</a>
                     </c:if>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/opret.jsp">Opret</a>
+                    <c:if test="${sessionScope.user == null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/opret.jsp">Opret</a>
+                    </c:if>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Logud</a>
                     </c:if>
                 </div>
             </div>
@@ -75,22 +77,22 @@
     <div class="row mt-4">
         <div class="col">
             <div style="text-align: left">
-            Firskovvej 20<br/>
-            2800 Kongens Lyngby <br>
-            CVR-nr. 16314439
+                Firskovvej 20<br/>
+                2800 Kongens Lyngby <br>
+                CVR-nr. 16314439
             </div>
         </div>
         <div class="col">
             <div style="text-align: center">
-            <jsp:invoke fragment="footer"/>
-            Holder i længden<br/>
-            <p>&copy; 2022 Fog</p>
+                <jsp:invoke fragment="footer"/>
+                Holder i længden<br/>
+                <p>&copy; 2022 Fog</p>
             </div>
         </div>
         <div class="col">
             <div style="text-align: right">
-            Kontakt os<br/>
-            info@johannesfog.dk
+                Kontakt os<br/>
+                info@johannesfog.dk
             </div>
         </div>
     </div>
@@ -104,8 +106,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<!-- custom js file link  -->
-<script src="js/script.js" defer></script>
 
 
 </body>

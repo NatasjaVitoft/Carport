@@ -39,12 +39,12 @@ class UserMapper
 
                 } else
                 {
-                    throw new DatabaseException("Wrong username or password");
+                    throw new DatabaseException("Forkert brugernavn eller kodeord.");
                 }
             }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
+            throw new DatabaseException(ex, "noget gik galt i forbindelsen til databasen");
         }
         return user;
     }

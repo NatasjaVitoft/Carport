@@ -70,7 +70,7 @@
                                            name="postnummer" placeholder="postnummer" required>
                                     <label for="postnummer">Postnummer </label>
                                 </div>
-                            </div>
+                        </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control rounded-0" id="fuldenavn"
                                        name="fuldenavn" placeholder="fuldenavn" required>
@@ -108,6 +108,13 @@
         <br>
         <br>
         <br>
+
+        <html>
+        <body>
+
+
+        </body>
+        </html>
 
     </jsp:body>
 </t:pagetemplate>
