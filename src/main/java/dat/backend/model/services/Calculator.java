@@ -1,17 +1,15 @@
 package dat.backend.model.services;
 
-import dat.backend.model.entities.Item;
-
 import java.util.ArrayList;
 
 public class Calculator {
-
 
     // TEGNING
 
     // Spær
     static int calcRafter(double width, double length) {
         int n_rafter = (int) Math.ceil(length / 55);
+        // MÅSKE SKAL DEN VÆRE 60 SOM BESKREVET I TEKSTEN (max 60cm)
         return n_rafter;
     }
 
@@ -77,11 +75,34 @@ public class Calculator {
         // MANGLER STADIG EN DEL
     }
 
+    // hulbånd 1x20 mm. 10 mtr. 2 Rulle Til vindkryds på spær
+    static int calcMeasurementTapeQuantity(double width, double length) {
+        int n_measurement = 0;
+
+        int n = measurementTape(width, length);
+        if(n >= 10 && n < 20) {
+            n_measurement = 1;
+        }
+        if(n >= 20 && n < 30) {
+            n_measurement = 2;
+        }
+        if(n >= 30 && n < 40) {
+            n_measurement = 3;
+        }
+        if(n >= 40 && n < 50) {
+            n_measurement = 4;
+        }
+        return n_measurement;
+    }
+
     // STERN
 
     // 25x200	mm.	trykimp.	Brædt 360 4 Stk understernbrædder	til	for	&	bag	ende
     static int calcUnderSternSmall(double width, double length) {
-        return 0;
+        int n = 600;
+        int n1 = n + 5;
+        int n_underStern = (int) Math.ceil(n1 / 360) * 2;
+        return n_underStern;
     }
 
     // 25x200	mm.	trykimp.	Brædt 540 4 Stk understernbrædder	til	siderne
