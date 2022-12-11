@@ -8,11 +8,10 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "bestil", value = "/bestil")
+@WebServlet(name = "Bestil", value = "/Bestil")
 public class Bestil extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //sender tilbage til index.
         response.sendRedirect("index.jsp");
     }
 
@@ -27,7 +26,7 @@ public class Bestil extends HttpServlet {
             itemSession = new ArrayList<>();
         }
 
-        response.sendRedirect("bestil.jsp");
+        response.sendRedirect("index.jsp");
 
     }
 

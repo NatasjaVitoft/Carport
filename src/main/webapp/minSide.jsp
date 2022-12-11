@@ -6,7 +6,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             velkommen til min side
+
 
     </jsp:attribute>
 
@@ -15,9 +15,13 @@
     </jsp:attribute>
 
     <jsp:body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-        test test
-
+se her
 
     </jsp:body>
 </t:pagetemplate>
