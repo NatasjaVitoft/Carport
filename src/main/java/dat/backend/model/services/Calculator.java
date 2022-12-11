@@ -7,7 +7,7 @@ public class Calculator {
     // TEGNING
 
     // Spær
-    static int calcRafter(double width, double length) {
+    public static int calcRafter(double width, double length) {
         int n_rafter = (int) Math.ceil(length / 55);
         // MÅSKE SKAL DEN VÆRE 60 SOM BESKREVET I TEKSTEN (max 60cm)
         return n_rafter;
@@ -20,7 +20,7 @@ public class Calculator {
     }
 
     // Stolpe
-    static int calcPost(double width, double length) {
+    public static int calcPost(double width, double length) {
         int n_post = (int) Math.floor(length - 120 / 310);
         return n_post;
     }

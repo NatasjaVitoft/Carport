@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "AddOrder", value = "addorder")
+@WebServlet(name = "AddOrder", value = "/addorder")
 public class AddOrder extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,12 +32,9 @@ public class AddOrder extends HttpServlet {
         session.setAttribute("order", order);
 
         request.getRequestDispatcher("welcome.jsp").forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         response.sendRedirect("index.jsp");
-
     }
 }

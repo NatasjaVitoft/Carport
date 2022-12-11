@@ -13,7 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "Bestil", value = "bestil")
+@WebServlet(name = "Bestil", value = "/bestil")
 public class Bestil extends HttpServlet {
 
     private ConnectionPool connectionPool;
