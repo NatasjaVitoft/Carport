@@ -20,9 +20,13 @@ public class Item {
         this.length = length;
     }
 
-    public Item() {
-
+    public Item(int item_id, String item_name, String item_description, int price) {
+        this.item_id = item_id;
+        this.item_name = item_name;
+        this.item_description = item_description;
+        this.price = price;
     }
+
 
     public int getItem_id() {
         return item_id;
