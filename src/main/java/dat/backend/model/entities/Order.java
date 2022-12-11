@@ -27,6 +27,10 @@ public class Order {
         this.carport = carport;
     }
 
+    public Order() {
+
+    }
+
     public Timestamp getDate() {
         return date;
     }
