@@ -20,6 +20,13 @@ public class Order {
         this.carport = carport;
     }
 
+    public Order(String username, int price, String email, String carport) {
+        this.username = username;
+        this.price = price;
+        this.email = email;
+        this.carport = carport;
+    }
+
     public Timestamp getDate() {
         return date;
     }

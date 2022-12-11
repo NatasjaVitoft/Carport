@@ -11,7 +11,13 @@
 
     <jsp:body>
 
-${sessionScope.items}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
 
 
     </jsp:body>

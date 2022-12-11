@@ -70,6 +70,7 @@
                 <i class="fas fa-times"></i>
                 <img src="images/carport1.jpg" alt="">
                 <h3>CARPORT CP01DUR</h3>
+                <a href="bestil.jsp"></a>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -142,7 +143,6 @@
                 <div class="price">28.498,- pr. stk.</div>
                 <div class="buttons">
                     <a href="#" class="buy">buy now</a>
-                    <a href="#" class="cart">add to cart</a>
                 </div>
             </div>
 
@@ -162,7 +162,6 @@
                 <div class="price">28.498,- pr. stk.</div>
                 <div class="buttons">
                     <a href="#" class="buy">buy now</a>
-                    <a href="#" class="cart">add to cart</a>
                 </div>
             </div>
 
@@ -182,7 +181,6 @@
                 <div class="price">28.498,- pr. stk.</div>
                 <div class="buttons">
                     <a href="#" class="buy">buy now</a>
-                    <a href="#" class="cart">add to cart</a>
                 </div>
             </div>
 
