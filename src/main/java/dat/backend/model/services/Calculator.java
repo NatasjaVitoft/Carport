@@ -1,6 +1,4 @@
 package dat.backend.model.services;
-
-import dat.backend.model.entities.BillOfMaterials;
 import dat.backend.model.entities.Item;
 
 import java.util.ArrayList;
