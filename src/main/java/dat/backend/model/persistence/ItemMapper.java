@@ -15,7 +15,7 @@ public class ItemMapper {
 
         ArrayList<Item> itemList = new ArrayList<>();
 
-        String sql = "SELECT * FROM materialer";
+        String sql = "SELECT * FROM item";
 
         try (
                 Connection connection = connectionPool.getConnection()) {
