@@ -6,11 +6,11 @@ public class Item {
     String item_name;
     String item_description;
     int price = 0;
-    int unit;
+    String unit;
     int quantity;
     int length;
 
-    public Item(int item_id, String item_name, String item_description, int price, int unit, int quantity, int length) {
+    public Item(int item_id, String item_name, String item_description, int price, String unit, int quantity, int length) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_description = item_description;
@@ -25,6 +25,9 @@ public class Item {
         this.item_name = item_name;
         this.item_description = item_description;
         this.price = price;
+    }
+
+    public Item(int id, String name, String description, int price, int quantity, String unit) {
     }
 
 
@@ -44,7 +47,7 @@ public class Item {
         return price;
     }
 
-    public int getUnit() {
+    public String getUnit() {
         return unit;
     }
 
@@ -72,7 +75,7 @@ public class Item {
         this.price = price;
     }
 
-    public void setUnit(int unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 

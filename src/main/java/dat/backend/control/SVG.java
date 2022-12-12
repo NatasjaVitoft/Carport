@@ -20,7 +20,6 @@ public class SVG extends HttpServlet {
 
         SVGDrawing svg = new SVGDrawing(80, 80, "0 0 855 690");
 
-
         for(int i = 0; i < 780; i += 55) {
             svg.addRect(i, 0, 200, 25);
         }

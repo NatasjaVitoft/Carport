@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BillOfMaterials {
 
-
     private List<Carport> inventoryList = new ArrayList<>();
     private int totalPrice;
 
@@ -28,6 +27,5 @@ public class BillOfMaterials {
     public void setTotalPriceOfCarport(int totalPrice) {
         this.totalPrice = totalPrice;
     }
-
 
 }

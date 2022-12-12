@@ -29,9 +29,9 @@ public class ItemMapper {
                     int price = rs.getInt("price");
                     int length = rs.getInt("length");
                     int quantity = rs.getInt("quantity");
-                    int unit = rs.getInt("unit");
+                    String unit = rs.getString("unit");
 
-                    Item item = new Item(item_id, item_name, item_description, price, length, quantity, unit);
+                    Item item = new Item(item_id, item_name, item_description, price, unit, quantity, length);
                     itemList.add(item);
 
                 }if (itemList.size()==0)
