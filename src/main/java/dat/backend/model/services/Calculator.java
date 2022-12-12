@@ -1,14 +1,27 @@
 package dat.backend.model.services;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.BillOfMaterials;
 import dat.backend.model.entities.Item;
+import dat.backend.model.entities.ItemVariant;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.ItemFacade;
+import dat.backend.model.persistence.ItemMapper;
 
+import javax.servlet.ServletException;
+import java.sql.Connection;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
 
+    // Items er til træ og tagplader. ItemVariants er til skruer og beslag
 
-    ArrayList<Item> items = new ArrayList<>();
+    static ArrayList<Item> items = new ArrayList<>();
+    static ArrayList<ItemVariant> itemVariants = new ArrayList<>();
+
 
     // TEGNING
 
@@ -16,6 +29,12 @@ public class Calculator {
     public static int calcRafter(double width, double length) {
         int n_rafter = (int) Math.ceil(length / 55);
         // MÅSKE SKAL DEN VÆRE 60 SOM BESKREVET I TEKSTEN (max 60cm)
+
+        for(Item item : items) {
+            if(item.getItem_id()==1) {
+                items.add(new Item(item.getItem_id(), "Spær", item.getItem_description(), item.getPrice(), item.getUnit(), n_rafter, item.getLength()));
+            }
+        }
         return n_rafter;
     }
 

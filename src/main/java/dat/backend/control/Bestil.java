@@ -6,6 +6,7 @@ import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
+import dat.backend.model.services.Calculator;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -38,6 +39,7 @@ public class Bestil extends HttpServlet {
         //ArrayList<Carport> inventorySession;
         //Carport carport = (Carport) session.getAttribute("carport");
 
+        Calculator.calcRafter(800, 1000);
 
         itemSession = (ArrayList<Item>) session.getAttribute("items");
         if (itemSession == null){
