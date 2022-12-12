@@ -1,19 +1,10 @@
 package dat.backend.model.services;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.BillOfMaterials;
 import dat.backend.model.entities.Item;
 import dat.backend.model.entities.ItemVariant;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.ItemFacade;
-import dat.backend.model.persistence.ItemMapper;
 
-import javax.servlet.ServletException;
-import java.sql.Connection;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Calculator {
 
@@ -39,7 +30,7 @@ public class Calculator {
     }
 
     // Rem
-    static int calcStrap(double width, double length) {
+    public static int calcStrap(double width, double length) {
         int n_strap = (int) Math.ceil(length * 2);
         return n_strap;
     }
@@ -51,7 +42,7 @@ public class Calculator {
     }
 
     // Hulbånd
-    static int measurementTape(double width, double length) {
+    public static int measurementTape(double width, double length) {
         int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length, 2));
         int n_measurementTape = n * 2;
         return n_measurementTape;
@@ -62,7 +53,7 @@ public class Calculator {
     // TRÆ
 
     // 45x195	mm.	spærtræ	ubh., længde: 600
-    static int calcLongRafterTree(double width, double length) {
+    public static int calcLongRafterTree(double width, double length) {
         int n_rafter = calcRafter(width, length);
         return n_rafter;
     }
@@ -70,28 +61,28 @@ public class Calculator {
     // SKRUER OG BESLAG
 
     // Bræddebolt	10	x	120	mm.	 18 Stk Til	montering	af	rem	på	stolper
-    static int calcBolts(double width, double length) {
+    public static int calcBolts(double width, double length) {
         int n = calcPost(width, length);
         int n_bolt = n * 2;
         return n_bolt;
     }
 
     // universal	190	mm	højre 15 Stk Til	montering	af	spær	på	rem
-    static int calcUniversalRight(double width, double length) {
+    public static int calcUniversalRight(double width, double length) {
         int n = calcRafter(width, length);
         int n_universalRight = n;
         return n_universalRight;
     }
 
     // universal	190	mm	venstre 15 Stk Til	montering	af	spær	på	rem
-    static int calcUniversalLeft(double width, double length) {
+    public static int calcUniversalLeft(double width, double length) {
         int n = calcRafter(width, length);
         int n_universalLeft = n;
         return n_universalLeft;
     }
 
     // 4,0	x	50	mm.	beslagskruer	250, stk. 3 pakke Til	montering	af	universalbeslag	+	hulbånd
-    static int calcBeslagSkruer(double width, double length) {
+    public static int calcBeslagSkruer(double width, double length) {
         int n1 = calcUniversalLeft(width, length) * 3;
         int n2 = calcUniversalRight(width, length) * 3;
 
@@ -101,7 +92,7 @@ public class Calculator {
     }
 
     // hulbånd 1x20 mm. 10 mtr. 2 Rulle Til vindkryds på spær
-    static int calcMeasurementTapeQuantity(double width, double length) {
+    public static int calcMeasurementTapeQuantity(double width, double length) {
         int n_measurement = 0;
 
         int n = measurementTape(width, length);
@@ -123,7 +114,7 @@ public class Calculator {
     // STERN
 
     // 25x200	mm.	trykimp.	Brædt 360 4 Stk understernbrædder	til	for	&	bag	ende
-    static int calcUnderSternSmall(double width, double length) {
+    public static int calcUnderSternSmall(double width, double length) {
         int n = 600;
         int n1 = n + 5;
         int n_underStern = (int) Math.ceil(n1 / 360) * 2;
@@ -131,17 +122,17 @@ public class Calculator {
     }
 
     // 25x200	mm.	trykimp.	Brædt 540 4 Stk understernbrædder	til	siderne
-    static int calcUnderSternBig(double width, double length) {
+    public static int calcUnderSternBig(double width, double length) {
         return 0;
     }
 
     // 25x125mm.	trykimp.	Brædt 360 2 Stk oversternbrædder	til	forenden
-    static int calcOverSternSmall(double width, double length) {
+    public static int calcOverSternSmall(double width, double length) {
         return 0;
     }
 
     // 25x125mm.	trykimp.	Brædt 540 4 Stk oversternbrædder	til	siderne
-    static int calcOverSternBig(double width, double length) {
+    public static int calcOverSternBig(double width, double length) {
         return 0;
     }
 

@@ -14,7 +14,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "Bestil", value = "/bestil")
+@WebServlet(name = "bestil", value = "/bestil")
 public class Bestil extends HttpServlet {
 
     private ConnectionPool connectionPool;
@@ -34,19 +34,23 @@ public class Bestil extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-
+        ArrayList<Carport> inventorySession;
+        Carport carport = (Carport) session.getAttribute("carport");
+        request.getSession();
         ArrayList<Item> itemSession;
-        //ArrayList<Carport> inventorySession;
-        //Carport carport = (Carport) session.getAttribute("carport");
 
-        Calculator.calcRafter(800, 1000);
+        int length = Integer.parseInt(request.getParameter("length"));
+        int width = Integer.parseInt(request.getParameter("width"));
+
+        System.out.println(Calculator.calcRafter(width, length));
 
         itemSession = (ArrayList<Item>) session.getAttribute("items");
-        if (itemSession == null){
+        if (itemSession == null) {
             itemSession = new ArrayList<>();
         }
 
         ArrayList<Item> items = null;
+
         try {
             items = ItemFacade.itemList(connectionPool);
         } catch (DatabaseException e) {
@@ -58,14 +62,16 @@ public class Bestil extends HttpServlet {
             System.out.println("kommer vi herind?: " + i);
 
             String itemName = items.get(i).getItem_name();
-            itemSession.add(new Item(0,itemName,"beskrivelse",0));
+            int ID = items.get(i).getItem_id();
+            String description = items.get(i).getItem_description();
+            int price = items.get(i).getPrice();
+            String unit = items.get(i).getUnit();
+            int length1 = items.get(i).getLength();
+            int quantity = 0;
+
+            itemSession.add(new Item(ID, itemName,description, price, unit, quantity, length1));
             session.setAttribute("item", itemSession);
-
         }
-
-        response.sendRedirect("index.jsp");
-
+        System.out.println(itemSession);
     }
-
-
 }

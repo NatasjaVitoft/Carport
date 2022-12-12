@@ -86,4 +86,18 @@ public class Item {
     public void setLength(int length) {
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "item_id=" + item_id +
+                ", item_name='" + item_name + '\'' +
+                ", item_description='" + item_description + '\'' +
+                ", price=" + price +
+                ", unit='" + unit + '\'' +
+                ", quantity=" + quantity +
+                ", length=" + length +
+                '}';
+    }
 }
+

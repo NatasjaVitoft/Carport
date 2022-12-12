@@ -109,12 +109,5 @@
         <br>
         <br>
 
-        <html>
-        <body>
-
-
-        </body>
-        </html>
-
     </jsp:body>
 </t:pagetemplate>
