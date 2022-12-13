@@ -38,6 +38,8 @@ public class Bestil extends HttpServlet {
 
 
 
+
+
         ArrayList<Carport> inventorySession;
 
         ArrayList<Item> itemSession;

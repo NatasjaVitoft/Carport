@@ -55,6 +55,7 @@ public class Calculator {
 
     // Træ og tagplader
 
+    /*
     // 45x195	mm.	spærtræ	ubh., længde: 600
     public static int calcLongRafterTree(double width, double length) throws DatabaseException {
         int n_rafter = calcRafter(width, length);
@@ -163,4 +164,6 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
+
+     */
 }
