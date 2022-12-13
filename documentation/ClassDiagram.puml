@@ -1,0 +1,252 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class BillOfMaterials {
+- List<Carport> inventory()
+- int totalPrice
++ void add(Carport carport)
++ int getNumberOfCarport()
++ List<Carport> getCarportList()
++ int getTotalPriceOfCarport()
++ void setTotalPriceOfCarport(int totalPrice)
+
+
+
+}
+
+class Carport {
+- int height
+- int length
+- int price
+ArrayList<Item> itemList
+
++ int getHeight()
++ int getLength()
+}
+
+class Item{
+- int item_id
+- String item_name
+- String item_description
+- int price = 0
+- String unit
+- int quantity
+- int length
+
++ int getItem_id()
++ String getItem_name()
++ String getItem_description()
++ int getPrice()
++ String getUnit()
++ int getQuantity()
++ int getLength()
++ void setPrice(int price)
++ void setItem_id(int item_id)
++ void setItem_name(String item_name)
++ void setItem_description(String item_description)
++ void setUnit(String unit)
++ void setQuantity(int quantity)
++ void setLength(int length)
++ String toString()
+
+
+
+
+}
+
+class ItemVariant{
+- int itemVariant_id
+- String itemVariant_name
+- String itemVariant_description
+- int price = 0
+- String unit
+- int quantity
+
++ int getItemVariant_id()
++ void setItemVariant_id
++ String getItemVariant_name()
++ void setItemVariant_name(String itemVariant_name)
++ String getItemVariant_description()
++ void setItemVariant_description(String itemVariant_description)
++ int getPrice()
++ void setPrice(int price)
++ String getUnit()
++ void setUnit(String unit)
++ int getQuantity()
++ void setQuantity(int quantity)
+}
+
+class Order{
+- Timestamp date
+- String username
+- int order_id
+- int price
+- String email
+- String carport
+
++ Timestamp getDate()
++ void setDate(Timestamp date)
++ String getUsername()
++ void setUsername(String username)
++ int getOrder_id()
++ void setOrder_id(int order_id)
++ int getPrice()
++ void setPrice(int price)
++ String getEmail()
++ void setEmail(String email)
++ String getCarport()
++ void setCarport(String carport)
++ String toString()
+
+}
+
+class Orderline{
+- int item_id
+- int various_id
+- int shed_id
+- int price
+
++ int getItem_id()
++ void setItem_id(int item_id)
++ int getVarious_id()
++ void setVarious_id(int various_id)
++ int getShed_id()
++ void setShed_id(int shed_id)
++ int getPrice()
++ void setPrice(int price)
++ String toString()
+}
+
+class User{
+- String username
+- String password
+- String role
+- String email
+- String address
+- String city
+- int postcode
+- String name
+- int phoneNumber
+
++ String getUsername()
++ void setUsername(String username)
++ String getPassword()
++ void setPassword(String password)
++ String getRole()
++ void setRole(String role)
++ String getEmail()
++ void setEmail(String email)
++ String getAddress()
++ void setAddress(String address)
++ String getCity()
++ void setCity(String city)
++ int getPostcode()
++ void setPostcode(int postcode)
++ String getName()
++ void setName(String name)
++ int getPhoneNumber()
++ void setPhoneNumber(int phoneNumber)
++ boolean equals(Object o)
++ int hashCode()
++ String toString()
+
+}
+
+class ConnectionPool {
+ - HikariDataSource ds;
+ - static String USER = "root";
+ - static String PASSWORD = "pllghp1d";
+ - static String URL = "jdbc:mysql://localhost:3306/carport";
+ + ConnectionPool()
+ + ConnectionPool(String USER, String PASSWORD, String URL)
+ + Connection getConnection() throws SQLException
+ + void close()
+}
+
+class itemFacade {
++ ArrayList<Item> itemList(ConnectionPool connectionPool)
+}
+
+class itemMapper {
++ static ArrayList<Item> getItemList(ConnectionPool connectionPool)
+}
+
+class itemVariantMapper {
++ static ArrayList<ItemVariant> ItemVariantList(ConnectionPool connectionPool)
+}
+
+class itemVariantFacade{
++static ArrayList<ItemVariant> itemVariantList(ConnectionPool connectionPool)
+}
+
+class orderFacade {
++ static Order createOrder(String username, int price, String email, String carport, ConnectionPool connectionPool)
++ static void readOrder(HttpServletRequest request, ConnectionPool connectionPool)
+}
+
+class orderMapper {
++ static Order createOrder(String username, int price, String email, String carport, ConnectionPool connectionPool)
++ static void readOrder(HttpServletRequest request, ConnectionPool connectionPool)
+}
+
+class userFacade {
++ static User login(String username, String password, ConnectionPool connectionPool)
++ static User createUser(String username, String password, String email, String role, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool)
++ static User getUserByUsername(String username, ConnectionPool connectionPool)
+}
+
+class userMapper {
++ User login(String username, String password, ConnectionPool connectionPool)
++ User createUser(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool)
++ User getUserByUsername(String username, ConnectionPool connectionPool)
+}
+class AddOrder {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+class Bestil {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class Login {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class logout {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class Opret {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class SVG {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+User --> Login
+BillOfMaterials --> Carport
+Carport --> Item
+Carport --> ItemVariant
+Carport --> SVG
+Orderline --> Order
+Order --> BillOfMaterials
+Opret --> User
+Login --> logout
+Item --> itemFacade
+itemFacade --> itemMapper
+User --> userFacade
+userFacade --> userMapper
+Order --> orderFacade
+orderFacade --> orderMapper
+ItemVariant --> itemVariantFacade
+itemVariantFacade --> itemVariantMapper
+User --> Bestil
+User --> AddOrder
+
+
+@enduml

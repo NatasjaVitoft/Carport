@@ -1,6 +1,12 @@
 package dat.backend.model.services;
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
 import dat.backend.model.entities.BillOfMaterialLine;
+=======
+>>>>>>> 64a77a0976fc9d9ca5d9aeddb05b36eeaf4751db
+>>>>>>> 9a68bbfb566f1d053cb0ebfd2cc2764f8b5e0da9
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
