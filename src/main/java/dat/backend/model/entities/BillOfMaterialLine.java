@@ -2,7 +2,7 @@ package dat.backend.model.entities;
 
 public class BillOfMaterialLine {
 
-    private int material_id;
+    private int item_id;
     private String name;
     private String unit;
     private int length;
@@ -10,9 +10,16 @@ public class BillOfMaterialLine {
     private String description;
     private int carport_id;
     private int quantity;
+    private int orders_id;
 
-    public BillOfMaterialLine(int material_id, String name, String unit, int length, int price, String description, int carport_id, int quantity) {
-        this.material_id = material_id;
+
+
+    public BillOfMaterialLine() {
+
+    }
+
+    public BillOfMaterialLine(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
+        this.item_id = item_id;
         this.name = name;
         this.unit = unit;
         this.length = length;
@@ -20,18 +27,23 @@ public class BillOfMaterialLine {
         this.description = description;
         this.carport_id = carport_id;
         this.quantity = quantity;
+        this.orders_id = orders_id;
     }
 
-    public BillOfMaterialLine() {
-
+    public int getItem_id() {
+        return item_id;
     }
 
-    public int getMaterial_id() {
-        return material_id;
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
-    public void setMaterial_id(int material_id) {
-        this.material_id = material_id;
+    public int getOrders_id() {
+        return orders_id;
+    }
+
+    public void setOrders_id(int orders_id) {
+        this.orders_id = orders_id;
     }
 
     public String getName() {
