@@ -29,7 +29,7 @@ class UserMapper
                 {
                     String role = rs.getString("role");
                     String email = rs.getString("email");
-                    String address = rs.getString("address");
+                    String address = rs.getString("adress");
                     String city = rs.getString("city");
                     int postcode = rs.getInt("postcode");
                     String name = rs.getString("name");
@@ -53,7 +53,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, password, role, email, address, city, postcode, name, phonenumber) values (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into user (username, password, role, email, adress, city, postcode, name, phonenumber) values (?,?,?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))

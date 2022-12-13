@@ -3,6 +3,8 @@ package dat.backend.control;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Carport;
 import dat.backend.model.entities.Item;
+import dat.backend.model.entities.Order;
+import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
 import dat.backend.model.services.Calculator;
@@ -32,14 +34,27 @@ public class Bestil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Order order;
         HttpSession session = request.getSession();
         request.getSession();
 
+        int width = Integer.parseInt(request.getParameter("width"));
+        int length = Integer.parseInt(request.getParameter("length"));
+
+        String username = (String) session.getAttribute("username");
+        User user = (User) session.getAttribute("user");
+
+        if(username!=null) {
+            try {
+                order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
+                CalculatorList.calculateCarport(order.getOrder_id(), width, length);
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        }
 
 
-
-
-
+        /*
         ArrayList<Carport> inventorySession;
 
         ArrayList<Item> itemSession;
@@ -74,5 +89,7 @@ public class Bestil extends HttpServlet {
         }
         System.out.println(itemSession);
 
+
+         */
     }
 }
