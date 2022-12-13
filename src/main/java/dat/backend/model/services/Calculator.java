@@ -1,65 +1,46 @@
 package dat.backend.model.services;
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
 import dat.backend.model.entities.BillOfMaterialLine;
-=======
->>>>>>> 64a77a0976fc9d9ca5d9aeddb05b36eeaf4751db
->>>>>>> 9a68bbfb566f1d053cb0ebfd2cc2764f8b5e0da9
+
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Calculator {
 
     static ConnectionPool connectionPool;
 
-    // Metode som skal tilføje alle BillOfMaterialLines til en liste og returnerer den
-
-    public List<BillOfMaterialLine> calculateCarport (int width, int length) throws DatabaseException {
-
-        List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
-
-        billOfMaterialLinesList.add(calcRafter(width, length));
-
-        return billOfMaterialLinesList;
-    }
-
-
     // TEGNING
 
     // Spær
-    public static BillOfMaterialLine calcRafter(double width, double length) throws DatabaseException {
+    public static BillOfMaterialLine calcRafter(int ID, double width, double length) throws DatabaseException {
         int n_rafter = (int) Math.ceil(length / 55);
 
         Item items = ItemFacade.getItemByID(1, connectionPool);
 
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
         return billOfMaterialLine;
     }
 
     // Rem
-    public static BillOfMaterialLine calcStrap(double width, double length) throws DatabaseException {
+    public static BillOfMaterialLine calcStrap(int ID, double width, double length) throws DatabaseException {
         int n_strap = (int) Math.ceil(length * 2);
 
         Item items = ItemFacade.getItemByID(2, connectionPool);
 
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, n_strap);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, n_strap, ID);
         return billOfMaterialLine;
     }
 
     // Stolpe
-    public static BillOfMaterialLine calcPost(double width, double length) throws DatabaseException {
+    public static BillOfMaterialLine calcPost(int ID, double width, double length) throws DatabaseException {
         int n_post = (int) Math.floor(length - 120 / 310);
 
         Item items = ItemFacade.getItemByID(3, connectionPool);
 
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 3, n_post);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 3, n_post, ID);
         return billOfMaterialLine;
     }
 

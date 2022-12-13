@@ -6,6 +6,7 @@ import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
 import dat.backend.model.services.Calculator;
+import dat.backend.model.services.CalculatorList;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -33,10 +34,6 @@ public class Bestil extends HttpServlet {
 
         HttpSession session = request.getSession();
         request.getSession();
-
-
-
-
 
 
 

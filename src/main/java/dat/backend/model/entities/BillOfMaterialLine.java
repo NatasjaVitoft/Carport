@@ -13,13 +13,23 @@ public class BillOfMaterialLine {
     private int orders_id;
 
 
-
     public BillOfMaterialLine() {
 
     }
 
     public BillOfMaterialLine(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
         this.item_id = item_id;
+        this.name = name;
+        this.unit = unit;
+        this.length = length;
+        this.price = price;
+        this.description = description;
+        this.carport_id = carport_id;
+        this.quantity = quantity;
+        this.orders_id = orders_id;
+    }
+
+    public BillOfMaterialLine(String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
         this.name = name;
         this.unit = unit;
         this.length = length;
