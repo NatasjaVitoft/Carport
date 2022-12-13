@@ -13,11 +13,11 @@ import java.util.logging.Logger;
 
 public class OrderMapper {
 
-    public static Order createOrder(String username, int price, String email, String carport, ConnectionPool connectionPool) throws DatabaseException {
+    public static Order createOrder(String username, int price, String email, String carport, int length, int width, ConnectionPool connectionPool) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
         Order order;
-        String sql = "insert into orders (price , username, email, carport ) values (?,?,?,?)";
+        String sql = "insert into orders (price , username, email, carport, length, width ) values (?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -25,10 +25,12 @@ public class OrderMapper {
                 ps.setString(2, username);
                 ps.setString(3, email);
                 ps.setString(4, carport);
+                ps.setInt(5, length);
+                ps.setInt(6, width);
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    order = new Order(username, price, email, carport);
+                    order = new Order(username, price, email, carport, length, width);
                 } else {
                     throw new DatabaseException("Could not insert order into database");
                 }

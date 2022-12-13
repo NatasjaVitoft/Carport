@@ -13,4 +13,8 @@ public class ItemFacade {
         return ItemMapper.getItemList(connectionPool);
 
     }
+
+    public static Item getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
+        return ItemMapper.getItemByID(ID, connectionPool);
+    }
 }

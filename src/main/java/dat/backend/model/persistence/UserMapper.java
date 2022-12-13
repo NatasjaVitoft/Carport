@@ -116,6 +116,4 @@ class UserMapper
         }
         return null;
     }
-
-
 }

@@ -4,8 +4,7 @@ import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Carport;
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.ItemFacade;
+import dat.backend.model.persistence.*;
 import dat.backend.model.services.Calculator;
 
 import javax.servlet.*;
@@ -20,8 +19,7 @@ public class Bestil extends HttpServlet {
     private ConnectionPool connectionPool;
 
     @Override
-    public void init() throws ServletException
-    {
+    public void init() throws ServletException {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
@@ -34,15 +32,18 @@ public class Bestil extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        ArrayList<Carport> inventorySession;
-        Carport carport = (Carport) session.getAttribute("carport");
         request.getSession();
+
+
+
+
+
+
+
+
+        ArrayList<Carport> inventorySession;
+
         ArrayList<Item> itemSession;
-
-        int length = Integer.parseInt(request.getParameter("length"));
-        int width = Integer.parseInt(request.getParameter("width"));
-
-        System.out.println(Calculator.calcRafter(width, length));
 
         itemSession = (ArrayList<Item>) session.getAttribute("items");
         if (itemSession == null) {
@@ -73,5 +74,6 @@ public class Bestil extends HttpServlet {
             session.setAttribute("item", itemSession);
         }
         System.out.println(itemSession);
+
     }
 }

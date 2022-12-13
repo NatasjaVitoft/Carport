@@ -1,44 +1,60 @@
 package dat.backend.model.services;
 
+import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Item;
-import dat.backend.model.entities.ItemVariant;
+import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.ItemFacade;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Calculator {
 
-    // Items er til træ og tagplader. ItemVariants er til skruer og beslag
+    static ConnectionPool connectionPool;
 
-    static ArrayList<Item> items = new ArrayList<>();
-    static ArrayList<ItemVariant> itemVariants = new ArrayList<>();
+    // Metode som skal tilføje alle BillOfMaterialLines til en liste og returnerer den
+
+    public List<BillOfMaterialLine> calculateCarport (int width, int length) throws DatabaseException {
+
+        List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
+
+        billOfMaterialLinesList.add(calcRafter(width, length));
+
+        return billOfMaterialLinesList;
+    }
 
 
     // TEGNING
 
     // Spær
-    public static int calcRafter(double width, double length) {
+    public static BillOfMaterialLine calcRafter(double width, double length) throws DatabaseException {
         int n_rafter = (int) Math.ceil(length / 55);
-        // MÅSKE SKAL DEN VÆRE 60 SOM BESKREVET I TEKSTEN (max 60cm)
 
-        for(Item item : items) {
-            if(item.getItem_id()==1) {
-                items.add(new Item(item.getItem_id(), "Spær", item.getItem_description(), item.getPrice(), item.getUnit(), n_rafter, item.getLength()));
-            }
-        }
-        return n_rafter;
+        Item items = ItemFacade.getItemByID(1, connectionPool);
+
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter);
+        return billOfMaterialLine;
     }
 
     // Rem
-    public static int calcStrap(double width, double length) {
+    public static BillOfMaterialLine calcStrap(double width, double length) throws DatabaseException {
         int n_strap = (int) Math.ceil(length * 2);
-        return n_strap;
+
+        Item items = ItemFacade.getItemByID(2, connectionPool);
+
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, n_strap);
+        return billOfMaterialLine;
     }
 
     // Stolpe
-    public static int calcPost(double width, double length) {
+    public static BillOfMaterialLine calcPost(double width, double length) throws DatabaseException {
         int n_post = (int) Math.floor(length - 120 / 310);
-        return n_post;
+
+        Item items = ItemFacade.getItemByID(3, connectionPool);
+
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 3, n_post);
+        return billOfMaterialLine;
     }
 
     // Hulbånd
@@ -50,15 +66,15 @@ public class Calculator {
 
     // STYKLISTE
 
-    // TRÆ
+    // Træ og tagplader
 
     // 45x195	mm.	spærtræ	ubh., længde: 600
-    public static int calcLongRafterTree(double width, double length) {
+    public static int calcLongRafterTree(double width, double length) throws DatabaseException {
         int n_rafter = calcRafter(width, length);
         return n_rafter;
     }
 
-    // SKRUER OG BESLAG
+    // Skruer OG beslag
 
     // Bræddebolt	10	x	120	mm.	 18 Stk Til	montering	af	rem	på	stolper
     public static int calcBolts(double width, double length) {
@@ -136,22 +152,28 @@ public class Calculator {
         return 0;
     }
 
-
-    // RESULTAT FUNKTIONER
-
-    static ArrayList<Integer> getDrawingItemList(double width, double length) {
-        ArrayList<Integer> drawingItemList = new ArrayList<>();
-        ArrayList<String> drawingItemNameList = new ArrayList<>();
-
-
-        return drawingItemList;
+    // Plastmo bundskruer 200 stk. 3 pakke Skruer til tagplader
+    public static int calcBundskruer(double width, double length) {
+        return 0;
     }
 
-    static ArrayList<Integer> getItemList(double width, double length) {
-        ArrayList<Integer> itemList = new ArrayList<>();
-        ArrayList<String> itemNameList = new ArrayList<>();
-        // I den her funktion skal alle stykliste funktionerne kaldes, og resultatet skal tilføjes til listen
-        return itemList;
+    // 4,5 x 60 mm. skruer 200 stk. 1 Pakke Til montering af stern &v andbrædt
+    public static int calcSkruer(double width, double length) {
+        return 0;
     }
 
+    // firkantskiver 40x40x11mm 12 Stk Til montering af rem på stolper
+    public static int calcFirkant(double width, double length) {
+        return 0;
+    }
+
+    // 4,5 x 70 mm. Skruer 400 stk. 2 pk. til montering af yderste beklædning
+    public static int calcSkruer2 (double width, double length) {
+        return 0;
+    }
+
+    // 4,5 x 50 mm. Skruer 300 stk. 2 pk. til montering af inderste beklædning
+    public static int calcSkruer3 (double width, double length) {
+        return 0;
+    }
 }

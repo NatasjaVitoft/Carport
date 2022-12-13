@@ -9,27 +9,40 @@ public class Order {
     private int order_id;
     private int price;
     private String email;
-    private String carport;
+    private String carportID;
+    private int length;
+    private int width;
 
-    public Order(Timestamp date, String username, int order_id, int price, String email, String carport) {
+    public Order(Timestamp date, String username, int order_id, int price, String email, String carportID) {
         this.date = date;
         this.username = username;
         this.order_id = order_id;
         this.price = price;
         this.email = email;
-        this.carport = carport;
+        this.carportID = carportID;
     }
 
-    public Order(String username, int price, String email, String carport) {
+    public Order(String username, int price, String email, String carportID) {
         this.username = username;
         this.price = price;
         this.email = email;
-        this.carport = carport;
+        this.carportID = carportID;
+    }
+
+    public Order(String username, int price, String email, String carportID, int length, int width) {
+        this.username = username;
+        this.order_id = order_id;
+        this.price = price;
+        this.email = email;
+        this.carportID = carportID;
+        this.length = length;
+        this.width = width;
     }
 
     public Order() {
 
     }
+
 
     public Timestamp getDate() {
         return date;
@@ -71,12 +84,28 @@ public class Order {
         this.email = email;
     }
 
-    public String getCarport() {
-        return carport;
+    public String getCarportID() {
+        return carportID;
     }
 
-    public void setCarport(String carport) {
-        this.carport = carport;
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setCarportID(String carportID) {
+        this.carportID = carportID;
     }
 
     @Override
@@ -87,7 +116,7 @@ public class Order {
                 ", order_id=" + order_id +
                 ", price=" + price +
                 ", email='" + email + '\'' +
-                ", carport='" + carport + '\'' +
+                ", carport='" + carportID + '\'' +
                 '}';
     }
 }

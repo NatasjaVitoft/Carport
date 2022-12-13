@@ -22,9 +22,11 @@
         <br>
         <br>
 
-        <a href="bestilFladtTag.jsp"> Link til bestil</a>
-        <br>
-        <a href="bestilTagMedRejsning.jsp">Link til bygcarport</a>
+        <form action="BestilCarport" method="post">
+            <label for="flatroof">Vælg fladt tag:</label><br>
+            <input type="flatroof" id="flatroof" name="flatroof"><br>
+            <button type="submit">Videre</button>
+        </form>
 
     </jsp:body>
 </t:pagetemplate>

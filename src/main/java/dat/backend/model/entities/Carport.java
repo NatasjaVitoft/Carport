@@ -1,20 +1,20 @@
 package dat.backend.model.entities;
 
-import java.util.ArrayList;
-
 public class Carport {
 
-    final int height;
-    final int length;
-    final int price;
+    int ID;
+    int height;
+    int length;
 
-    ArrayList<Item> itemList = new ArrayList<>();
-
-    public Carport(int height, int length, int price, ArrayList<Item> itemList) {
+    public Carport(int height, int length) {
         this.height = height;
         this.length = length;
-        this.price  = price;
-        this.itemList = itemList;
+    }
+
+    public Carport(int ID, int height, int length) {
+        this.ID = ID;
+        this.height = height;
+        this.length = length;
     }
 
     public int getHeight() {
@@ -23,5 +23,13 @@ public class Carport {
 
     public int getLength() {
         return length;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

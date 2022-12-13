@@ -24,7 +24,6 @@ public class SVG extends HttpServlet {
             svg.addRect(i, 0, 200, 25);
         }
 
-
         request.setAttribute("svg", svg.toString());
         request.getRequestDispatcher("WEB-INF/svgdrawing.jsp").forward(request, response);
     }
