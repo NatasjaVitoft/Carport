@@ -23,45 +23,60 @@
         <br>
         <br>
 
-        <h1> Carport med høj rejsning </h1>
 
-        <form action="bestil" method="post">
-            <label for="width">Vælg bredde</label>
-            <select name="width" id="width">
-                <option value="600">600</option>
-                <option value="700">700</option>
-                <option value="800">800</option>
-                <option value="900">900</option>
-            </select>
+        <section class="container">
+            <div class="row content d-flex justify-content-center align-items-center">
+                <div class="col-md-5">
+                    <div class="box shadow bg-white p-4">
+                        <h3 class="mb-4 text-center fs-1">Customize Carport med høj rejsning af tag</h3>
 
-            <br>
+                        <form class="mb-3" action="bestil" method="post">
+                            <div class="mb-3">
+                                <p>Vælg bredde</p>
+                                <select class="form-control rounded-0" name="width" id="width">
+                                    <option value="600">600</option>
+                                    <option value="650">650</option>
+                                    <option value="700">700</option>
+                                    <option value="750">750</option>
+                                    <option value="800">800</option>
+                                    <option value="850">850</option>
+                                    <option value="900">900</option>
+                                    <option value="950">950</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1050">1050</option>
+                                    <option value="1100">1100</option>
+                                    <option value="1150">1150</option>
+                                    <option value="1200">1200</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <p>Vælg længde</p>
+                                <select class="form-control rounded-0" name="length" id="length">
+                                    <option value="600">600</option>
+                                    <option value="650">650</option>
+                                    <option value="700">700</option>
+                                    <option value="750">750</option>
+                                    <option value="800">800</option>
+                                    <option value="850">850</option>
+                                    <option value="900">900</option>
+                                    <option value="950">950</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1050">1050</option>
+                                    <option value="1100">1100</option>
+                                    <option value="1150">1150</option>
+                                    <option value="1200">1200</option>
+                                </select>
+                            </div>
+                            <div class="d-grid gap-2 mb-3">
+                                <input class="btn btn-dark btn-lg border-0 rounded-0"
+                                       type="submit" value="Se Tilbud"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <label for="length">Vælg længde</label>
-            <select name="length" id="length">
-                <option value="600">600</option>
-                <option value="780">780</option>
-                <option value="700">700</option>
-                <option value="800">800</option>
-                <option value="900">900</option>
-                <option value="1000">1000</option>
-                <option value="1100">1100</option>
-                <option value="1200">1200</option>
-                <option value="1300">1300</option>
-            </select>
-
-            <br>
-
-            <input class="btn btn-dark btn-lg border-0 rounded-0"
-                   type="submit" value="bestil"/>
-        </form>
-
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
