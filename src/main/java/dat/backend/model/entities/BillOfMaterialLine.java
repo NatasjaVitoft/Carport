@@ -12,7 +12,6 @@ public class BillOfMaterialLine {
     private int quantity;
     private int orders_id;
 
-
     public BillOfMaterialLine() {
 
     }

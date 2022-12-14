@@ -7,14 +7,13 @@ import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
-import dat.backend.model.services.Calculator;
 import dat.backend.model.services.CalculatorList;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 @WebServlet(name = "bestil", value = "/bestil")
 public class Bestil extends HttpServlet {
@@ -44,7 +43,6 @@ public class Bestil extends HttpServlet {
         String username = (String) session.getAttribute("username");
         User user = (User) session.getAttribute("user");
 
-        if(username!=null) {
             try {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 CalculatorList.calculateCarport(order.getOrder_id(), width, length);
@@ -55,6 +53,7 @@ public class Bestil extends HttpServlet {
 
 
         /*
+
         ArrayList<Carport> inventorySession;
 
         ArrayList<Item> itemSession;
@@ -92,4 +91,4 @@ public class Bestil extends HttpServlet {
 
          */
     }
-}
+

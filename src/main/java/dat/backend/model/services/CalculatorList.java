@@ -1,8 +1,6 @@
 package dat.backend.model.services;
-
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.exceptions.DatabaseException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +15,11 @@ public class CalculatorList {
 
         // Tilføjer alle hjælpemetoderne/beregningerne fra calculator klassen til listen
         billOfMaterialLinesList.add(Calculator.calcRafter(ID, width, length));
+        billOfMaterialLinesList.add(Calculator.calcLongRafterTree(ID, width, length));
+        billOfMaterialLinesList.add(Calculator.calcBolts(ID, width, length));
+        billOfMaterialLinesList.add(Calculator.calcBeslagSkruer(ID, width, length));
+        billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length));
+
 
         return billOfMaterialLinesList;
     }

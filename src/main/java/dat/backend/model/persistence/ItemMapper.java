@@ -1,9 +1,7 @@
 package dat.backend.model.persistence;
-
+import com.mysql.cj.protocol.Resultset;
 import dat.backend.model.entities.Item;
-import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +39,6 @@ public class ItemMapper {
                 {
                     throw new DatabaseException("Something went wrong listing items");
                 }
-
             }
         } catch (
                 SQLException | DatabaseException ex) {
@@ -50,9 +47,8 @@ public class ItemMapper {
         return itemList;
     }
 
-    static Item getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
+    public static Item getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
 
-        Logger.getLogger("web").log(Level.INFO, "");
         Item items = null;
 
         String sql = "SELECT * FROM item WHERE item_id = ?";
