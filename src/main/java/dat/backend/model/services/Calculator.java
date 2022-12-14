@@ -44,6 +44,8 @@ public class Calculator {
         return billOfMaterialLine;
     }
 
+    // uden skur kan man sige width + 0.55 + 0.55 (starter lide ud fra det første spær)
+
     // Hulbånd
     public static int measurementTape(double width, double length) {
         int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length, 2));
