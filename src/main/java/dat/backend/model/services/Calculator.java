@@ -1,7 +1,5 @@
 package dat.backend.model.services;
-
 import dat.backend.model.entities.BillOfMaterialLine;
-
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
@@ -57,51 +55,64 @@ public class Calculator {
 
     // Træ og tagplader
 
-    /*
+
     // 45x195	mm.	spærtræ	ubh., længde: 600
-    public static int calcLongRafterTree(double width, double length) throws DatabaseException {
-        int n_rafter = calcRafter(width, length);
-        return n_rafter;
+    public static BillOfMaterialLine calcLongRafterTree(int ID, double width, double length) throws DatabaseException {
+        int n_rafter = (int) Math.ceil(length / 55);
+        Item items = ItemFacade.getItemByID(3, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
+        return billOfMaterialLine;
     }
 
     // Skruer OG beslag
 
     // Bræddebolt	10	x	120	mm.	 18 Stk Til	montering	af	rem	på	stolper
-    public static int calcBolts(double width, double length) {
-        int n = calcPost(width, length);
-        int n_bolt = n * 2;
-        return n_bolt;
+    public static BillOfMaterialLine calcBolts(int ID, double width, double length) throws DatabaseException {
+        int n_post = (int) Math.floor(length - 120 / 310);
+        int n_bolt = n_post * 2;
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_bolt, ID);
+        return billOfMaterialLine;
+
     }
 
     // universal	190	mm	højre 15 Stk Til	montering	af	spær	på	rem
-    public static int calcUniversalRight(double width, double length) {
-        int n = calcRafter(width, length);
+    public static BillOfMaterialLine calcUniversalRight(int ID, double width, double length) throws DatabaseException {
+        int n = calcRafter(ID, width, length).getQuantity();
         int n_universalRight = n;
-        return n_universalRight;
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_universalRight, ID);
+        return billOfMaterialLine;
     }
 
     // universal	190	mm	venstre 15 Stk Til	montering	af	spær	på	rem
-    public static int calcUniversalLeft(double width, double length) {
-        int n = calcRafter(width, length);
+    public static BillOfMaterialLine calcUniversalLeft(int ID, double width, double length) throws DatabaseException {
+        int n = calcRafter(ID, width, length).getQuantity();
         int n_universalLeft = n;
-        return n_universalLeft;
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_universalLeft, ID);
+        return billOfMaterialLine;
     }
 
     // 4,0	x	50	mm.	beslagskruer	250, stk. 3 pakke Til	montering	af	universalbeslag	+	hulbånd
-    public static int calcBeslagSkruer(double width, double length) {
-        int n1 = calcUniversalLeft(width, length) * 3;
-        int n2 = calcUniversalRight(width, length) * 3;
+    public static BillOfMaterialLine calcBeslagSkruer(int ID, double width, double length) throws DatabaseException {
+        int n1 = calcUniversalLeft(ID, width, length).getQuantity() * 3;
+        int n2 = calcUniversalRight(ID, width, length).getQuantity() * 3;
 
         int n_beslagSkruer = n1 + n2;
-        return n_beslagSkruer;
-        // MANGLER STADIG EN DEL
+
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_beslagSkruer, ID);
+        return billOfMaterialLine;
+
     }
 
     // hulbånd 1x20 mm. 10 mtr. 2 Rulle Til vindkryds på spær
-    public static int calcMeasurementTapeQuantity(double width, double length) {
+    public static BillOfMaterialLine calcMeasurementTapeQuantity(int ID, double width, double length) throws DatabaseException {
         int n_measurement = 0;
 
         int n = measurementTape(width, length);
+
         if(n >= 10 && n < 20) {
             n_measurement = 1;
         }
@@ -114,17 +125,23 @@ public class Calculator {
         if(n >= 40 && n < 50) {
             n_measurement = 4;
         }
-        return n_measurement;
+
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_measurement, ID);
+        return billOfMaterialLine;
     }
 
     // STERN
 
     // 25x200	mm.	trykimp.	Brædt 360 4 Stk understernbrædder	til	for	&	bag	ende
-    public static int calcUnderSternSmall(double width, double length) {
+    public static BillOfMaterialLine calcUnderSternSmall(int ID, double width, double length) throws DatabaseException {
         int n = 600;
         int n1 = n + 5;
         int n_underStern = (int) Math.ceil(n1 / 360) * 2;
-        return n_underStern;
+
+        Item items = ItemFacade.getItemByID(4, connectionPool);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_underStern, ID);
+        return billOfMaterialLine;
     }
 
     // 25x200	mm.	trykimp.	Brædt 540 4 Stk understernbrædder	til	siderne
@@ -166,6 +183,4 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
-
-     */
 }
