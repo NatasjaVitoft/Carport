@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -66,6 +65,13 @@
                                     <option value="1150">1150</option>
                                     <option value="1200">1200</option>
                                 </select>
+                            </div>
+                            <div class="mb-3">
+                                <p>Ønskes skur?</p>
+                                <input type="checkbox" id="ja" name="skur" value="yes">
+                                <label for="ja"> Ja</label><br>
+                                <input type="checkbox" id="nej" name="skur" value="no">
+                                <label for="nej"> Nej</label><br>
                             </div>
                             <div class="d-grid gap-2 mb-3">
                                 <input class="btn btn-dark btn-lg border-0 rounded-0"
