@@ -53,6 +53,25 @@ public class Calculator {
 
     // STYKLISTE
 
+    // beregning af understern til for & bagende
+    // understern skal have +2,5 cm på hver side af forreste spær og bagerste spær.
+
+    public static int calcUnderSternFrontAndBack(double width, double length){
+
+        int u_stern = (int) (width * 0.6);
+
+        return u_stern;
+
+    }
+
+    /*public static int calcUnderSternSides(double width, double length){
+
+
+
+    }/*
+
+
+
     // Træ og tagplader
 
     /*
