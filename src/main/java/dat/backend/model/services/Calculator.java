@@ -5,22 +5,30 @@ import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class Calculator {
 
-    static ConnectionPool connectionPool;
 
     // TEGNING
 
     // Spær
-    public static BillOfMaterialLine calcRafter(int ID, double width, double length) throws DatabaseException {
+    public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
+
+        Connection connection = connectionPool.getConnection();
+
         int n_rafter = (int) Math.ceil(length / 55);
 
-        Item items = ItemFacade.getItemByID(1, connectionPool);
+        Item items = ItemFacade.getItemByID(10, connectionPool);
 
         BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
         return billOfMaterialLine;
     }
+
+    /*
+
 
     // Rem
     public static BillOfMaterialLine calcStrap(int ID, double width, double length) throws DatabaseException {
@@ -183,4 +191,6 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
+
+     */
 }

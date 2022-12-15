@@ -70,7 +70,7 @@ public class ItemMapper {
                     String unit = resultSet.getString("unit");
                     int price = resultSet.getInt("price");
 
-                    items = new Item(itemID, name, description, price, quantity, unit);
+                    items = new Item(itemID, name, description, price, unit, quantity, length);
                 }
             }
         } catch (SQLException ex) {

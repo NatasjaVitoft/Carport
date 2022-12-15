@@ -1,7 +1,12 @@
 package dat.backend.control;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.OrderFacade;
+import dat.backend.model.services.CalculatorList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,24 +20,38 @@ import java.sql.SQLException;
 @WebServlet(name = "AddOrder", value = "/addorder")
 public class AddOrder extends HttpServlet {
 
+    private ConnectionPool connectionPool;
+
+    @Override
+    public void init() throws ServletException {
+        this.connectionPool = ApplicationStart.getConnectionPool();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Order order;
         HttpSession session = request.getSession();
-        session.setAttribute("order", null);
+        request.getSession();
+
+        int width = Integer.parseInt(request.getParameter("width"));
+        int length = Integer.parseInt(request.getParameter("length"));
+
+        request.setAttribute("width", width);
+        request.setAttribute("length", length);
 
         String username = (String) session.getAttribute("username");
-        int price = (int) session.getAttribute("price");
+        User user = (User) session.getAttribute("user");
 
-        Order order = new Order();
-
-        order.setUsername(username);
-        order.setPrice(price);
-
-        session = request.getSession();
-        session.setAttribute("order", order);
-
-        request.getRequestDispatcher("welcome.jsp").forward(request, response);
+        try {
+            if(user!=null) {
+                order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
+                request.setAttribute("order", order);
+            }
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("index.jsp");

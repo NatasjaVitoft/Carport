@@ -110,4 +110,19 @@ public class BillOfMaterialLine {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "BillOfMaterialLine{" +
+                "item_id=" + item_id +
+                ", name='" + name + '\'' +
+                ", unit='" + unit + '\'' +
+                ", length=" + length +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", carport_id=" + carport_id +
+                ", quantity=" + quantity +
+                ", orders_id=" + orders_id +
+                '}';
+    }
 }

@@ -27,8 +27,7 @@ public class Item {
         this.price = price;
     }
 
-    public Item(int id, String name, String description, int price, int quantity, String unit) {
-    }
+
 
 
     public int getItem_id() {
