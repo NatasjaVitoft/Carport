@@ -21,7 +21,7 @@
         <br>
         <br>
 
-
+<form action="bestil" method="post">
         <section class="container">
             <div class="row content d-flex justify-content-center align-items-center">
                 <div class="col-md-5">
@@ -81,6 +81,7 @@
                 </div>
             </div>
         </section>
+</form>
 
         <br>
         <br>

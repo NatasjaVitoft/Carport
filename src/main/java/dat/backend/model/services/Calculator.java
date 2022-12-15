@@ -2,6 +2,7 @@ package dat.backend.model.services;
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.BillOfMaterialLineFacade;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
 
@@ -24,21 +25,28 @@ public class Calculator {
         Item items = ItemFacade.getItemByID(10, connectionPool);
 
         BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
+
+        return billOfMaterialLine;
+    }
+
+
+
+
+    // Rem
+    public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
+
+        Connection connection = connectionPool.getConnection();
+
+        int n_strap = (int) Math.ceil(length * 2);
+
+        Item items = ItemFacade.getItemByID(11, connectionPool);
+
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, n_strap, ID);
+
         return billOfMaterialLine;
     }
 
     /*
-
-
-    // Rem
-    public static BillOfMaterialLine calcStrap(int ID, double width, double length) throws DatabaseException {
-        int n_strap = (int) Math.ceil(length * 2);
-
-        Item items = ItemFacade.getItemByID(2, connectionPool);
-
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, n_strap, ID);
-        return billOfMaterialLine;
-    }
 
     // Stolpe
     public static BillOfMaterialLine calcPost(int ID, double width, double length) throws DatabaseException {
@@ -60,6 +68,27 @@ public class Calculator {
     }
 
     // STYKLISTE
+
+    // beregning af understern til for & bagende
+    // understern skal have +2,5 cm på hver side af forreste spær og bagerste spær.
+
+    public static int calcUnderSternFrontAndBack(double width, double length){
+
+        int u_stern = (int) (width * 0.6);
+
+        return u_stern;
+
+    }
+    }
+
+
+    /*public static int calcUnderSternSides(double width, double length){
+
+
+
+    }/*
+
+
 
     // Træ og tagplader
 
@@ -191,6 +220,7 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
+<<<<<<< HEAD
 
      */
 }

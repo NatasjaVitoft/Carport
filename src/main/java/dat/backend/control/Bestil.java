@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
+
 
 
 @WebServlet(name = "bestil", value = "/bestil")
@@ -32,48 +32,22 @@ public class Bestil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        request.getSession();
 
+        int width = Integer.parseInt(request.getParameter("width"));
+        int length = Integer.parseInt(request.getParameter("length"));
 
+        session.setAttribute("width", width);
+        session.setAttribute("length", length);
 
-
-        /*
-
-        ArrayList<Carport> inventorySession;
-
-        ArrayList<Item> itemSession;
-
-        itemSession = (ArrayList<Item>) session.getAttribute("items");
-        if (itemSession == null) {
-            itemSession = new ArrayList<>();
-        }
-
-        ArrayList<Item> items = null;
-
-        try {
-            items = ItemFacade.itemList(connectionPool);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i <items.size();i++){
-
-            System.out.println("kommer vi herind?: " + i);
-
-            String itemName = items.get(i).getItem_name();
-            int ID = items.get(i).getItem_id();
-            String description = items.get(i).getItem_description();
-            int price = items.get(i).getPrice();
-            String unit = items.get(i).getUnit();
-            int length1 = items.get(i).getLength();
-            int quantity = 0;
-
-            itemSession.add(new Item(ID, itemName,description, price, unit, quantity, length1));
-            session.setAttribute("item", itemSession);
-        }
-        System.out.println(itemSession);
-
-
-         */
+        request.getRequestDispatcher("SVGPage.jsp").forward(request, response);
     }
-    }
+}
+
+
+
+
+
+
 

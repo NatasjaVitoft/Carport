@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class BillOfMaterialLineMapper {
 
-    static BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id, ConnectionPool connectionPool) throws DatabaseException {
+    public static BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         BillOfMaterialLine billOfMaterialLine;
         String sql = "insert into bom (item_id, name, unit, length, price, description, carport_id, quantity, orders_id ) values (?,?,?,?,?,?,?,?,?)";
