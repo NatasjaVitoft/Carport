@@ -63,6 +63,8 @@ public class Calculator {
         return u_stern;
 
     }
+    }
+
 
     /*public static int calcUnderSternSides(double width, double length){
 
@@ -202,4 +204,4 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
-}
+}*/

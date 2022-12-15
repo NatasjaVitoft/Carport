@@ -43,13 +43,16 @@ public class Bestil extends HttpServlet {
         String username = (String) session.getAttribute("username");
         User user = (User) session.getAttribute("user");
 
-            try {
-                order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
-                CalculatorList.calculateCarport(order.getOrder_id(), width, length);
-            } catch (DatabaseException e) {
-                e.printStackTrace();
-            }
+        try {
+            order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
+            CalculatorList.calculateCarport(order.getOrder_id(), width, length);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
         }
+
+        
+        request.getRequestDispatcher("SVGPage.jsp").forward(request, response);
+    }
 
 
         /*
@@ -90,5 +93,5 @@ public class Bestil extends HttpServlet {
 
 
          */
-    }
+}
 

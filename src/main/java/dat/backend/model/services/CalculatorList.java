@@ -14,11 +14,11 @@ public class CalculatorList {
         List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
 
         // Tilføjer alle hjælpemetoderne/beregningerne fra calculator klassen til listen
-        billOfMaterialLinesList.add(Calculator.calcRafter(ID, width, length));
+       /* billOfMaterialLinesList.add(Calculator.calcRafter(ID, width, length));
         billOfMaterialLinesList.add(Calculator.calcLongRafterTree(ID, width, length));
         billOfMaterialLinesList.add(Calculator.calcBolts(ID, width, length));
         billOfMaterialLinesList.add(Calculator.calcBeslagSkruer(ID, width, length));
-        billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length));
+        billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length));*/
 
 
         return billOfMaterialLinesList;
