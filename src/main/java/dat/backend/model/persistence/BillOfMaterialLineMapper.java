@@ -43,7 +43,7 @@ public class BillOfMaterialLineMapper {
         }
         catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not insert username into database");
+            throw new DatabaseException(ex, "Could not insert bom into database");
         }
         return billOfMaterialLine;
     }

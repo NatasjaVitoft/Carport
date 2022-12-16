@@ -1,6 +1,8 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.BillOfMaterialLine;
+import dat.backend.model.entities.BillOfMaterials;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
@@ -11,7 +13,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet(name = "bestil", value = "/bestil")
@@ -37,9 +40,19 @@ public class Bestil extends HttpServlet {
 
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
+        //int price = (int) session.getAttribute("price");
+
+        List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
+
+
+
+
+
 
         session.setAttribute("width", width);
         session.setAttribute("length", length);
+        //session.setAttribute("price", price);
+        
 
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);
     }

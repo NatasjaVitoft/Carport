@@ -2,7 +2,6 @@ package dat.backend.model.services;
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.BillOfMaterialLineFacade;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
 
@@ -18,7 +17,7 @@ public class Calculator {
     // Spær
     public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
 
-        Connection connection = connectionPool.getConnection();
+        //Connection connection = connectionPool.getConnection();
 
         int n_rafter = (int) Math.ceil(length / 55);
 
@@ -35,7 +34,7 @@ public class Calculator {
     // Rem
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
 
-        Connection connection = connectionPool.getConnection();
+        //Connection connection = connectionPool.getConnection();
 
         int n_strap = (int) Math.ceil(length * 2);
 

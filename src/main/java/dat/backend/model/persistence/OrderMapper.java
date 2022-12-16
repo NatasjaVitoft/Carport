@@ -20,7 +20,7 @@ public class OrderMapper {
         String sql = "insert into orders (price , username, email, carport, length, width ) values (?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, price);
                 ps.setString(2, username);
                 ps.setString(3, email);
@@ -29,9 +29,17 @@ public class OrderMapper {
                 ps.setInt(6, width);
 
                 int rowsAffected = ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                int auto_id = rs.getInt(1);
                 if (rowsAffected == 1) {
                     order = new Order(username, price, email, carport, length, width);
-                } else {
+                    order.setOrder_id(auto_id);
+
+                    System.out.println("vi er inde i createorder metoden: "+order);
+                }
+
+                else {
                     throw new DatabaseException("Could not insert order into database");
                 }
             }

@@ -5,19 +5,16 @@ import java.util.List;
 
 public class BillOfMaterials {
 
-    private List<Carport> inventoryList = new ArrayList<>();
+    List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
     private int totalPrice;
 
-    public void add(Carport carport) {
-        inventoryList.add(carport);
-    }
 
     public int getNumberOfCarport() {
-        return inventoryList.size();
+        return billOfMaterialLinesList.size();
     }
 
-    public List<Carport> getCarportList() {
-        return inventoryList;
+    public List<BillOfMaterialLine> getCarportList() {
+        return billOfMaterialLinesList;
     }
 
     public int getTotalPriceOfCarport() {

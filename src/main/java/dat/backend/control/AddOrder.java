@@ -53,6 +53,8 @@ public class AddOrder extends HttpServlet {
             e.printStackTrace();
         }
 
+
+
         ArrayList <BillOfMaterialLine> allMaterial = new ArrayList<>();
 
         try {
@@ -66,7 +68,7 @@ public class AddOrder extends HttpServlet {
 
 
         for (BillOfMaterialLine a : allMaterial) {
-            System.out.println(a);
+
 
             try {
                 BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getCarport_id(), a.getQuantity(), a.getOrders_id(), connectionPool);
@@ -74,6 +76,8 @@ public class AddOrder extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
+        request.getRequestDispatcher("minSide.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
