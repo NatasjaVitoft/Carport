@@ -30,7 +30,7 @@
 
                         <form class="mb-3" action="bestil" method="post">
                             <div class="mb-3">
-                                <p>Vælg bredde</p>
+                                <p>Vælg bredde(Cm)</p>
                                 <select class="form-control rounded-0" name="width" id="width">
                                     <option value="600">600</option>
                                     <option value="650">650</option>
@@ -48,7 +48,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <p>Vælg længde</p>
+                                <p>Vælg længde(Cm)</p>
                                 <select class="form-control rounded-0" name="length" id="length">
                                     <option value="600">600</option>
                                     <option value="650">650</option>
