@@ -4,8 +4,6 @@ import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ItemFacade;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 
 
@@ -219,7 +217,6 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
-<<<<<<< HEAD
 
      */
 }
