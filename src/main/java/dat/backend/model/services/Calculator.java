@@ -29,9 +29,7 @@ public class Calculator {
     }
 
 
-
-
-    // Rem
+    // Rem. den er fin
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
 
         //Connection connection = connectionPool.getConnection();
@@ -44,36 +42,53 @@ public class Calculator {
 
         return billOfMaterialLine;
     }
+}
 
     /*
 
-    // Stolpe
+    // Stolpe. cal er fin
     public static BillOfMaterialLine calcPost(int ID, double width, double length) throws DatabaseException {
-        int n_post = (int) Math.floor(length - 120 / 310);
+        int n_post = (int) Math.floor((length - 120 / 310) * 2);
 
         Item items = ItemFacade.getItemByID(3, connectionPool);
 
         BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 3, n_post, ID);
         return billOfMaterialLine;
     }
-
-    // uden skur kan man sige width + 0.55 + 0.55 (starter lide ud fra det første spær)
+    // med skur kan man sige length - 55 på den ene side, og så minus skur bredde på 210. det giver 265
+    // uden skur kan man sige length - 110 (starter lide ud fra det første spær)
 
     // Hulbånd
     public static int measurementTape(double width, double length) {
-        int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length, 2));
+
+
+
+     if (skur == true){
+     int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length -265, 2));
         int n_measurementTape = n * 2;
         return n_measurementTape;
+
+
+
+     } else {
+     int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length -110, 2));
+        int n_measurementTape = n * 2;
+        return n_measurementTape;
+
+     }
+
+
+
     }
 
     // STYKLISTE
 
-    // beregning af understern til for & bagende
+    // beregning af understern til for & bagende. Der skal altid bruges 2 remme til for og bag, som er = bredde.
     // understern skal have +2,5 cm på hver side af forreste spær og bagerste spær.
 
     public static int calcUnderSternFrontAndBack(double width, double length){
 
-        int u_stern = (int) (width * 0.6);
+        int u_stern = (int) (width);
 
         return u_stern;
 
@@ -81,11 +96,16 @@ public class Calculator {
     }
 
 
-    /*public static int calcUnderSternSides(double width, double length){
+     // beregning af stern til siderne. Der skal altid bruges 2 remme til siderne, som er = længden.
+
+    public static int calcUnderSternSides(double width, double length){
+
+    s_stern = (int) (length);
+
+    return s_stern
 
 
-
-    }/*
+    }
 
 
 
@@ -109,6 +129,8 @@ public class Calculator {
         Item items = ItemFacade.getItemByID(4, connectionPool);
         BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_bolt, ID);
         return billOfMaterialLine;
+
+
 
     }
 
@@ -219,7 +241,6 @@ public class Calculator {
     public static int calcSkruer3 (double width, double length) {
         return 0;
     }
-<<<<<<< HEAD
 
-     */
 }
+
