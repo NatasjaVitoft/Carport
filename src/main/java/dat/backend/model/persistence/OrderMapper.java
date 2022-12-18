@@ -35,8 +35,6 @@ public class OrderMapper {
                 if (rowsAffected == 1) {
                     order = new Order(username, price, email, carport, length, width);
                     order.setOrder_id(auto_id);
-
-                    System.out.println("vi er inde i createorder metoden: "+order);
                 }
 
                 else {

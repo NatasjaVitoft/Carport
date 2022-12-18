@@ -8,6 +8,8 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
 import dat.backend.model.services.CalculatorList;
+import dat.backend.model.services.HelpFunction;
+import dat.backend.model.services.SVGDrawing;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @WebServlet(name = "bestil", value = "/bestil")
@@ -38,13 +41,24 @@ public class Bestil extends HttpServlet {
         HttpSession session = request.getSession();
         request.getSession();
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        Locale.setDefault(new Locale("US"));
+
         // gets parameter from user input
 
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
         //int price = (int) session.getAttribute("price");
 
-        List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
+        //List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
+
+        //drawing
+
+        String SVGTop = "";
+
+        //SVGDrawing topView = HelpFunction.drawCarportfladtTopView(length, width);
+
 
 
 
@@ -55,6 +69,7 @@ public class Bestil extends HttpServlet {
         session.setAttribute("width", width);
         session.setAttribute("length", length);
         //session.setAttribute("price", price);
+        session.setAttribute("SVGTop", SVGTop);
         
 
         //forward to svgpage.jsp

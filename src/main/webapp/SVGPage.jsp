@@ -20,6 +20,11 @@
         <br>
         <br>
 
+        <p> SVG </p>
+
+        <a href="svg">Se tegning</a>
+
+
 
         <form action="addorder" method="post">
         <section class="container">
