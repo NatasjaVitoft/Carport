@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class Calculator {
 
 
-
     // TEGNING
 
     // Calc Rafter
@@ -234,17 +233,17 @@ public class Calculator {
         return billOfMaterialLine;
     }
 
-    // 25x200	mm.	trykimp.	Brædt 540 4 Stk understernbrædder	til	siderne
+    // 25x200	mm.	trykimp. Brædt 540 4 Stk understernbrædder	til	siderne
     public static int calcUnderSternBig(double width, double length, ConnectionPool connectionPool) {
         return 0;
     }
 
-    // 25x125mm.	trykimp.	Brædt 360 2 Stk oversternbrædder	til	forenden
+    // 25x125mm.	trykimp. Brædt 360 2 Stk oversternbrædder	til	forenden
     public static int calcOverSternSmall(double width, double length, ConnectionPool connectionPool) {
         return 0;
     }
 
-    // 25x125mm.	trykimp.	Brædt 540 4 Stk oversternbrædder	til	siderne
+    // 25x125mm.	trykimp. Brædt 540 4 Stk oversternbrædder	til	siderne
     public static int calcOverSternBig(double width, double length, ConnectionPool connectionPool) {
         return 0;
     }

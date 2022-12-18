@@ -33,6 +33,17 @@ public class Order {
         this.carportID = carportID;
     }
 
+    public Order(Timestamp date, String username, int order_id, int price, String email, String carportID, int length, int width) {
+        this.date = date;
+        this.username = username;
+        this.order_id = order_id;
+        this.price = price;
+        this.email = email;
+        this.carportID = carportID;
+        this.length = length;
+        this.width = width;
+    }
+
     public Order(String username, int price, String email, String carportID, int length, int width) {
         this.username = username;
         this.order_id = order_id;

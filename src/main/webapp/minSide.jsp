@@ -20,8 +20,22 @@
         <br>
         <br>
         <br>
+        <br>
+        <form action="addorder" method="get">
+            <input type="submit" value="Se ordre"/>
+        </form>
+        <br>
 
-se her
+        <div style="width: 555px">
+            <c:forEach var="item" items="${sessionScope.orderlist}">
+                ID: ${item.order_id} <br>
+                Email: ${item.email} <br>
+                Date: ${item.date} <br>
+                Pris: ${item.price} kr <br>
+                Username: ${item.username} <br>
+                Carport: ${item.carportID}, ${item.length}, ${item.width}
+            </c:forEach>
+        </div>
 
     </jsp:body>
 </t:pagetemplate>

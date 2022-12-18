@@ -19,9 +19,6 @@
         <br>
         <br>
         <br>
-        <p> SVG </p>
-
-        <a ref="svg">Se tegning</a>
 
 
         <form action="addorder" method="post">
@@ -83,6 +80,10 @@
             </div>
         </section>
         </form>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>

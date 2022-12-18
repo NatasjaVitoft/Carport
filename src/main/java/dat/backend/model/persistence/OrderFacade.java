@@ -13,9 +13,9 @@ public class OrderFacade {
 
     }
 
-    public static void readOrder(HttpServletRequest request, ConnectionPool connectionPool){
+    public static void readOrder(HttpServletRequest request, ConnectionPool connectionPool, String username){
 
-        OrderMapper.readOrder(request, connectionPool);
+        OrderMapper.readOrder(request, connectionPool, username);
 
     }
 }

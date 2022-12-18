@@ -27,6 +27,10 @@
             <div class="row justify-content-center align-items-center text-center">
                 <h2>Hvilken carport ønkser du?</h2>
                 <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <div class="col-md-3 text-center">
                     <a href="bestilFladtTag.jsp"><img src="images/carport1.jpg" alt="HTML tutorial"
                                                       style="width:250px;height:200px;"></a>
@@ -39,7 +43,7 @@
                                                       style="width:250px;height:200px;"></a>
                     <br>
                     <br>
-                    <p>Carport med tag af høj rejsning</p>
+                    <p>Carport med høj rejsning</p>
                 </div>
             </div>
         </div>

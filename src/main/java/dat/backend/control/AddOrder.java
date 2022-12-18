@@ -8,7 +8,6 @@ import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.BillOfMaterialLineFacade;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
-import dat.backend.model.persistence.UserFacade;
 import dat.backend.model.services.CalculatorList;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "AddOrder", value = "/addorder")
 public class AddOrder extends HttpServlet {
@@ -91,7 +89,11 @@ public class AddOrder extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // shouldnt end up here
-        response.sendRedirect("index.jsp");
+        HttpSession session = request.getSession();
+
+        String username = (String) session.getAttribute("username");
+        OrderFacade.readOrder(request, connectionPool, username);
+        request.getRequestDispatcher("minSide.jsp").forward(request, response);
+        response.sendRedirect("minSide.jsp");
     }
 }

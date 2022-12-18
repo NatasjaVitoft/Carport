@@ -50,28 +50,33 @@ public class OrderMapper {
 
     }
 
-    public static void readOrder(HttpServletRequest request, ConnectionPool connectionPool) {
+    public static void readOrder(HttpServletRequest request, ConnectionPool connectionPool, String usernameInput) {
 
         List<Order> orderList = new ArrayList<>();
         HttpSession session = request.getSession();
 
-        String sql = "select * from orders ";
+        String sql = "select * from orders WHERE username = ? ";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, usernameInput);
 
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
 
-                int order_id = resultSet.getInt("idOrders");
+                int order_id = resultSet.getInt("orders_id");
                 String username = resultSet.getString("username");
                 Timestamp date = resultSet.getTimestamp("date");
                 int price = resultSet.getInt("price");
                 String email = resultSet.getString("email");
                 String carport = resultSet.getString("carport");
+                int length = resultSet.getInt("length");
+                int width = resultSet.getInt("width");
 
-                Order order = new Order(date,username, order_id, price, email, carport);
+
+                Order order = new Order(date, username, order_id, price, email, carport, length, width);
                 orderList.add(order);
             }
             session.setAttribute("orderlist", orderList);
