@@ -11,10 +11,10 @@ public class SVGDrawing {
     private StringBuilder svgString = new StringBuilder();
 
     private final static String HEADERTEMPLATE =
-            "<svg x=\"%d\" y=\"%d\" height=\"%d%%\" width=\"%d%%\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
+            "<svg x=\"%d%%\" y=\"%d%%\" height=\"%d%%\" width=\"%d%%\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
 
     private final static String RECTTEMPLATE =
-            "<rect x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+            "<rect x=\"%d%%\" y=\"%d%%\" height=\"%f%%\" width=\"%f%%\" style=\"stroke:#000000; fill: #ffffff\" />";
 
     private final static String ARROWHEADSTEMPLATE = "<defs>\n" +
             "        <marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +

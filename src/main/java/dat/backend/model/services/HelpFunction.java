@@ -1,7 +1,5 @@
 package dat.backend.model.services;
 
-import dat.backend.control.SVG;
-
 public class HelpFunction {
 
     public static SVGDrawing createNewSVG(int x, int y, int height, int width, String viewbox) {

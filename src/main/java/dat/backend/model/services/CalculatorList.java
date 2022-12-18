@@ -23,16 +23,12 @@ public class CalculatorList {
 
         billOfMaterialLinesList.add(Calculator.calcRafter(connectionPool, ID, width, length));
         billOfMaterialLinesList.add(Calculator.calcStrap(ID, width, length, connectionPool));
-        //billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length, connectionPool));
-        //billOfMaterialLinesList.add(Calculator.calcUnderSternFrontAndBack(ID, width, length, connectionPool));
-
-
-       /* billOfMaterialLinesList.add(Calculator.calcRafter(ID, width, length));
-        billOfMaterialLinesList.add(Calculator.calcLongRafterTree(ID, width, length));
-        billOfMaterialLinesList.add(Calculator.calcBolts(ID, width, length));
-        billOfMaterialLinesList.add(Calculator.calcBeslagSkruer(ID, width, length));
-
-        */
+        billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcBolts(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcLongRafterTree(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcUnderSternFrontAndBack(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcUnderSternSides(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcUnderSternSmall(ID, width, length, connectionPool));
 
 
 
