@@ -1,6 +1,7 @@
 package dat.backend.control;
 
 import dat.backend.model.services.Calculator;
+import dat.backend.model.services.HelpFunction;
 import dat.backend.model.services.SVGDrawing;
 
 import javax.servlet.*;
@@ -18,13 +19,10 @@ public class SVG extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Locale.setDefault(new Locale("US"));
 
-        SVGDrawing svg = new SVGDrawing(80, 80, "0 0 855 690");
+        SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 100, 60, "0 0 855 690");
+        carport = HelpFunction.addBeams(carport);
 
-        for(int i = 0; i < 780; i += 55) {
-            svg.addRect(i, 0, 200, 25);
-        }
-
-        request.setAttribute("svg", svg.toString());
+        request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("WEB-INF/svgdrawing.jsp").forward(request, response);
     }
 

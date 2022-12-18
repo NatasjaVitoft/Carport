@@ -45,6 +45,7 @@ public class BillOfMaterialLineMapper {
         {
             throw new DatabaseException(ex, "Could not insert bom into database");
         }
+
         return billOfMaterialLine;
     }
 }

@@ -21,7 +21,7 @@
         <br>
         <p> SVG </p>
 
-        <a ref="svg">Se tegning</a>
+        <a href="svg">Se tegning</a>
 
 
         <form action="addorder" method="post">
