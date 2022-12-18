@@ -38,6 +38,8 @@ public class Bestil extends HttpServlet {
         HttpSession session = request.getSession();
         request.getSession();
 
+        // gets parameter from user input
+
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
         //int price = (int) session.getAttribute("price");
@@ -48,12 +50,14 @@ public class Bestil extends HttpServlet {
 
 
 
+        //sets the attribute from session
 
         session.setAttribute("width", width);
         session.setAttribute("length", length);
         //session.setAttribute("price", price);
         
 
+        //forward to svgpage.jsp
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);
     }
 }

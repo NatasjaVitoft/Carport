@@ -38,11 +38,17 @@ public class AddOrder extends HttpServlet {
         HttpSession session = request.getSession();
         request.getSession();
 
+        // gets width and length attribute from the session
+
         int width = (int) session.getAttribute("width");
         int length = (int) session.getAttribute("length");
 
+        // gets the user and username attribute from the session
+
         String username = (String) session.getAttribute("username");
         User user = (User) session.getAttribute("user");
+
+        // if user is ! null set order
 
         try {
             if(user!=null) {
@@ -54,8 +60,10 @@ public class AddOrder extends HttpServlet {
         }
 
 
+        // instance of Arraylist allMaterial
 
         ArrayList <BillOfMaterialLine> allMaterial = new ArrayList<>();
+
 
         try {
             allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length);
@@ -67,8 +75,9 @@ public class AddOrder extends HttpServlet {
         }
 
 
+        // adding the calculated items to allMaterial list and calls the method createBomL
         for (BillOfMaterialLine a : allMaterial) {
-
+            System.out.println(a);
 
             try {
                 BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getCarport_id(), a.getQuantity(), a.getOrders_id(), connectionPool);
@@ -77,10 +86,12 @@ public class AddOrder extends HttpServlet {
             }
         }
 
+        // if succed go to minSide.jsp
         request.getRequestDispatcher("minSide.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // shouldnt end up here
         response.sendRedirect("index.jsp");
     }
 }

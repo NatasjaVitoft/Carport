@@ -2,9 +2,13 @@ package dat.backend.model.entities;
 
 public class Carport {
 
+    // fields
+
     int ID;
     int height;
     int length;
+
+    // constructor
 
     public Carport(int height, int length) {
         this.height = height;
@@ -16,6 +20,8 @@ public class Carport {
         this.height = height;
         this.length = length;
     }
+
+    // methods
 
     public int getHeight() {
         return height;

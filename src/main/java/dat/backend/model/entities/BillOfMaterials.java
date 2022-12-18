@@ -5,9 +5,11 @@ import java.util.List;
 
 public class BillOfMaterials {
 
+    //Fields
     List<BillOfMaterialLine> billOfMaterialLinesList = new ArrayList<>();
     private int totalPrice;
 
+    // methods
 
     public int getNumberOfCarport() {
         return billOfMaterialLinesList.size();

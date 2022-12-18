@@ -2,6 +2,8 @@ package dat.backend.model.entities;
 
 public class BillOfMaterialLine {
 
+    // fields
+
     private int item_id;
     private String name;
     private String unit;
@@ -15,6 +17,7 @@ public class BillOfMaterialLine {
     public BillOfMaterialLine() {
 
     }
+    // Constructor
 
     public BillOfMaterialLine(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
         this.item_id = item_id;
@@ -38,6 +41,8 @@ public class BillOfMaterialLine {
         this.quantity = quantity;
         this.orders_id = orders_id;
     }
+
+    // Methods
 
     public int getItem_id() {
         return item_id;

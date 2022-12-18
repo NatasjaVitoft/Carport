@@ -114,7 +114,6 @@ class UserMapperTest
         assertEquals(expectedUser, logInUser);
 
     }
-<<<<<<< HEAD
 }
 
  */

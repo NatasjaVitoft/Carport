@@ -2,12 +2,17 @@ package dat.backend.model.entities;
 
 public class ItemVariant {
 
+
+    //fields
+
     private int itemVariant_id;
     private String itemVariant_name;
     private String itemVariant_description;
     private int price = 0;
     private String unit;
     private int quantity;
+
+    //constructor
 
     public ItemVariant(int itemVariant_id, String itemVariant_name, String itemVariant_description, int price, String unit, int quantity) {
         this.itemVariant_id = itemVariant_id;
@@ -17,6 +22,8 @@ public class ItemVariant {
         this.unit = unit;
         this.quantity = quantity;
     }
+
+    // methods
 
     public int getItemVariant_id() {
         return itemVariant_id;
