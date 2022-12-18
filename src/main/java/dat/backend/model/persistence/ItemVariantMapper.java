@@ -46,4 +46,35 @@ public class ItemVariantMapper {
         }
         return itemVariantList;
     }
+
+    public static ItemVariant getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
+
+        ItemVariant itemVariants = null;
+
+        String sql = "SELECT * FROM itemvariant WHERE item_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, ID);
+
+                ResultSet resultSet = ps.executeQuery();
+
+                if (resultSet.next()) {
+
+                    int variantID = resultSet.getInt("item_id");
+                    String description = resultSet.getString("description");
+                    String name = resultSet.getString("name");
+                    int quantity = resultSet.getInt("quantity");
+                    String unit = resultSet.getString("unit");
+                    int price = resultSet.getInt("price");
+
+                    itemVariants = new ItemVariant(variantID, name, description, price, unit, quantity);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong");
+        }
+        return itemVariants;
+    }
 }

@@ -10,4 +10,8 @@ public class ItemVariantFacade {
     public static ArrayList<ItemVariant> itemVariantList(ConnectionPool connectionPool) throws DatabaseException {
         return ItemVariantMapper.ItemVariantList(connectionPool);
     }
+
+    public static ItemVariant getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
+        return ItemVariantMapper.getItemByID(ID, connectionPool);
+    }
 }

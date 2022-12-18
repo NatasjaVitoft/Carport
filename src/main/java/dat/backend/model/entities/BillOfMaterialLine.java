@@ -1,5 +1,7 @@
 package dat.backend.model.entities;
 
+import dat.backend.model.persistence.ConnectionPool;
+
 public class BillOfMaterialLine {
 
     // fields
@@ -31,7 +33,7 @@ public class BillOfMaterialLine {
         this.orders_id = orders_id;
     }
 
-    public BillOfMaterialLine(String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
+    public BillOfMaterialLine(int item_id, String name, String unit, int price, String description, int carport_id, int quantity, int orders_id) {
         this.name = name;
         this.unit = unit;
         this.length = length;
@@ -41,6 +43,8 @@ public class BillOfMaterialLine {
         this.quantity = quantity;
         this.orders_id = orders_id;
     }
+
+
 
     // Methods
 

@@ -29,7 +29,14 @@ public class CalculatorList {
         billOfMaterialLinesList.add(Calculator.calcUnderSternFrontAndBack(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcUnderSternSides(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcUnderSternSmall(ID, width, length, connectionPool));
-
+        billOfMaterialLinesList.add(Calculator.calcBeslagSkruer(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcBundskruer(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcSkruer(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcFirkant(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcSkruer2(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcSkruer3(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcVandbræt(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcVandbrætForende(ID, width, length, connectionPool));
 
 
         return billOfMaterialLinesList;
