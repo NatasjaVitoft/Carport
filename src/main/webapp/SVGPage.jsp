@@ -20,9 +20,6 @@
         <br>
         <br>
 
-        <p> SVG </p>
-
-        <a href="svg">Se tegning</a>
 
 
 
@@ -44,13 +41,13 @@
                         <br>
                         <h3>Carporten set oppefra:</h3>
                         <button class="btn btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"
-                                data-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample">
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             Se tegning
                         </button>
                         <div class="collapse" id="collapseExample">
-                            <br>
-                                ${requestScope.drawing}
+                            <div class="card card-body">
+                                    ${requestScope.generateSvgTop}
+                            </div>
                         </div>
 
                         <br>
