@@ -2,7 +2,6 @@ package dat.backend.model.entities;
 
 public class ItemVariant {
 
-
     //fields
 
     private int itemVariant_id;
@@ -14,14 +13,14 @@ public class ItemVariant {
 
     //constructor
 
-    public ItemVariant(int itemVariant_id, String itemVariant_name, String itemVariant_description, int price, String unit, int quantity) {
+    public ItemVariant(int itemVariant_id, String itemVariant_name, String itemVariant_description, int price, String unit) {
         this.itemVariant_id = itemVariant_id;
         this.itemVariant_name = itemVariant_name;
         this.itemVariant_description = itemVariant_description;
         this.price = price;
         this.unit = unit;
-        this.quantity = quantity;
     }
+
 
     // methods
 

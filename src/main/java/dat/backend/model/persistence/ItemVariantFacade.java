@@ -12,6 +12,6 @@ public class ItemVariantFacade {
     }
 
     public static ItemVariant getItemByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
-        return ItemVariantMapper.getItemByID(ID, connectionPool);
+        return ItemVariantMapper.getItemVariantByID(ID, connectionPool);
     }
 }

@@ -5,9 +5,7 @@ import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.BillOfMaterialLineFacade;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.OrderFacade;
+import dat.backend.model.persistence.*;
 import dat.backend.model.services.CalculatorList;
 
 import javax.servlet.ServletException;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,6 +60,7 @@ public class AddOrder extends HttpServlet {
         // instance of Arraylist allMaterial
 
         ArrayList <BillOfMaterialLine> allMaterial = new ArrayList<>();
+        ArrayList <BillOfMaterialLine> allMaterial2 = new ArrayList<>();
 
 
         try {
@@ -73,12 +73,34 @@ public class AddOrder extends HttpServlet {
         }
 
 
+
         // adding the calculated items to allMaterial list and calls the method createBomL
+        int price = 0;
+
         for (BillOfMaterialLine a : allMaterial) {
             System.out.println(a);
+            price += a.getPrice();
+
 
             try {
-                BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getCarport_id(), a.getQuantity(), a.getOrders_id(), connectionPool);
+                BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+
+        for(BillOfMaterialLine b : allMaterial2) {
+            try {
+                BomVariantFacade.createBOMLVariant(b.getName(), b.getUnit(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), b.getItemVariant_id(), connectionPool);
             } catch (DatabaseException e) {
                 e.printStackTrace();
             }

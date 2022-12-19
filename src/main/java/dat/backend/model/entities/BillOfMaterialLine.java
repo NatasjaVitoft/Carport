@@ -7,6 +7,7 @@ public class BillOfMaterialLine {
     // fields
 
     private int item_id;
+    private int itemVariant_id;
     private String name;
     private String unit;
     private int length;
@@ -21,30 +22,27 @@ public class BillOfMaterialLine {
     }
     // Constructor
 
-    public BillOfMaterialLine(int item_id, String name, String unit, int length, int price, String description, int carport_id, int quantity, int orders_id) {
+
+    public BillOfMaterialLine(int itemVariant_id, String name, String unit, int price, String description, int quantity, int orders_id) {
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.orders_id = orders_id;
+        this.itemVariant_id = itemVariant_id;
+    }
+
+    public BillOfMaterialLine(int item_id, String name, String unit, int length, int price, String description, int quantity, int orders_id) {
         this.item_id = item_id;
         this.name = name;
         this.unit = unit;
         this.length = length;
         this.price = price;
         this.description = description;
-        this.carport_id = carport_id;
         this.quantity = quantity;
         this.orders_id = orders_id;
     }
-
-    public BillOfMaterialLine(int item_id, String name, String unit, int price, String description, int carport_id, int quantity, int orders_id) {
-        this.name = name;
-        this.unit = unit;
-        this.length = length;
-        this.price = price;
-        this.description = description;
-        this.carport_id = carport_id;
-        this.quantity = quantity;
-        this.orders_id = orders_id;
-    }
-
-
 
     // Methods
 
@@ -118,6 +116,14 @@ public class BillOfMaterialLine {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getItemVariant_id() {
+        return itemVariant_id;
+    }
+
+    public void setItemVariant_id(int itemVariant_id) {
+        this.itemVariant_id = itemVariant_id;
     }
 
     @Override

@@ -19,22 +19,25 @@ public class Calculator {
     // Spær
     public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
 
-        int n_rafter = (int) Math.ceil(length / 55);
-        Item items = ItemFacade.getItemByID(10, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
-        return billOfMaterialLine;
+            int n_rafter = (int) Math.ceil(length / 55);
+            Item items = ItemFacade.getItemByID(10, connectionPool);
+            int price = items.getPrice() * n_rafter;
+            BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n_rafter, ID);
+            return billOfMaterialLine;
     }
 
     // Calc Strap
     // Rem
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
-        int n_strap = (int) Math.ceil(length * 2);
-        int result = n_strap/600;
-        Item items = ItemFacade.getItemByID(8, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 2, result, ID);
-        return billOfMaterialLine;
+            int n_strap = (int) Math.ceil(length * 2);
+            int result = n_strap / 600;
+            Item items = ItemFacade.getItemByID(8, connectionPool);
+            int price = result * items.getPrice();
+            BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
+            return billOfMaterialLine;
     }
+
 
     // Calc post
     // Stolpe
@@ -45,7 +48,8 @@ public class Calculator {
         int n_post3 = n_post2 * 2;
 
         Item items = ItemFacade.getItemByID(11, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 3, n_post3, ID);
+        int price = items.getPrice() * n_post3;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n_post3, ID);
 
         return billOfMaterialLine;
     }
@@ -63,8 +67,9 @@ public class Calculator {
         int result = (int) Math.ceil(u_rs/360);
 
         Item items = ItemFacade.getItemByID(1, connectionPool);
+        int price = result * items.getPrice();
 
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 4, result, ID);
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
 
         return billOfMaterialLine;
     }
@@ -80,7 +85,8 @@ public class Calculator {
         int result = (int) Math.ceil(s_rs/540);
 
         Item items = ItemFacade.getItemByID(2, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 5, result, ID);
+        int price = items.getPrice() * result;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
         return billOfMaterialLine;
     }
 
@@ -92,7 +98,8 @@ public class Calculator {
         int result = (int) Math.ceil(result1);
 
         Item items = ItemFacade.getItemByID(3, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, result, ID);
+        int price = items.getPrice() * result;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
         return billOfMaterialLine;
     }
 
@@ -105,7 +112,8 @@ public class Calculator {
 
         int n_rafter = (int) Math.ceil(length / 55);
         Item items = ItemFacade.getItemByID(10, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_rafter, ID);
+        int price = items.getPrice() * n_rafter;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n_rafter, ID);
         return billOfMaterialLine;
     }
 
@@ -120,7 +128,8 @@ public class Calculator {
         int n_post2 = n_post / 310;
         int n_bolt = n_post2 * 2;
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(7, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), itemVariants.getPrice(), itemVariants.getItemVariant_description(), 1, n_bolt, ID);
+        int price = itemVariants.getPrice() * n_bolt;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n_bolt, ID);
         return billOfMaterialLine;
     }
 
@@ -129,7 +138,8 @@ public class Calculator {
     public static BillOfMaterialLine calcUniversalRight(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
         int n = calcRafter(connectionPool, ID, width, length).getQuantity();
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(3, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), itemVariants.getPrice(), itemVariants.getItemVariant_description(), 1, n, ID);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -138,7 +148,8 @@ public class Calculator {
     public static BillOfMaterialLine calcUniversalLeft(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
         int n = calcRafter(connectionPool, ID, width, length).getQuantity();
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(4, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), itemVariants.getPrice(), itemVariants.getItemVariant_description(), 1, n, ID);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -151,8 +162,9 @@ public class Calculator {
         int n_beslagSkruer = n1 + n2;
         int n = n_beslagSkruer/250;
 
-        ItemVariant items = ItemVariantFacade.getItemByID(6, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        ItemVariant itemVariants = ItemVariantFacade.getItemByID(6, connectionPool);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -163,8 +175,9 @@ public class Calculator {
     public static BillOfMaterialLine calcBundskruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int n = 3;
-        ItemVariant items = ItemVariantFacade.getItemByID(1, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        ItemVariant itemVariants = ItemVariantFacade.getItemByID(1, connectionPool);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -174,8 +187,9 @@ public class Calculator {
     public static BillOfMaterialLine calcSkruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int n = 1;
-        ItemVariant items = ItemVariantFacade.getItemByID(1, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        ItemVariant itemVariants = ItemVariantFacade.getItemByID(5, connectionPool);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -184,8 +198,9 @@ public class Calculator {
     public static BillOfMaterialLine calcFirkant(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int n = 12;
-        ItemVariant items = ItemVariantFacade.getItemByID(8, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        ItemVariant itemVariants = ItemVariantFacade.getItemByID(8, connectionPool);
+        int price = itemVariants.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(itemVariants.getItemVariant_id(), itemVariants.getItemVariant_name(), itemVariants.getUnit(), price, itemVariants.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -194,7 +209,8 @@ public class Calculator {
     public static BillOfMaterialLine calcSkruer2 (int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = 2;
         ItemVariant items = ItemVariantFacade.getItemByID(9, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        int price = items.getPrice() * n ;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), price, items.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -202,8 +218,9 @@ public class Calculator {
     // Vi har valgt at sætte en default værdi så alle tage skal bruge 2 pakker
     public static BillOfMaterialLine calcSkruer3 (int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = 2;
-        ItemVariant items = ItemVariantFacade.getItemByID(9, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        ItemVariant items = ItemVariantFacade.getItemByID(10, connectionPool);
+        int price = items.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), price, items.getItemVariant_description(), n, ID);
         return billOfMaterialLine;
     }
 
@@ -211,16 +228,18 @@ public class Calculator {
     // 19x100 mm. trykimp. Brædt 540 4 Stk vandbrædt på stern i sider
     public static BillOfMaterialLine calcVandbræt (int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = calcUnderSternSides(ID, width, length, connectionPool).getQuantity();
-        ItemVariant items = ItemVariantFacade.getItemByID(13, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        Item items = ItemFacade.getItemByID(13, connectionPool);
+        int price = items.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n, ID);
         return billOfMaterialLine;
     }
 
     // 19x100 mm. trykimp. Brædt 360 2 Stk vandbrædt på stern i forende
     public static BillOfMaterialLine calcVandbrætForende (int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = calcUnderSternSmall(ID, width, length, connectionPool).getQuantity();
-        ItemVariant items = ItemVariantFacade.getItemByID(14, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItemVariant_id(), items.getItemVariant_name(), items.getUnit(), items.getPrice(), items.getItemVariant_description(), 1, n, ID);
+        Item items = ItemFacade.getItemByID(14, connectionPool);
+        int price = items.getPrice() * n;
+        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n, ID);
         return billOfMaterialLine;
     }
 }
@@ -235,6 +254,21 @@ public class Calculator {
 
 
 
+   /*
+    public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
+        if(shed == true) {
+            int n1 = (int) Math.ceil(shed.length/480);
+            Item items = ItemFacade.getItemByID(9, connectionPool);
+            int price = items.getPrice() * n1;
+            BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n1, ID);
+            return billOfMaterialLine;
+        }
+        else {
+            return null;
+        }
+    }
+
+     */
 
 
 
@@ -261,6 +295,13 @@ public class Calculator {
 
 
 
+
+
+
+
+// 45x195 mm. spærtræ ubh. 480 1 Stk
+//Remme i sider, sadles ned i stolper ( skur del,
+//deles)
 
 
 

@@ -9,29 +9,28 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BillOfMaterialLineMapper {
+public class BomVariantMapper {
 
-    public static BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int quantity, int orders_id, ConnectionPool connectionPool) throws DatabaseException {
+    public static BillOfMaterialLine createBOMLVariant(String name, String unit, int price, String description, int quantity, int orders_id, int itemvariant_id, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         BillOfMaterialLine billOfMaterialLine;
-        String sql = "insert into bom (item_id, name, unit, length, price, description, quantity, orders_id ) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into bomvariant (name, unit, price, description, quantity, orders_id, itemvariant_id) values (?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, item_id);
-                ps.setString(2, name);
-                ps.setString(3, unit);
-                ps.setInt(4, length);
-                ps.setInt(5, price);
-                ps.setString(6, description);
-                ps.setInt(7, quantity);
-                ps.setInt(8, orders_id);
+                ps.setString(1, name);
+                ps.setString(2, unit);
+                ps.setInt(3, price);
+                ps.setString(4, description);
+                ps.setInt(5, quantity);
+                ps.setInt(6, orders_id);
+                ps.setInt(7, itemvariant_id);
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    billOfMaterialLine = new BillOfMaterialLine(item_id, name, unit, length, price, description, quantity, orders_id);
+                    billOfMaterialLine = new BillOfMaterialLine(itemvariant_id, name, unit, price, description, quantity, orders_id);
                 } else
                 {
                     throw new DatabaseException("Could not be inserted into the database");
@@ -39,9 +38,10 @@ public class BillOfMaterialLineMapper {
             }
         }
         catch (SQLException ex)
-        {
+        {  System.out.println("KIG HER KIG HER" + ex);
             throw new DatabaseException(ex, "Could not insert bom into database");
         }
+
 
         return billOfMaterialLine;
     }
