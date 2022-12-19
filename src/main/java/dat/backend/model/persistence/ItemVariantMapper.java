@@ -26,12 +26,11 @@ public class ItemVariantMapper {
                 while (rs.next()) {
                     int id = rs.getInt("idBeslag_skruer");
                     String name = rs.getString("name");
-                    int quantity = rs.getInt("quantity");
                     String unit = rs.getString("unit");
                     String description = rs.getString("description");
                     int price = rs.getInt("price");
 
-                    ItemVariant itemVariant = new ItemVariant(id, name, description, price, unit, quantity);
+                    ItemVariant itemVariant = new ItemVariant(id, name, description, price, unit);
                     itemVariantList.add(itemVariant);
 
                 }if (itemVariantList.size()==0)
@@ -45,5 +44,35 @@ public class ItemVariantMapper {
             throw new DatabaseException(ex, "Error with itemVariant. Something went wrong with the database");
         }
         return itemVariantList;
+    }
+
+    public static ItemVariant getItemVariantByID(int ID, ConnectionPool connectionPool) throws DatabaseException {
+
+        ItemVariant itemVariants = null;
+
+        String sql = "SELECT * FROM itemvariant WHERE itemvariant_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, ID);
+
+                ResultSet resultSet = ps.executeQuery();
+
+                if (resultSet.next()) {
+
+                    int variantID = resultSet.getInt("itemvariant_id");
+                    String description = resultSet.getString("description");
+                    String name = resultSet.getString("name");
+                    String unit = resultSet.getString("unit");
+                    int price = resultSet.getInt("price");
+
+                    itemVariants = new ItemVariant(variantID, name, description, price, unit);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong");
+        }
+        return itemVariants;
     }
 }

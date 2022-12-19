@@ -1,5 +1,7 @@
 package dat.backend.model.services;
 
+import dat.backend.control.SVG;
+
 public class SVGDrawing {
 
 
@@ -11,7 +13,7 @@ public class SVGDrawing {
     private StringBuilder svgString = new StringBuilder();
 
     private final static String HEADERTEMPLATE =
-            "<svg x=\"%d%%\" y=\"%d%%\" height=\"%d%%\" width=\"%d%%\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
+            "<svg x=\"%d%%\" y=\"%d%%\" height=\"%d%%\" width=\"%d%%\" viewBox=\"%s%%\" preserveAspectRatio=\"xMinYMin\">";
 
     private final static String RECTTEMPLATE =
             "<rect x=\"%d%%\" y=\"%d%%\" height=\"%f%%\" width=\"%f%%\" style=\"stroke:#000000; fill: #ffffff\" />";
@@ -31,7 +33,7 @@ public class SVGDrawing {
 
 
     public SVGDrawing(int height, int width, String viewbox, int x, int y) {
-        svgString.append(String.format(HEADERTEMPLATE, height, width, viewbox));
+        svgString.append(String.format(HEADERTEMPLATE, x, y, height, width, viewbox));
         this.height = height;
         this.width = width;
         this.viewbox = viewbox;

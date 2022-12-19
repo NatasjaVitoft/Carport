@@ -14,13 +14,12 @@ public class Item {
 
     //constructor
 
-    public Item(int item_id, String item_name, String item_description, int price, String unit, int quantity, int length) {
+    public Item(int item_id, String item_name, String item_description, int price, String unit, int length) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_description = item_description;
         this.price = price;
         this.unit = unit;
-        this.quantity = quantity;
         this.length = length;
     }
 

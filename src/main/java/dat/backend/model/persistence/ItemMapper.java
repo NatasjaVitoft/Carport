@@ -29,10 +29,9 @@ public class ItemMapper {
                     String item_description = rs.getString("description");
                     int price = rs.getInt("price");
                     int length = rs.getInt("length");
-                    int quantity = rs.getInt("quantity");
                     String unit = rs.getString("unit");
 
-                    Item item = new Item(item_id, item_name, item_description, price, unit, quantity, length);
+                    Item item = new Item(item_id, item_name, item_description, price, unit, length);
                     itemList.add(item);
 
                 }if (itemList.size()==0)
@@ -66,11 +65,10 @@ public class ItemMapper {
                     String description = resultSet.getString("description");
                     int length = resultSet.getInt("length");;
                     String name = resultSet.getString("name");
-                    int quantity = resultSet.getInt("quantity");
                     String unit = resultSet.getString("unit");
                     int price = resultSet.getInt("price");
 
-                    items = new Item(itemID, name, description, price, unit, quantity, length);
+                    items = new Item(itemID, name, description, price, unit, length);
                 }
             }
         } catch (SQLException ex) {

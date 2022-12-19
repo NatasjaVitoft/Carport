@@ -29,9 +29,24 @@ public class CalculatorList {
         billOfMaterialLinesList.add(Calculator.calcUnderSternFrontAndBack(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcUnderSternSides(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcUnderSternSmall(ID, width, length, connectionPool));
-
+        billOfMaterialLinesList.add(Calculator.calcVandbræt(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcVandbrætForende(ID, width, length, connectionPool));
 
 
         return billOfMaterialLinesList;
+    }
+
+    public static List<BillOfMaterialLine> calculateCarport2 (ConnectionPool connectionPool, int ID, int width, int length) throws SQLException, DatabaseException {
+
+        List<BillOfMaterialLine> billOfMaterialLinesVariantList = new ArrayList<>();
+
+        billOfMaterialLinesVariantList.add(Calculator.calcBeslagSkruer(ID, width, length, connectionPool));
+        billOfMaterialLinesVariantList.add(Calculator.calcBundskruer(ID, width, length, connectionPool));
+        billOfMaterialLinesVariantList.add(Calculator.calcSkruer(ID, width, length, connectionPool));
+        billOfMaterialLinesVariantList.add(Calculator.calcFirkant(ID, width, length, connectionPool));
+        billOfMaterialLinesVariantList.add(Calculator.calcSkruer2(ID, width, length, connectionPool));
+        billOfMaterialLinesVariantList.add(Calculator.calcSkruer3(ID, width, length, connectionPool));
+
+        return billOfMaterialLinesVariantList;
     }
 }
