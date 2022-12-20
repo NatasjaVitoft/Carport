@@ -48,7 +48,7 @@ public class AddOrder extends HttpServlet {
         // if user is ! null set order
 
         try {
-            if(user!=null) {
+            if(username!=null) {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
             }

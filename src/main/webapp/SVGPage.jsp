@@ -64,7 +64,7 @@
                         <div class="collapse" id="collapseExampleTwo">
                             <br>
 
-                                ${requestScope.sideDrawing}
+                                her skal ligge sideView svg
                         </div>
                         <br>
                         <br>
@@ -74,8 +74,9 @@
                         <div class="d-grid gap-2 mb-3">
                             <input class="btn btn-dark btn-lg border-0 rounded-0"
                                    type="submit" value="Køb Carport"/>
+
                             <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                   type="submit" value="Tilbage"/>
+                                   type="button" value="Tilbage" onclick="history.back(-1)"/>
                         </div>
                     </div>
                 </div>
