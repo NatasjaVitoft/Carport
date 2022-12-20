@@ -21,44 +21,34 @@
         <br>
         <br>
 
-        // todo: få fat i brugernavn på session scope
-        <h5>Hej </h5>
-        <p>velkommen til min side</p>
-
-        <form action="addorder" method="get">
-            <input type="submit" value="Her kan du se dine ordre"/>
+        <form action="addorder" method="post">
+            <input type="submit" value="Her kan du se din stykliste"/>
         </form>
         <br>
         <br>
         <br>
 
         <div style="width: 1300px">
-            <c:forEach var="item" items="${sessionScope.orderlist}">
+            <c:forEach var="item" items="${sessionScope.stykliste}">
 
                 <table class="table table-dark">
                     <thead>
                     <tr>
-                        <th scope="col">Order id</th>
-                        <th scope="col">Dato</th>
-                        <th scope="col">Pris</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Carport</th>
+                        <th scope="col">Beskrivelse</th>
                         <th scope="col">Længde</th>
-                        <th scope="col">Bredde</th>
-                        <th scope="col">Stk liste</th>
-                        <th scope="col">Skitse ovenfra</th>
-                        <th scope="col">Skitse fra siden</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Enhed</th>
+                        <th scope="col">Beskrivelse</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">${item.order_id}</th>
-                        <td>${item.date}</td>
-                        <td>${item.price}</td>
-                        <td>${item.email}</td>
-                        <td>${item.carportID}</td>
-                        <td>${item.length} cm</td>
-                        <td>${item.width} cm</td>
+                        <th scope="row">${item.orders_id}</th>
+                        <td>${item.name}</td>
+                        <td>${item.length}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.description}</td>
                         <td>
                             <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
                                     data-target="#collapseExampleThree"

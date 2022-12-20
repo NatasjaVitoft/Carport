@@ -12,7 +12,7 @@ public class CalculatorList {
     // method that adds all BOMLines to a list and returns it
     // Metode som skal tilføje alle BillOfMaterialLines til en liste og returnerer den
 
-    public static List<BillOfMaterialLine> calculateCarport (ConnectionPool connectionPool, int ID, int width, int length) throws DatabaseException, SQLException {
+    public static List<BillOfMaterialLine> calculateCarport (ConnectionPool connectionPool, int ID, int width, int length, int shedLength, int shedWidth) throws DatabaseException, SQLException {
 
         // instance
         // Initialiserer en arrayliste til alle materialerne i en ordre
@@ -22,7 +22,7 @@ public class CalculatorList {
         // Tilføjer alle hjælpemetoderne/beregningerne fra calculator klassen til listen
 
         billOfMaterialLinesList.add(Calculator.calcRafter(connectionPool, ID, width, length));
-        billOfMaterialLinesList.add(Calculator.calcStrap(ID, width, length, connectionPool));
+        billOfMaterialLinesList.add(Calculator.calcStrap(ID, width, length, shedWidth, shedLength, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcPost(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcBolts(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcLongRafterTree(ID, width, length, connectionPool));
@@ -32,11 +32,14 @@ public class CalculatorList {
         billOfMaterialLinesList.add(Calculator.calcVandbræt(ID, width, length, connectionPool));
         billOfMaterialLinesList.add(Calculator.calcVandbrætForende(ID, width, length, connectionPool));
 
+        if(shedWidth != 0 && shedLength != 0) {
+            billOfMaterialLinesList.add(CalculatorShed.calcStrapForShed(ID, shedWidth, shedLength, connectionPool));
+        }
 
         return billOfMaterialLinesList;
     }
 
-    public static List<BillOfMaterialLine> calculateCarport2 (ConnectionPool connectionPool, int ID, int width, int length) throws SQLException, DatabaseException {
+    public static List<BillOfMaterialLine> calculateCarport2 (ConnectionPool connectionPool, int ID, int width, int length, int shedWidth, int shedLength) throws SQLException, DatabaseException {
 
         List<BillOfMaterialLine> billOfMaterialLinesVariantList = new ArrayList<>();
 
@@ -46,6 +49,16 @@ public class CalculatorList {
         billOfMaterialLinesVariantList.add(Calculator.calcFirkant(ID, width, length, connectionPool));
         billOfMaterialLinesVariantList.add(Calculator.calcSkruer2(ID, width, length, connectionPool));
         billOfMaterialLinesVariantList.add(Calculator.calcSkruer3(ID, width, length, connectionPool));
+
+
+        if (shedWidth != 0 && shedLength != 0) {
+            billOfMaterialLinesVariantList.add(CalculatorShed.stalddørsgreb(ID, width, length, shedWidth, shedLength, connectionPool));
+            billOfMaterialLinesVariantList.add(CalculatorShed.calcLægte(ID, width, length, shedWidth, shedLength, connectionPool));
+            billOfMaterialLinesVariantList.add(CalculatorShed.calcLøsholter(ID, width, length, shedWidth, shedLength, connectionPool));
+            billOfMaterialLinesVariantList.add(CalculatorShed.calcLøsholterSide(ID, width, length, shedWidth, shedLength, connectionPool));
+            billOfMaterialLinesVariantList.add(CalculatorShed.vinkelbeslag(ID, width, length, shedWidth, shedLength, connectionPool));
+            billOfMaterialLinesVariantList.add(CalculatorShed.hængsel(ID, width, length, shedWidth, shedLength, connectionPool));
+        }
 
         return billOfMaterialLinesVariantList;
     }
