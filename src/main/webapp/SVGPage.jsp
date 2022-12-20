@@ -21,7 +21,6 @@
         <br>
 
 
-        <form action="addorder" method="post">
         <section class="container">
             <div class="row content d-flex justify-content-center align-items-center">
                 <div class="col-md-5">
@@ -38,49 +37,34 @@
                         <h3>${sessionScope.totalPrice} .- dkk</h3>
                         <br>
                         <h3>Carporten set oppefra:</h3>
-                        <button class="button btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Se tegning
-                        </button>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                                    ${requestScope.generateSvgTop}
-                            </div>
-                        </div>
-
+                        <br>
+                        <form action="svgtop" method="post">
+                            <input class="button btn-dark btn-lg border-0 rounded-0" type="submit" value="Se tegning">
+                        </form>
                         <br>
                         <br>
-                        <br>
-                        <br>
-
                         <h3>Carporten set fra siden:</h3>
-                        <button class="btn btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"
-                                data-target="#collapseExampleTwo"
-                                aria-expanded="false" aria-controls="collapseExampleTwo">
-                            Se tegning
-                        </button>
-                        <div class="collapse" id="collapseExampleTwo">
-                            <br>
-
-                                her skal ligge sideView svg
-                        </div>
                         <br>
-                        <br>
+                        <form action="#" method="post">
+                            <input class="button btn-dark btn-lg border-0 rounded-0" type="submit" value="Se tegning">
+                        </form>
                         <br>
                         <br>
 
-                        <div class="d-grid gap-2 mb-3">
-                            <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                   type="submit" value="Køb Carport"/>
+                        <form action="addorder" method="post">
+                            <div class="d-grid gap-2 mb-3">
+                                <input class="btn btn-dark btn-lg border-0 rounded-0"
+                                       type="submit" value="Køb Carport"/>
 
-                            <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                   type="button" value="Tilbage" onclick="history.back(-1)"/>
-                        </div>
+                                <input class="btn btn-dark btn-lg border-0 rounded-0"
+                                       type="button" value="Tilbage" onclick="history.back(-1)"/>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
-        </form>
+
         <br>
         <br>
         <br>

@@ -48,15 +48,6 @@ public class Bestil extends HttpServlet {
         //int price = (int) session.getAttribute("price");
 
 
-        //drawing
-
-        String generateSvgTop = "";
-
-        generateSvgTop = HelpFunction.drawCarportFladtSideView(length);
-
-
-        request.setAttribute("generateSvgTop", generateSvgTop);
-
 
         //sets the attribute from session
 
@@ -65,11 +56,8 @@ public class Bestil extends HttpServlet {
 
         session.setAttribute("shedwidth", shedWidth);
         session.setAttribute("shedlength", shedLength);
-        // session.setAttribute("SVGTop", SVGTop);
 
         //session.setAttribute("price", price);
-        session.setAttribute("generateSvgTop", generateSvgTop);
-
 
         //forward to svgpage.jsp
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);

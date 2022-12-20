@@ -1,7 +1,5 @@
 package dat.backend.model.services;
 
-import dat.backend.control.SVG;
-
 public class SVGDrawing {
 
 
