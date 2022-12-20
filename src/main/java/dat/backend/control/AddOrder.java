@@ -1,4 +1,5 @@
 package dat.backend.control;
+
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Order;
@@ -47,87 +48,50 @@ public class AddOrder extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
 
-
-
         // if user is ! null set order
 
-        if (username!=null){
+        if (username != null) {
             try {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
-<<<<<<< HEAD
-            }
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-=======
-                session.setAttribute("orderID", order.getOrder_id());
->>>>>>> d5497ec878caf17ae0417840b9cf05ea1b91800a
-
-                // instance of Arraylist allMaterial
-
-                ArrayList <BillOfMaterialLine> allMaterial = new ArrayList<>();
-                ArrayList <BillOfMaterialLine> allMaterial2 = new ArrayList<>();
-
-
-
-
-<<<<<<< HEAD
-        // adding the calculated items to allMaterial list and calls the method createBomL
-
-        for (BillOfMaterialLine a : allMaterial) {
-=======
-                try {
-                    allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
-
-                } catch (DatabaseException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                // adding the calculated items to allMaterial list and calls the method createBomL
-                int price = 0;
-
-                for (BillOfMaterialLine a : allMaterial) {
-                    System.out.println(a);
-                    price += a.getPrice();
-
->>>>>>> d5497ec878caf17ae0417840b9cf05ea1b91800a
-
-                    try {
-                        BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
-                    } catch (DatabaseException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                try {
-                    allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (DatabaseException e) {
-                    e.printStackTrace();
-                }
-
-                for(BillOfMaterialLine b : allMaterial2) {
-                    try {
-                        BomVariantFacade.createBOMLVariant(b.getName(), b.getUnit(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), b.getItemVariant_id(), connectionPool);
-                    } catch (DatabaseException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-                // if succed go to minSide.jsp
-                request.getRequestDispatcher("minSide.jsp").forward(request, response);
 
             } catch (DatabaseException e) {
-<<<<<<< HEAD
                 e.printStackTrace();
             }
         }
 
+        session.setAttribute("orderID", order.getOrder_id());
+
+        // instance of Arraylist allMaterial
+
+        ArrayList<BillOfMaterialLine> allMaterial = new ArrayList<>();
+        ArrayList<BillOfMaterialLine> allMaterial2 = new ArrayList<>();
+
+
+        // adding the calculated items to allMaterial list and calls the method createBomL
+
+        try {
+            allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
+
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // adding the calculated items to allMaterial list and calls the method createBomL
+        int price = 0;
+
+        for (BillOfMaterialLine a : allMaterial) {
+            System.out.println(a);
+            price += a.getPrice();
+
+            try {
+                BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        }
 
         try {
             allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
@@ -137,22 +101,15 @@ public class AddOrder extends HttpServlet {
             e.printStackTrace();
         }
 
-        for(BillOfMaterialLine b : allMaterial2) {
+        for (BillOfMaterialLine b : allMaterial2) {
             try {
                 BomVariantFacade.createBOMLVariant(b.getName(), b.getUnit(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), b.getItemVariant_id(), connectionPool);
             } catch (DatabaseException e) {
                 e.printStackTrace();
-=======
-
->>>>>>> d5497ec878caf17ae0417840b9cf05ea1b91800a
             }
-        }else{
-            request.setAttribute("loginError", "Du skal være logget ind for at oprette en ordre");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-
-
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
