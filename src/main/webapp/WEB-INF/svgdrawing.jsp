@@ -5,17 +5,21 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         SVG drawing
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        SVG drawing
+
     </jsp:attribute>
 
     <jsp:body>
 
+        <br>
+        <br>
+        <br>
+        <br>
 
-        ${requestScope.svg}
+        ${requestScope.generateSvgTop}
 
     </jsp:body>
 

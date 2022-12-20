@@ -19,8 +19,14 @@ public class SVG extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Locale.setDefault(new Locale("US"));
 
-        SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 100, 60, "0 0 855 690");
+        int width = Integer.parseInt(request.getParameter("width"));
+        int length = Integer.parseInt(request.getParameter("length"));
+
+        SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 80, 60, "0 0 855 690");
         carport = HelpFunction.addBeams(carport);
+
+
+
 
         request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("WEB-INF/svgdrawing.jsp").forward(request, response);
