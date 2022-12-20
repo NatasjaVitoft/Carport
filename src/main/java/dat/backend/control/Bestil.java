@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.persistence.*;
+
 import dat.backend.model.services.HelpFunction;
 
 import javax.servlet.*;
@@ -40,6 +41,10 @@ public class Bestil extends HttpServlet {
 
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
+
+        int shedWidth = Integer.parseInt(request.getParameter("shedwidth"));
+        int shedLength = Integer.parseInt(request.getParameter("shedlength"));
+
         //int price = (int) session.getAttribute("price");
 
 
@@ -53,17 +58,18 @@ public class Bestil extends HttpServlet {
         request.setAttribute("generateSvgTop", generateSvgTop);
 
 
-
-
-
-
         //sets the attribute from session
 
         session.setAttribute("width", width);
         session.setAttribute("length", length);
+
+        session.setAttribute("shedwidth", shedWidth);
+        session.setAttribute("shedlength", shedLength);
+        // session.setAttribute("SVGTop", SVGTop);
+
         //session.setAttribute("price", price);
         session.setAttribute("generateSvgTop", generateSvgTop);
-        
+
 
         //forward to svgpage.jsp
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);

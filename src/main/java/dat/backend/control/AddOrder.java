@@ -40,6 +40,9 @@ public class AddOrder extends HttpServlet {
         int width = (int) session.getAttribute("width");
         int length = (int) session.getAttribute("length");
 
+        int shedWidth = (int) session.getAttribute("shedwidth");
+        int shedLength = (int) session.getAttribute("shedlength");
+
         // gets the user and username attribute from the session
 
         String username = (String) session.getAttribute("username");
@@ -58,11 +61,11 @@ public class AddOrder extends HttpServlet {
             if(user!=null) {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
+                session.setAttribute("orderID", order.getOrder_id());
             }
         } catch (DatabaseException e) {
 
         }
-
 
         // instance of Arraylist allMaterial
 
@@ -71,14 +74,13 @@ public class AddOrder extends HttpServlet {
 
 
         try {
-            allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length);
+            allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
 
         } catch (DatabaseException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
 
         // adding the calculated items to allMaterial list and calls the method createBomL
@@ -96,9 +98,8 @@ public class AddOrder extends HttpServlet {
             }
         }
 
-
         try {
-            allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length);
+            allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (DatabaseException e) {
@@ -112,6 +113,7 @@ public class AddOrder extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
 
         // if succed go to minSide.jsp
         request.getRequestDispatcher("minSide.jsp").forward(request, response);

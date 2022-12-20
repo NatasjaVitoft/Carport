@@ -1,11 +1,14 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.BillOfMaterialLine;
+import dat.backend.model.entities.Order;
 import dat.backend.model.exceptions.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,5 +47,40 @@ public class BillOfMaterialLineMapper {
         }
 
         return billOfMaterialLine;
+    }
+
+    public static void readBOM(HttpServletRequest request, ConnectionPool connectionPool, int ordersID) {
+
+        List<BillOfMaterialLine> billOfMaterialLineList = new ArrayList<>();
+        HttpSession session = request.getSession();
+
+        String sql = "select * from bom WHERE orders_id = ? ";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, ordersID);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+
+                String name = resultSet.getString("name");
+                String unit = resultSet.getString("unit");
+                int length = resultSet.getInt("length");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                int quantity = resultSet.getInt("quantity");
+
+
+                BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(name, unit, length, price, description, quantity);
+                billOfMaterialLineList.add(billOfMaterialLine);
+            }
+            session.setAttribute("stykliste", billOfMaterialLineList);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
     }
 }

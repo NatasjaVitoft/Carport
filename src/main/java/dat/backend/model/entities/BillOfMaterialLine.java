@@ -44,6 +44,15 @@ public class BillOfMaterialLine {
         this.orders_id = orders_id;
     }
 
+    public BillOfMaterialLine(String name, String unit, int length, int price, String description, int quantity) {
+        this.name = name;
+        this.unit = unit;
+        this.length = length;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+    }
+
     // Methods
 
     public int getItem_id() {

@@ -66,16 +66,48 @@
                                     <option value="1200">1200</option>
                                 </select>
                             </div>
+                            <p> Hvis skur ikke ønskes, så beholdes nedenstående værdier</p>
                             <div class="mb-3">
-                                <p>Ønskes skur?</p>
-                                <input type="checkbox" id="ja" name="skur" value="yes">
-                                <label for="ja"> Ja</label><br>
-                                <input type="checkbox" id="nej" name="skur" value="no">
-                                <label for="nej"> Nej</label><br>
+                                <p>Vælg skurbredde(Cm)</p>
+                                <select class="form-control rounded-0" name="shedwidth" id="shedwidth">
+                                    <option value="0">0</option>
+                                    <option value="650">650</option>
+                                    <option value="700">700</option>
+                                    <option value="750">750</option>
+                                    <option value="800">800</option>
+                                    <option value="850">850</option>
+                                    <option value="900">900</option>
+                                    <option value="950">950</option>
+                                    <option value="1000">1000</option>
+                                    <option value="1050">1050</option>
+                                    <option value="1100">1100</option>
+                                    <option value="1150">1150</option>
+                                    <option value="1200">1200</option>
+                                </select>
                             </div>
-                            <div class="d-grid gap-2 mb-3">
-                                <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                       type="submit" value="Se Tilbud"/>
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <p>Vælg skurlængde(Cm)</p>
+                                    <select class="form-control rounded-0" name="shedlength" id="shedlength">
+                                        <option value="0">0</option>
+                                        <option value="650">650</option>
+                                        <option value="700">700</option>
+                                        <option value="750">750</option>
+                                        <option value="800">800</option>
+                                        <option value="850">850</option>
+                                        <option value="900">900</option>
+                                        <option value="950">950</option>
+                                        <option value="1000">1000</option>
+                                        <option value="1050">1050</option>
+                                        <option value="1100">1100</option>
+                                        <option value="1150">1150</option>
+                                        <option value="1200">1200</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid gap-2 mb-3">
+                                    <input class="btn btn-dark btn-lg border-0 rounded-0"
+                                           type="submit" value="Se Tilbud"/>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -9,11 +9,9 @@ import dat.backend.model.persistence.ItemVariantFacade;
 
 import java.sql.SQLException;
 
-
 public class Calculator {
 
-
-    // TEGNING
+    /**   STYKLISTE : TRÆ (FØRSTE DEN AF LISTEN) */
 
     // Calc Rafter
     // Spær
@@ -28,14 +26,25 @@ public class Calculator {
 
     // Calc Strap
     // Rem
-    public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
+    public static BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
+        if(shedWidth == 0 && shedLength == 0) {
             int n_strap = (int) Math.ceil(length * 2);
             int result = n_strap / 600;
             Item items = ItemFacade.getItemByID(8, connectionPool);
             int price = result * items.getPrice();
             BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
             return billOfMaterialLine;
+        }
+        else {
+            Double n_length = length - shedLength;
+            int n_strap = (int) (n_length * 2);
+            int result = n_strap / 600;
+            Item items = ItemFacade.getItemByID(8, connectionPool);
+            int price = result * items.getPrice();
+            BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), result, ID);
+            return billOfMaterialLine;
+        }
     }
 
 
@@ -54,8 +63,6 @@ public class Calculator {
         return billOfMaterialLine;
     }
 
-
-    // STYKLISTE
 
     // calc under stern in front and back end of the garage.
     // 5x200 mm. trykimp. Brædt 360 4 Stk understernbrædder til for & bag ende
@@ -103,9 +110,6 @@ public class Calculator {
         return billOfMaterialLine;
     }
 
-
-    // Træ og tagplader
-
     // Calc Rafter tree, Long
     // 45x195	mm.	spærtræ	ubh., længde: 600
     public static BillOfMaterialLine calcLongRafterTree(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
@@ -118,7 +122,7 @@ public class Calculator {
     }
 
 
-    // Skruer OG beslag
+    /**  STYKLISTE : SKRUER OG BESLAG (ANDEN DEL) */
 
     // Calc bolts
     // Bræddebolt	10	x	120	mm.	 18 Stk Til	montering	af	rem	på	stolper
@@ -173,7 +177,6 @@ public class Calculator {
     // Vi har valgt at sætte en default værdi så alle tage skal bruge 3 pakker bundskruer
 
     public static BillOfMaterialLine calcBundskruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
-
         int n = 3;
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(1, connectionPool);
         int price = itemVariants.getPrice() * n;
@@ -185,7 +188,6 @@ public class Calculator {
     // Vi har valgt at sætte en default værdi så alle tage skal bruge 1 pakker
 
     public static BillOfMaterialLine calcSkruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
-
         int n = 1;
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(5, connectionPool);
         int price = itemVariants.getPrice() * n;
@@ -224,7 +226,6 @@ public class Calculator {
         return billOfMaterialLine;
     }
 
-
     // 19x100 mm. trykimp. Brædt 540 4 Stk vandbrædt på stern i sider
     public static BillOfMaterialLine calcVandbræt (int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = calcUnderSternSides(ID, width, length, connectionPool).getQuantity();
@@ -243,6 +244,8 @@ public class Calculator {
         return billOfMaterialLine;
     }
 }
+
+
 
 
 
