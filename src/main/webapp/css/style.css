@@ -150,6 +150,14 @@ th, td {
     .about-text {
         padding-top: 50px;
     }
+
+    th {
+        text-align: left;
+    }
+
+    td {
+        text-align: left;
+    }
 }
 
 /* frontpage ends here */
@@ -157,3 +165,4 @@ th, td {
 /* productpage starts here */
 
 /* productpage ends here */
+

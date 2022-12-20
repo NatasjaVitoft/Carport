@@ -53,6 +53,14 @@ public class BillOfMaterialLine {
         this.quantity = quantity;
     }
 
+    public BillOfMaterialLine(String name, String unit, int price, String description, int quantity) {
+        this.name = name;
+        this.unit = unit;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+    }
+
     // Methods
 
     public int getItem_id() {

@@ -1,5 +1,4 @@
 package dat.backend.control;
-
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.Order;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,7 +52,6 @@ public class AddOrder extends HttpServlet {
             if(username!=null) {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
-                session.setAttribute("orderID", order.getOrder_id());
             }
         } catch (DatabaseException e) {
             e.printStackTrace();
@@ -77,12 +74,8 @@ public class AddOrder extends HttpServlet {
 
 
         // adding the calculated items to allMaterial list and calls the method createBomL
-        int price = 0;
 
         for (BillOfMaterialLine a : allMaterial) {
-            System.out.println(a);
-            price += a.getPrice();
-
 
             try {
                 BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
@@ -90,6 +83,7 @@ public class AddOrder extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
 
         try {
             allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
@@ -119,5 +113,6 @@ public class AddOrder extends HttpServlet {
         OrderFacade.readOrder(request, connectionPool, username);
         request.getRequestDispatcher("minSide.jsp").forward(request, response);
         response.sendRedirect("minSide.jsp");
+
     }
 }

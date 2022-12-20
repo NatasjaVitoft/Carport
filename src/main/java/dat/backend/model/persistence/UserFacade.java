@@ -3,6 +3,8 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class UserFacade
 {
     public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
@@ -17,5 +19,9 @@ public class UserFacade
 
     public static User getUserByUsername(String username, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserByUsername(username, connectionPool);
+    }
+
+    public static void readUser(HttpServletRequest request, ConnectionPool connectionPool, String username) {
+        UserMapper.readUser(request, connectionPool, username);
     }
 }

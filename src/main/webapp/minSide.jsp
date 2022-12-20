@@ -21,9 +21,8 @@
         <br>
         <br>
 
-        // todo: få fat i brugernavn på session scope
         <h5>Hej </h5>
-        <p>velkommen til min side</p>
+        <p>velkommen til din side</p>
 
         <form action="addorder" method="get">
             <input type="submit" value="Her kan du se dine ordre"/>
@@ -60,10 +59,12 @@
                         <td>${item.length} cm</td>
                         <td>${item.width} cm</td>
                         <td>
+                            <form action="Bom" method="get">
                             <form action="Stykliste.jsp">
                                  <input class="btn btn-light border-0 rounded-0" type="submit"value="Stykliste"/>
+                                 <input type="hidden" name="hiddenid" value="${item.order_id}"/>
                             </form>
-
+                            </form>
                         </td>
                         <td>
                             <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"

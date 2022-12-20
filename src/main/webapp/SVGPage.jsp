@@ -35,7 +35,7 @@
                         <br>
 
                         <h2>Pris i alt:</h2>
-                        <h3>${sessionScope.totalPrice} .- dkk</h3>
+                        <h3>${sessionScope.totalprice} .- dkk</h3>
                         <br>
                         <h3>Carporten set oppefra:</h3>
                         <button class="button btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"

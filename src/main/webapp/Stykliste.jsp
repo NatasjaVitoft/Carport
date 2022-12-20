@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="error.jsp" isErrorPage="true" %>
 
+
 <t:pagetemplate>
     <jsp:attribute name="header">
 
@@ -21,7 +22,7 @@
         <br>
         <br>
 
-        <form action="addorder" method="post">
+        <form action="Bom" method="post">
             <input type="submit" value="Her kan du se din stykliste"/>
         </form>
 
@@ -29,62 +30,67 @@
         <br>
         <br>
 
+        <h3 style="font-family: 'Times New Roman',serif"> Træ & tagplader </h3>
+        <br>
+        <br>
+
         <div style="width: 1300px">
             <c:forEach var="item" items="${sessionScope.stykliste}">
 
-                <table class="table table-dark">
+                <table class="table table-light">
                     <thead>
                     <tr>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Længde</th>
-                        <th scope="col">Antal</th>
-                        <th scope="col">Enhed</th>
-                        <th scope="col">Beskrivelse</th>
+                        <th style="text-align: left">Beskrivelse</th>
+                        <th style="text-align: left">Længde</th>
+                        <th style="text-align: left">Antal</th>
+                        <th style="text-align: left">Enhed</th>
+                        <th style="text-align: left">Beskrivelse</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">${item.orders_id}</th>
+                        <td style="text-align:  left">${item.name}</td>
+                        <td style="text-align:  left">${item.length}</td>
+                        <td style="text-align:  left">${item.quantity}</td>
+                        <td style="text-align:  left">${item.unit}</td>
+                        <td style="text-align: left">${item.description}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </c:forEach>
+        </div>
+
+
+        <br>
+        <br>
+
+        <h3 style="font-family: 'Times New Roman',serif"> Skruer & beslag </h3>
+        <br>
+        <br>
+
+
+        <div style="width: 1300px">
+            <c:forEach var="item" items="${sessionScope.styklistevariant}">
+
+                <table class="table table-light">
+                    <thead>
+                    <tr>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Enhed</th>
+                        <th scope="col">Beskrivelse</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
                         <td>${item.name}</td>
-                        <td>${item.length}</td>
                         <td>${item.quantity}</td>
                         <td>${item.unit}</td>
                         <td>${item.description}</td>
-                        <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
-                                    data-target="#collapseExampleThree"
-                                    aria-expanded="false" aria-controls="collapseExampleThree">
-                                Stk liste
-                            </button>
-                            <div class="collapse" id="collapseExampleThree">
-                                <br>
 
-
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
-                                    data-target="#collapseExample"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                Skitse
-                            </button>
-                            <div class="collapse" id="collapseExample">
-                                <br>
-
-
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
-                                    data-target="#collapseExample1"
-                                    aria-expanded="false" aria-controls="collapseExample1">
-                                Skitse
-                            </button>
-                            <div class="collapse" id="collapseExample1">
-                                <br>
-
-                            </div>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
