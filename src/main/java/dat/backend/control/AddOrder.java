@@ -48,7 +48,7 @@ public class AddOrder extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
 
-        // if username is ! null set order
+        // if user is ! null set order
 
         if (username != null) {
             try {
@@ -59,8 +59,8 @@ public class AddOrder extends HttpServlet {
                 e.printStackTrace();
             }
 
-            session.setAttribute("orderID", order.getOrder_id());
 
+            session.setAttribute("orderID", order.getOrder_id());
 
             // instance of Arraylist allMaterial
 
@@ -70,52 +70,28 @@ public class AddOrder extends HttpServlet {
 
             // adding the calculated items to allMaterial list and calls the method createBomL
 
-            for (BillOfMaterialLine a : allMaterial) {
-                try {
-                    allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
+            try {
+                allMaterial = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
 
-                } catch (DatabaseException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                // adding the calculated items to allMaterial list and calls the method createBomL
-                int price = 0;
-
-                for (BillOfMaterialLine a : allMaterial) {
-                    System.out.println(a);
-                    price += a.getPrice();
-
-
-                    try {
-                        BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
-                    } catch (DatabaseException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    try {
-                        allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } catch (DatabaseException e) {
-                        e.printStackTrace();
-                    }
-
-                    for (BillOfMaterialLine b : allMaterial2) {
-                        try {
-                            BomVariantFacade.createBOMLVariant(b.getName(), b.getUnit(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), b.getItemVariant_id(), connectionPool);
-                        } catch (DatabaseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-
-                }
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
+            // adding the calculated items to allMaterial list and calls the method createBomL
+            int price = 0;
+
+            for (BillOfMaterialLine a : allMaterial) {
+                System.out.println(a);
+                price += a.getPrice();
+
+                try {
+                    BillOfMaterialLineFacade.createBOML(a.getItem_id(), a.getName(), a.getUnit(), a.getLength(), a.getPrice(), a.getDescription(), a.getQuantity(), a.getOrders_id(), connectionPool);
+                } catch (DatabaseException e) {
+                    e.printStackTrace();
+                }
+            }
 
             try {
                 allMaterial2 = (ArrayList<BillOfMaterialLine>) CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
@@ -131,14 +107,13 @@ public class AddOrder extends HttpServlet {
                 } catch (DatabaseException e) {
                     e.printStackTrace();
                 }
-            }else{
-                request.setAttribute("loginError", "Du skal være logget ind for at oprette en ordre");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-
-
+        }else{
+            request.setAttribute("loginError", "Du skal være logget ind for at oprette en ordre");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -147,6 +122,8 @@ public class AddOrder extends HttpServlet {
         OrderFacade.readOrder(request, connectionPool, username);
         request.getRequestDispatcher("minSide.jsp").forward(request, response);
         response.sendRedirect("minSide.jsp");
+
+
 
     }
 }
