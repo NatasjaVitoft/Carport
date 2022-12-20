@@ -22,6 +22,13 @@
             <div class="row content d-flex justify-content-center align-items-center">
                 <div class="col-md-5">
                     <div class="box shadow bg-white p-4">
+
+                        <div class="text-danger text-center">
+                            <c:if test="${requestScope.loginError != null}">
+                                <p>${requestScope.loginError}</p>
+                            </c:if>
+                        </div>
+
                         <h3 class="mb-4 text-center fs-1">Login Form</h3>
 
                         <form class="mb-3" action="login" method="post">
