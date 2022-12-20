@@ -34,6 +34,7 @@ public class SVGDrawing {
     }
 
 
+
     public void addRect(int x, int y, double height, double width) {
         svgString.append(String.format(RECTTEMPLATE, x, y, height, width));
     }
