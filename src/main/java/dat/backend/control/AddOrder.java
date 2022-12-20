@@ -45,15 +45,22 @@ public class AddOrder extends HttpServlet {
         String username = (String) session.getAttribute("username");
         User user = (User) session.getAttribute("user");
 
+        if(user.equals("null")){
+
+            request.setAttribute("errormessage", "Du skal være logget ind for at kunne købe en carport");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+
+
         // if user is ! null set order
 
         try {
-            if(username!=null) {
+            if(user!=null) {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
             }
         } catch (DatabaseException e) {
-            e.printStackTrace();
+
         }
 
 
