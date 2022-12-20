@@ -60,16 +60,10 @@
                         <td>${item.length} cm</td>
                         <td>${item.width} cm</td>
                         <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
-                                    data-target="#collapseExampleThree"
-                                    aria-expanded="false" aria-controls="collapseExampleThree">
-                                Stk liste
-                            </button>
-                            <div class="collapse" id="collapseExampleThree">
-                                <br>
+                            <form action="Stykliste.jsp">
+                                 <input class="btn btn-light border-0 rounded-0" type="submit"value="Stykliste"/>
+                            </form>
 
-
-                            </div>
                         </td>
                         <td>
                             <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"

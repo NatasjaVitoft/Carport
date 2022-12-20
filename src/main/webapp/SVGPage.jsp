@@ -21,8 +21,6 @@
         <br>
 
 
-
-
         <form action="addorder" method="post">
         <section class="container">
             <div class="row content d-flex justify-content-center align-items-center">
@@ -40,7 +38,7 @@
                         <h3>${sessionScope.totalPrice} .- dkk</h3>
                         <br>
                         <h3>Carporten set oppefra:</h3>
-                        <button class="btn btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"
+                        <button class="button btn-dark btn-lg border-0 rounded-0" type="button" data-toggle="collapse"
                                 data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             Se tegning
                         </button>
