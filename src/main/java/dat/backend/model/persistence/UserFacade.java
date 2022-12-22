@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UserFacade
 {
-    public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
-    {
+    public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.login(username, password, connectionPool);
     }
 
-    public static User createUser(String username, String password, String email, String role, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException
-    {
+    public static User createUser(String username, String password, String email, String role, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.createUser(username, password, role, email, address, city, postcode, name, phoneNumber, connectionPool);
     }
 

@@ -5,8 +5,6 @@ import java.util.Objects;
 public class User
 {
 
-    // fields
-
     private String username;
     private String password;
     private String role;
@@ -17,7 +15,6 @@ public class User
     private String name;
     private int phoneNumber;
 
-    // constructor
 
     public User(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber) {
         this.username = username;
@@ -32,10 +29,7 @@ public class User
     }
 
     public User() {
-
     }
-
-    //methods
 
     public String getUsername()
     {
@@ -75,24 +69,12 @@ public class User
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getCity() {
-        return city;
-    }
-
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public int getPostcode() {
-        return postcode;
     }
 
     public void setPostcode(int postcode) {
@@ -105,10 +87,6 @@ public class User
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
     }
 
     public void setPhoneNumber(int phoneNumber) {

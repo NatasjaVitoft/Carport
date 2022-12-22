@@ -18,10 +18,8 @@ public class BillOfMaterialLineMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         BillOfMaterialLine billOfMaterialLine;
         String sql = "insert into bom (item_id, name, unit, length, price, description, quantity, orders_id ) values (?,?,?,?,?,?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, item_id);
                 ps.setString(2, name);
                 ps.setString(3, unit);
@@ -32,17 +30,13 @@ public class BillOfMaterialLineMapper {
                 ps.setInt(8, orders_id);
 
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     billOfMaterialLine = new BillOfMaterialLine(item_id, name, unit, length, price, description, quantity, orders_id);
-                } else
-                {
+                } else {
                     throw new DatabaseException("Could not be inserted into the database");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert bom into database");
         }
 

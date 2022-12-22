@@ -33,8 +33,8 @@ public class ItemVariantMapper {
                     ItemVariant itemVariant = new ItemVariant(id, name, description, price, unit);
                     itemVariantList.add(itemVariant);
 
-                }if (itemVariantList.size()==0)
-                {
+                }
+                if (itemVariantList.size() == 0) {
                     throw new DatabaseException("Something went wrong listing itemVariant");
                 }
 

@@ -1,7 +1,9 @@
 package dat.backend.model.persistence;
+
 import com.mysql.cj.protocol.Resultset;
 import dat.backend.model.entities.Item;
 import dat.backend.model.exceptions.DatabaseException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +36,8 @@ public class ItemMapper {
                     Item item = new Item(item_id, item_name, item_description, price, unit, length);
                     itemList.add(item);
 
-                }if (itemList.size()==0)
-                {
+                }
+                if (itemList.size() == 0) {
                     throw new DatabaseException("Something went wrong listing items");
                 }
             }
@@ -63,7 +65,8 @@ public class ItemMapper {
 
                     int itemID = resultSet.getInt("item_id");
                     String description = resultSet.getString("description");
-                    int length = resultSet.getInt("length");;
+                    int length = resultSet.getInt("length");
+                    ;
                     String name = resultSet.getString("name");
                     String unit = resultSet.getString("unit");
                     int price = resultSet.getInt("price");

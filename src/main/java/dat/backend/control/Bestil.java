@@ -47,8 +47,6 @@ public class Bestil extends HttpServlet {
 
         //int price = (int) session.getAttribute("price");
 
-
-
         //sets the attribute from session
 
         session.setAttribute("width", width);

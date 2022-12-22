@@ -12,26 +12,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class UserMapper
-{
-    static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
-    {
+class UserMapper {
+    static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
 
         User user = null;
 
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
 
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, username);
                 ps.setString(2, password);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     String role = rs.getString("role");
                     String email = rs.getString("email");
                     String address = rs.getString("adress");
@@ -42,27 +37,22 @@ class UserMapper
 
                     user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
 
-                } else
-                {
+                } else {
                     throw new DatabaseException("Forkert brugernavn eller kodeord.");
                 }
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "noget gik galt i forbindelsen til databasen");
         }
         return user;
     }
 
-    static User createUser(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException
-    {
+    static User createUser(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
         String sql = "insert into user (username, password, role, email, adress, city, postcode, name, phonenumber) values (?,?,?,?,?,?,?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setString(3, role);
@@ -74,17 +64,13 @@ class UserMapper
                 ps.setInt(9, phoneNumber);
 
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
-                } else
-                {
+                } else {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return user;

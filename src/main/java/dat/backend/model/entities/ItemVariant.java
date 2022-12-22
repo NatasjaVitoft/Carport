@@ -2,16 +2,12 @@ package dat.backend.model.entities;
 
 public class ItemVariant {
 
-    //fields
-
     private int itemVariant_id;
     private String itemVariant_name;
     private String itemVariant_description;
     private int price = 0;
     private String unit;
     private int quantity;
-
-    //constructor
 
     public ItemVariant(int itemVariant_id, String itemVariant_name, String itemVariant_description, int price, String unit) {
         this.itemVariant_id = itemVariant_id;
@@ -22,30 +18,16 @@ public class ItemVariant {
     }
 
 
-    // methods
-
     public int getItemVariant_id() {
         return itemVariant_id;
-    }
-
-    public void setItemVariant_id(int itemVariant_id) {
-        this.itemVariant_id = itemVariant_id;
     }
 
     public String getItemVariant_name() {
         return itemVariant_name;
     }
 
-    public void setItemVariant_name(String itemVariant_name) {
-        this.itemVariant_name = itemVariant_name;
-    }
-
     public String getItemVariant_description() {
         return itemVariant_description;
-    }
-
-    public void setItemVariant_description(String itemVariant_description) {
-        this.itemVariant_description = itemVariant_description;
     }
 
     public int getPrice() {
@@ -64,11 +46,15 @@ public class ItemVariant {
         this.unit = unit;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    @Override
+    public String toString() {
+        return "ItemVariant{" +
+                "itemVariant_id=" + itemVariant_id +
+                ", itemVariant_name='" + itemVariant_name + '\'' +
+                ", itemVariant_description='" + itemVariant_description + '\'' +
+                ", price=" + price +
+                ", unit='" + unit + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

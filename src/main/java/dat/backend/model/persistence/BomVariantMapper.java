@@ -20,10 +20,8 @@ public class BomVariantMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         BillOfMaterialLine billOfMaterialLine;
         String sql = "insert into bomvariant (name, unit, price, description, quantity, orders_id, itemvariant_id) values (?,?,?,?,?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, name);
                 ps.setString(2, unit);
                 ps.setInt(3, price);
@@ -33,17 +31,14 @@ public class BomVariantMapper {
                 ps.setInt(7, itemvariant_id);
 
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     billOfMaterialLine = new BillOfMaterialLine(itemvariant_id, name, unit, price, description, quantity, orders_id);
-                } else
-                {
+                } else {
                     throw new DatabaseException("Could not be inserted into the database");
                 }
             }
-        }
-        catch (SQLException ex)
-        {  System.out.println("KIG HER KIG HER" + ex);
+        } catch (SQLException ex) {
+            System.out.println("KIG HER KIG HER" + ex);
             throw new DatabaseException(ex, "Could not insert bom into database");
         }
 

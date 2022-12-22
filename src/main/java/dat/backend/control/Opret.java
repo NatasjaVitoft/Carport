@@ -60,8 +60,9 @@ public class Opret extends HttpServlet {
         System.out.println(password);
 
         try {
-            if(UserFacade.getUserByUsername(username, connectionPool)!=null) {
-                System.out.println("Already taken");
+            if (UserFacade.getUserByUsername(username, connectionPool) != null) {
+                request.setAttribute("opretError", "Brugeren findes allerede");
+                request.getRequestDispatcher("opret.jsp").forward(request, response);
             } else {
                 userFacade.createUser(username, password, email, role, address, city, postcode, name, phoneNumber, connectionPool);
                 session = request.getSession();

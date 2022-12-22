@@ -62,20 +62,18 @@
                             <form action="Bom" method="get">
                             <form action="Stykliste.jsp">
                                  <input class="btn btn-secondary border-0 rounded-0" type="submit"value="Stykliste"/>
-                                 <input type="hidden" name="hiddenid" value="${item.order_id}"/>
+                                 <input type="hidden" name="ID" value="${item.order_id}"/>
                             </form>
                             </form>
                         </td>
                         <td>
-                            <button class="btn btn-secondary border-0 rounded-0" type="button" data-toggle="collapse"
-                                    data-target="#collapseExample"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                Skitse
+                            <form action="svgtop" method="get">
+                                <input class="btn btn-secondary border-0 rounded-0" type="submit" value="skitse"/>
+                                <input type="hidden" name="ID" value="${item.order_id}"/>
                             </button>
+                            </form>
                             <div class="collapse" id="collapseExample">
                                 <br>
-
-
                             </div>
                         </td>
                         <td>

@@ -4,8 +4,6 @@ import java.sql.Timestamp;
 
 public class Order {
 
-    // fields
-
     private Timestamp date;
     private String username;
     private int order_id;
@@ -15,7 +13,6 @@ public class Order {
     private int length;
     private int width;
 
-    // constructor
 
     public Order(Timestamp date, String username, int order_id, int price, String email, String carportID) {
         this.date = date;
@@ -54,23 +51,17 @@ public class Order {
         this.width = width;
     }
 
-    public Order() {
-
-    }
-
     public Order(int order_id) {
         this.order_id = order_id;
     }
 
-
-    //methods
+    public Order(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
 
     public Timestamp getDate() {
         return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
     }
 
     public String getUsername() {
@@ -125,9 +116,6 @@ public class Order {
         this.width = width;
     }
 
-    public void setCarportID(String carportID) {
-        this.carportID = carportID;
-    }
 
     @Override
     public String toString() {

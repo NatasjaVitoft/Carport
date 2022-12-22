@@ -23,8 +23,8 @@ public class Bom extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        int hiddenID = Integer.parseInt(request.getParameter("hiddenid"));
-        session.setAttribute("hiddenID", hiddenID);
+        int ID = Integer.parseInt(request.getParameter("ID"));
+        session.setAttribute("ID", ID);
         request.getRequestDispatcher("Stykliste.jsp").forward(request, response);
         response.sendRedirect("Stykliste.jsp");
     }
@@ -34,7 +34,7 @@ public class Bom extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        int ID = (int) session.getAttribute("hiddenID");
+        int ID = (int) session.getAttribute("ID");
 
         BillOfMaterialLineFacade.readBOM(request, connectionPool, ID);
         BomVariantFacade.readBOM(request, connectionPool, ID);
