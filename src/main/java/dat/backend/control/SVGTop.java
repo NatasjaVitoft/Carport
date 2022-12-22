@@ -31,8 +31,8 @@ public class SVGTop extends HttpServlet {
 
         SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 100, 60, "0 0 855 690");
         HelpFunction.addBeams(carport, height, width);
-        //carport = HelpFunction.addPole(carport, height, width);
-        //carport = HelpFunction.addLine(carport, height, width);
+        //HelpFunction.addPole(carport, height, width);
+        //HelpFunction.addLine(carport, height, width);
 
 
 
