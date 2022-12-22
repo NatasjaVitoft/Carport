@@ -29,8 +29,6 @@ public class SVGTop extends HttpServlet {
         int shedLength = (int) session.getAttribute("shedlength");
 
 
-
-
         SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 100, 60, "0 0 855 690");
         HelpFunction.addBeams(carport, height, width);
         //carport = HelpFunction.addPole(carport, height, width);

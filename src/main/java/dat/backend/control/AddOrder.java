@@ -54,7 +54,6 @@ public class AddOrder extends HttpServlet {
             try {
                 order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
                 request.setAttribute("order", order);
-
             } catch (DatabaseException e) {
                 e.printStackTrace();
             }
@@ -108,7 +107,11 @@ public class AddOrder extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-        }else{
+
+            request.getRequestDispatcher("minSide.jsp").forward(request, response);
+            response.sendRedirect("minSide.jsp");
+
+        } else {
             request.setAttribute("loginError", "Du skal være logget ind for at oprette en ordre");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }

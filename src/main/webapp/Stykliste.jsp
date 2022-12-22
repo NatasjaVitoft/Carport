@@ -40,11 +40,11 @@
                 <table class="table table-light">
                     <thead>
                     <tr>
-                        <th style="text-align: left">Beskrivelse</th>
-                        <th style="text-align: left">Længde</th>
-                        <th style="text-align: left">Antal</th>
-                        <th style="text-align: left">Enhed</th>
-                        <th style="text-align: left">Beskrivelse</th>
+                        <th style="width: 35%">Beskrivelse</th>
+                        <th style="width: 10%">Længde</th>
+                        <th style="width: 10%">Antal</th>
+                        <th style="width: 10%">Enhed</th>
+                        <th style="width: 35%">Beskrivelse</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,6 @@
             </c:forEach>
         </div>
 
-
         <br>
         <br>
 
@@ -76,10 +75,10 @@
                 <table class="table table-light">
                     <thead>
                     <tr>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Antal</th>
-                        <th scope="col">Enhed</th>
-                        <th scope="col">Beskrivelse</th>
+                        <th scope="col" style="width: 35%"> Beskrivelse</th>
+                        <th scope="col" style="width: 15%"> Antal</th>
+                        <th scope="col" style="width: 15%">Enhed</th>
+                        <th scope="col" style="width: 35%">Beskrivelse</th>
 
                     </tr>
                     </thead>

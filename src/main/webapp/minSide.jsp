@@ -34,18 +34,18 @@
         <div style="width: 1300px">
             <c:forEach var="item" items="${sessionScope.orderlist}">
 
-                <table class="table table-dark">
+                <table class="table table-light">
                     <thead>
                     <tr>
-                        <th scope="col">Order id</th>
-                        <th scope="col">Dato</th>
-                        <th scope="col">Pris</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Carport</th>
-                        <th scope="col">Længde</th>
-                        <th scope="col">Bredde</th>
-                        <th scope="col">Stk liste</th>
-                        <th scope="col">Skitse ovenfra</th>
+                        <th scope="col" style="width: 5%">ID</th>
+                        <th scope="col" style="width: 10%">Dato</th>
+                        <th scope="col" style="width: 5%">Pris</th>
+                        <th scope="col" style="width: 15%">Email</th>
+                        <th scope="col" style="width: 10%">Carport</th>
+                        <th scope="col" style="width: 10%">Længde</th>
+                        <th scope="col" style="width: 10%">Bredde</th>
+                        <th scope="col" style="width: 12%">Stk liste</th>
+                        <th scope="col" style="width: 12%">Skitse ovenfra</th>
                         <th scope="col">Skitse fra siden</th>
                     </tr>
                     </thead>
@@ -61,13 +61,13 @@
                         <td>
                             <form action="Bom" method="get">
                             <form action="Stykliste.jsp">
-                                 <input class="btn btn-light border-0 rounded-0" type="submit"value="Stykliste"/>
+                                 <input class="btn btn-secondary border-0 rounded-0" type="submit"value="Stykliste"/>
                                  <input type="hidden" name="hiddenid" value="${item.order_id}"/>
                             </form>
                             </form>
                         </td>
                         <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
+                            <button class="btn btn-secondary border-0 rounded-0" type="button" data-toggle="collapse"
                                     data-target="#collapseExample"
                                     aria-expanded="false" aria-controls="collapseExample">
                                 Skitse
@@ -79,7 +79,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-light border-0 rounded-0" type="button" data-toggle="collapse"
+                            <button class="btn btn-secondary border-0 rounded-0" type="button" data-toggle="collapse"
                                     data-target="#collapseExample1"
                                     aria-expanded="false" aria-controls="collapseExample1">
                                 Skitse
@@ -92,6 +92,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <br>
 
             </c:forEach>
         </div>

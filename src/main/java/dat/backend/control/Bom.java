@@ -27,7 +27,6 @@ public class Bom extends HttpServlet {
         session.setAttribute("hiddenID", hiddenID);
         request.getRequestDispatcher("Stykliste.jsp").forward(request, response);
         response.sendRedirect("Stykliste.jsp");
-
     }
 
     @Override
