@@ -25,11 +25,14 @@
             <div class="row content d-flex justify-content-center align-items-center">
                 <div class="col-md-5">
                     <div class="box shadow bg-white p-4">
-                        <h3 class="mb-4 text-center fs-1">Opret bruger</h3>
-                        <form class="mb-3" action="Opret" method="post">
+                        <div class="text-danger text-center">
                             <c:if test="${requestScope.opretError != null}">
                                 <p>${requestScope.opretError}</p>
                             </c:if>
+                        </div>
+                        <h3 class="mb-4 text-center fs-1">Opret bruger</h3>
+                        <form class="mb-3" action="Opret" method="post">
+
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control rounded-0" id="username"
                                        name="username" placeholder="username" required>
@@ -72,7 +75,7 @@
                                            name="postnummer" placeholder="postnummer" required>
                                     <label for="postnummer">Postnummer </label>
                                 </div>
-                        </div>
+                            </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control rounded-0" id="fuldenavn"
                                        name="fuldenavn" placeholder="fuldenavn" required>

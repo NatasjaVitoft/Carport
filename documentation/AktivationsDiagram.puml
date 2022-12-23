@@ -1,0 +1,28 @@
+@startuml
+|Kunde|
+start
+:Login/opret;
+|System|
+:Validerer login/opretter bruger;
+|Kunde|
+:Afgiv bestilling;
+|System|
+:Bestilling/betaler;
+|Admin|
+:Login;
+|Admin|
+fork
+:Opdater brugers saldo;
+|System|
+:
+ saldo opdateres;
+
+stop
+fork again
+|Admin|
+:Modtager bestilling/tjekker bestilling;
+:Laver cupcake;
+|Kunde|
+:Afhent cupcake;
+stop
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+Title Fog Carport Application
+
+State Login.jsp
+State Opret.jsp
+State index.jsp
+state bestilFladtTag.jsp
+state bestilTagMedRejsning.jsp
+state error.jsp
+state minSide.jsp
+state StykListe.jsp
+state SVGPage.jsp
+state SVGDrawingTop.jsp
+state SVGDrawingSide.jsp
+state Produkt.jsp
+
+
+[*] -> index.jsp
+index.jsp --> Login.jsp : guest
+Login.jsp --> Produkt.jsp : user
+Produkt.jsp --> bestilFladtTag.jsp : se produkt
+Produkt.jsp --> bestilTagMedRejsning.jsp : se produkt
+
+index.jsp --> Produkt.jsp : guest
+Produkt.jsp --> bestilFladtTag.jsp
+Produkt.jsp --> bestilTagMedRejsning.jsp
+bestilFladtTag.jsp --> SVGPage.jsp : se mål
+bestilTagMedRejsning.jsp --> SVGPage.jsp : se mål
+SVGPage.jsp --> SVGDrawingTop.jsp: se carport tegnet fra top
+SVGPage.jsp --> SVGDrawingSide.jsp : se carport tegnet fra siden
+SVGPage.jsp --> error.jsp : error msg
+error.jsp --> Login.jsp : skal være logget ind for at bestille
+
+
+Login.jsp --> index.jsp : Login som bruger og sendt til forside
+index.jsp --> Opret.jsp : Opret bruger
+Opret.jsp --> index.jsp : Bruger bliver oprettet og sendt til forside
+Login.jsp --> minSide.jsp : kan se tidl. ordre
+bestilFladtTag.jsp --> SVGPage.jsp
+bestilTagMedRejsning.jsp --> SVGPage.jsp
+SVGPage.jsp --> SVGDrawingTop.jsp
+SVGPage.jsp --> SVGDrawingSide.jsp
+SVGPage.jsp --> minSide.jsp
+minSide.jsp --> SVGDrawingTop.jsp
+minSide.jsp --> SVGDrawingSide.jsp
+minSide.jsp --> StykListe.jsp : liste over materialer
+
+
+
+@enduml
