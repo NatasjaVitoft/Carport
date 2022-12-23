@@ -23,32 +23,11 @@ public class HelpFunction {
         return svg;
     }
 
-    public static SVGDrawing addPole(SVGDrawing svg, int height, int width) {
-
-        int pole = 108;
-
-        if (height < 410) {
-            svg.addRect(height - 8, 33, 200, 15);
-            System.out.println("kommer vi herind?" + height);
-        } else {
-            while (pole <= height) {
-                svg.addRect(pole, 33, 200, 15);
-                pole += 300;
-                System.out.println("kommer vi herind1?" + pole);
-            }
-            if (height - pole >= -150) {
-                svg.addRect(height - 15, 33, 200, 15);
-                System.out.println("kommer vi herind2?" + height);
-            }
-        }
-
-        return svg;
-    }
-
     public static SVGDrawing addPost(SVGDrawing svg, int length, int width) {
-        int post = 120;
-        while (post <= length-120) {
-            svg.addRect(post, 10, 10, 10);
+        int post = 110;
+        while (post <= length) {
+            svg.addRect(post, 25, 10, 10);
+            svg.addRect(post, width-25, 10, 10);
             post = post += 300;
         }
         return svg;
@@ -70,8 +49,25 @@ public class HelpFunction {
     }
 
     public static SVGDrawing addDashedLines (SVGDrawing svg, int length, int width) {
-        svg.addDashedLine(10, 10);
+        double d;
+        d = Math.sqrt(Math.pow(width,2)+Math.pow(length,2));
+        svg.addDashedLine(10, 10, d);
         // noget med width minus det som er tilovers i siderne
+        return svg;
+    }
+
+    public static SVGDrawing addShed (SVGDrawing svg, int length, int width, int shedwidth, int shedlength) {
+        svg.addRect(length - shedlength, 35, shedwidth, shedlength);
+        return svg;
+    }
+
+    public static SVGDrawing addPostToShed (SVGDrawing svg, int length, int width, int shedwidth, int shedlength) {
+            svg.addRect(length-shedlength, 30, 10, 10);
+            svg.addRect(length, 30, 10, 10);
+            svg.addRect(length-shedlength, shedwidth/2, 10, 10);
+            svg.addRect(length, shedwidth/2, 10, 10);
+            svg.addRect(length-shedlength, shedwidth, 10, 10);
+            svg.addRect(length, shedwidth, 10, 10);
         return svg;
     }
 }

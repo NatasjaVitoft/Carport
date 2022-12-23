@@ -49,7 +49,7 @@ public class AddOrder extends HttpServlet {
 
         if (username != null) {
             try {
-                order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, connectionPool);
+                order = OrderFacade.createOrder(username, 1000, user.getEmail(), "Fladt tag", length, width, shedWidth, shedLength, connectionPool);
                 request.setAttribute("order", order);
                 session.setAttribute("orderID", order.getOrder_id());
             } catch (DatabaseException e) {

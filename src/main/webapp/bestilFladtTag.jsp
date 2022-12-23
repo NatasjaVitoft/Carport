@@ -69,12 +69,12 @@
                                     <p>Vælg skurbredde(Cm)</p>
                                     <select class="form-control rounded-0" name="shedwidth" id="shedwidth">
                                         <option value="0">0</option>
-                                        <option value="650">650</option>
-                                        <option value="700">700</option>
-                                        <option value="750">750</option>
-                                        <option value="800">800</option>
-                                        <option value="850">850</option>
-                                        <option value="900">900</option>
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="300">300</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                        <option value="600">600</option>
                                         <option value="950">950</option>
                                         <option value="1000">1000</option>
                                         <option value="1050">1050</option>
@@ -88,11 +88,11 @@
                                         <p>Vælg skurlængde(Cm)</p>
                                         <select class="form-control rounded-0" name="shedlength" id="shedlength">
                                             <option value="0">0</option>
-                                            <option value="650">650</option>
-                                            <option value="700">700</option>
-                                            <option value="750">750</option>
-                                            <option value="800">800</option>
-                                            <option value="850">850</option>
+                                            <option value="100">100</option>
+                                            <option value="200">200</option>
+                                            <option value="300">300</option>
+                                            <option value="400">400</option>
+                                            <option value="500">500</option>
                                             <option value="900">900</option>
                                             <option value="950">950</option>
                                             <option value="1000">1000</option>

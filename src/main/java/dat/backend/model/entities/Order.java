@@ -12,6 +12,8 @@ public class Order {
     private String carportID;
     private int length;
     private int width;
+    private int shedwidth;
+    private int shedlength;
 
 
     public Order(Timestamp date, String username, int order_id, int price, String email, String carportID) {
@@ -55,9 +57,22 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public Order(int length, int width) {
+    public Order(String username, int price, String email, String carportID, int length, int width, int shedwidth, int shedlength) {
+        this.carportID = carportID;
+        this.username = username;
+        this.price = price;
+        this.email = email;
         this.length = length;
         this.width = width;
+        this.shedwidth = shedwidth;
+        this.shedlength = shedlength;
+    }
+
+    public Order(int length, int width, int shedwidth, int shedlength) {
+        this.length = length;
+        this.width = width;
+        this.shedwidth = shedwidth;
+        this.shedlength = shedlength;
     }
 
     public Timestamp getDate() {
@@ -116,6 +131,21 @@ public class Order {
         this.width = width;
     }
 
+    public int getShedwidth() {
+        return shedwidth;
+    }
+
+    public void setShedwidth(int shedwidth) {
+        this.shedwidth = shedwidth;
+    }
+
+    public int getShedlength() {
+        return shedlength;
+    }
+
+    public void setShedlength(int shedlength) {
+        this.shedlength = shedlength;
+    }
 
     @Override
     public String toString() {
