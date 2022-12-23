@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class OrderFacade {
 
-    public static Order createOrder(String username, int price, String email, String carport, int length, int width, ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.createOrder(username, price, email, carport, length, width, connectionPool);
+    public static Order createOrder(String username, int price, String email, String carport, int length, int width, int shedwidth, int shedlength, ConnectionPool connectionPool) throws DatabaseException {
+        return OrderMapper.createOrder(username, price, email, carport, length, width, shedwidth, shedlength, connectionPool);
     }
 
     public static void readOrder(HttpServletRequest request, ConnectionPool connectionPool, String username){

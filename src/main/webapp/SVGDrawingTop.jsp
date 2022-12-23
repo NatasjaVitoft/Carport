@@ -14,15 +14,7 @@
 
     <jsp:body>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+
         <br>
         <br>
         <br>
@@ -30,19 +22,18 @@
         <br>
 
         <form action="svgtop" method="post">
-            <input type="submit" value="Se skiste">
+            <input class="btn btn-secondary border-0 rounded-0" type="submit" value="Se tegning"/>
+            <br>
+            <br>
+            <br>
         </form>
 
 
 
         ${requestScope.svg}
+        </form>
 
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>

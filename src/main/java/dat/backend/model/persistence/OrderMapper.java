@@ -16,11 +16,11 @@ import java.util.logging.Logger;
 
 public class OrderMapper {
 
-    public static Order createOrder(String username, int price, String email, String carport, int length, int width, ConnectionPool connectionPool) throws DatabaseException {
+    public static Order createOrder(String username, int price, String email, String carport, int length, int width, int shedwidth, int shedlength, ConnectionPool connectionPool) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
         Order order;
-        String sql = "insert into orders (price , username, email, carport, length, width ) values (?,?,?,?,?,?)";
+        String sql = "insert into orders (price , username, email, carport, length, width, shedwidth, shedlength) values (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -30,13 +30,15 @@ public class OrderMapper {
                 ps.setString(4, carport);
                 ps.setInt(5, length);
                 ps.setInt(6, width);
+                ps.setInt(7, shedwidth);
+                ps.setInt(8, shedlength);
 
                 int rowsAffected = ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 rs.next();
                 int auto_id = rs.getInt(1);
                 if (rowsAffected == 1) {
-                    order = new Order(username, price, email, carport, length, width);
+                    order = new Order(username, price, email, carport, length, width, shedwidth, shedlength);
                     order.setOrder_id(auto_id);
                 } else {
                     throw new DatabaseException("Could not insert order into database");
@@ -127,8 +129,10 @@ public class OrderMapper {
                 if (resultSet.next()) {
                     int length = resultSet.getInt("length");
                     int width = resultSet.getInt("width");
+                    int shedlength = resultSet.getInt("shedlength");
+                    int shedwidth = resultSet.getInt("shedwidth");
 
-                    orders = new Order(length, width);
+                    orders = new Order(length, width, shedwidth, shedlength);
                 }
             }
         } catch (SQLException ex) {

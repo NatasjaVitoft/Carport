@@ -5,7 +5,6 @@ import dat.backend.model.entities.Order;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
-import dat.backend.model.persistence.OrderMapper;
 import dat.backend.model.services.HelpFunction;
 import dat.backend.model.services.SVGDrawing;
 
@@ -48,13 +47,16 @@ public class SVGTop extends HttpServlet {
 
         int length = currentOrder.getLength();
         int width = currentOrder.getWidth();
+        int shedwidth = currentOrder.getShedwidth();
+        int shedlength = currentOrder.getShedlength();
 
-        SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 80, 60, "0 0 855 690");
+        SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 80, 60, "0 0 1500 1500");
         HelpFunction.addRafter(carport, length, width);
         HelpFunction.addPost(carport, length, width);
         HelpFunction.addStrap1(carport, length, width);
         HelpFunction.addStrap2(carport, length, width);
-        HelpFunction.addDashedLines(carport, length, width);
+        HelpFunction.addShed(carport, length, width, shedwidth, shedlength);
+        HelpFunction.addPostToShed(carport, length, width, shedwidth, shedlength);
 
         request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("SVGDrawingTop.jsp").forward(request, response);
