@@ -1,5 +1,7 @@
 package dat.backend.model.services;
 
+import dat.backend.model.persistence.ConnectionPool;
+
 public class HelpFunction {
 
 
@@ -22,11 +24,6 @@ public class HelpFunction {
             svg.addSVG(svg2);
             rafter = rafter + rafter2;
         }
-        return svg;
-    }
-
-    public static SVGDrawing addLine(SVGDrawing svg, int x1, int x2, int y1, int y2) {
-        svg.addLine(x1, y1, x2, y2);
         return svg;
     }
 
