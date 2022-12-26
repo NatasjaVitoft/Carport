@@ -88,22 +88,21 @@ class UserMapper {
 
                 if (resultSet.next()) {
 
-                    String username2 = resultSet.getString("username");
                     String password = resultSet.getString("password");
                     String role = resultSet.getString("role");
                     String email = resultSet.getString("email");
-                    String address = resultSet.getString("address");
+                    String address = resultSet.getString("adress");
                     String city = resultSet.getString("city");
                     int postcode = resultSet.getInt("postcode");
                     String name = resultSet.getString("name");
                     int phoneNumber = resultSet.getInt("phonenumber");
 
-                    User user = new User(username2, password, role, email, address, city, postcode, name, phoneNumber);
+                    User user = new User(username, password, role, email, address, city, postcode, name, phoneNumber);
                     return user;
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong");
+            throw new DatabaseException(ex, "User already exits");
         }
         return null;
     }

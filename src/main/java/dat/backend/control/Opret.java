@@ -57,21 +57,19 @@ public class Opret extends HttpServlet {
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
 
-        System.out.println(password);
-
         try {
             if (UserFacade.getUserByUsername(username, connectionPool) != null) {
-                request.setAttribute("opretError", "Brugeren findes allerede");
+                request.setAttribute("opretError", "Bruger navnet findes allerede");
                 request.getRequestDispatcher("opret.jsp").forward(request, response);
             } else {
                 userFacade.createUser(username, password, email, role, address, city, postcode, name, phoneNumber, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("index.jsp");
+        //response.sendRedirect("index.jsp");
     }
 }

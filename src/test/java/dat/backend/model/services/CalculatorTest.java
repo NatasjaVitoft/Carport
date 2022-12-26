@@ -39,7 +39,6 @@ class CalculatorTest {
 
         //sammenligner resultatet af forventet stern og faktisk stern fra udregningen
         assertEquals(expectedStern, stern);
-
     }
 
     @Test
