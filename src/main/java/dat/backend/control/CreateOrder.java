@@ -5,9 +5,7 @@ import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
 
-import dat.backend.model.services.Calculator;
 import dat.backend.model.services.CalculatorList;
-import dat.backend.model.services.HelpFunction;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

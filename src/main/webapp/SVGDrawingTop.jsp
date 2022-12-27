@@ -21,6 +21,8 @@
         <br>
         <br>
 
+        <c:if test="${sessionScope.user != null }">
+
         <form action="svgafterpurchase" method="post">
             <input class="btn btn-secondary border-0 rounded-0" type="submit" value="Se tegning"/>
             <br>
@@ -28,7 +30,7 @@
             <br>
         </form>
 
-
+        </c:if>
 
         ${requestScope.svg}
 
@@ -38,6 +40,7 @@
         <br>
         <br>
         <br>
+
         <input class="btn btn-dark btn-lg border-0 rounded-0"
                type="button" value="Tilbage" onclick="history.back(-1)"/>
 

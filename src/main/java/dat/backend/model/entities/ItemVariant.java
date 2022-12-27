@@ -7,7 +7,6 @@ public class ItemVariant {
     private String itemVariant_description;
     private int price = 0;
     private String unit;
-    private int quantity;
 
     public ItemVariant(int itemVariant_id, String itemVariant_name, String itemVariant_description, int price, String unit) {
         this.itemVariant_id = itemVariant_id;
@@ -54,7 +53,6 @@ public class ItemVariant {
                 ", itemVariant_description='" + itemVariant_description + '\'' +
                 ", price=" + price +
                 ", unit='" + unit + '\'' +
-                ", quantity=" + quantity +
                 '}';
     }
 }

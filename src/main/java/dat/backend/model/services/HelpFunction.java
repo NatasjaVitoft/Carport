@@ -1,8 +1,6 @@
 package dat.backend.model.services;
 
-
 public class HelpFunction {
-
 
     public static SVGDrawing createNewSVG(int x, int y, int height, int width, String viewbox) {
         return new SVGDrawing(height, width, viewbox, x, y);

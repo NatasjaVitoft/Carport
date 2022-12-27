@@ -6,7 +6,6 @@ import dat.backend.model.persistence.ConnectionPool;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CalculatorList {
 
@@ -57,7 +56,6 @@ public class CalculatorList {
         billOfMaterialLinesVariantList.add(Calculator.calcUniversalLeft(ID, width, length, connectionPool));
         billOfMaterialLinesVariantList.add(Calculator.calcUniversalRight(ID, width, length, connectionPool));
         billOfMaterialLinesVariantList.add(Calculator.calcBolts(ID, width, length, connectionPool));
-
 
         if (shedWidth != 0 && shedLength != 0) {
             billOfMaterialLinesVariantList.add(CalculatorShed.stalddørsgreb(ID, width, length, shedWidth, shedLength, connectionPool));

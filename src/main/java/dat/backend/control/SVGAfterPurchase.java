@@ -61,7 +61,6 @@ public class SVGAfterPurchase extends HttpServlet {
         HelpFunction.addDashedLines(carport, length, width, shedwidth, shedlength);
         HelpFunction.addPost(carport, carport2, length, width);
 
-
         request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("SVGDrawingTop.jsp").forward(request, response);
     }
