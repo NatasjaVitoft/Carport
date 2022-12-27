@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 
-@WebServlet(name = "SVGTop", value = "/svgtop")
-public class SVGTop extends HttpServlet {
+@WebServlet(name = "SVGAfterPurchase", value = "/svgafterpurchase")
+public class SVGAfterPurchase extends HttpServlet {
 
     private ConnectionPool connectionPool;
 
@@ -52,7 +52,6 @@ public class SVGTop extends HttpServlet {
 
         SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 80, 60, "0 -30 1500 1500");
         SVGDrawing carport2 = HelpFunction.createNewSVG(0, 0, 100, 100, "0 -30 1500 1500");
-        SVGDrawing carportText = HelpFunction.createNewSVG(0, 0, 100, 100, "0 -30 1500 1500");
 
         HelpFunction.addShed(carport, length, width, shedwidth, shedlength);
         HelpFunction.addRafter(carport, carport2, length, width);
@@ -62,10 +61,9 @@ public class SVGTop extends HttpServlet {
         HelpFunction.addDashedLines(carport, length, width, shedwidth, shedlength);
         HelpFunction.addPost(carport, carport2, length, width);
 
+
         request.setAttribute("svg", carport.toString());
-
         request.getRequestDispatcher("SVGDrawingTop.jsp").forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

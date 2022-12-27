@@ -21,7 +21,6 @@ class CalculatorTest {
 
     /**
      * Jeg har sat længden og bredden til at være 600 x 780 da det er nemmere at teste ift. den oprindelse stykliste.
-     * Measurement tape virker stadig ikke.
      * OBS strap test metoden er udregnet med andre mål, for at teste om skurdelen også virker.
      * OBS metoden til at teste remmene til skur har også andre mål selvfølgelig.
      */
@@ -53,7 +52,6 @@ class CalculatorTest {
         assertEquals(expectedRafter, rafter);
 
     }
-
 
     @Test
     void calcUndersternFrontAndBack () throws DatabaseException {

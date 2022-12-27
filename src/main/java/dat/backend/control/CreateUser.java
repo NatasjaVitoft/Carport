@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "Opret", value = "/Opret")
 
-public class Opret extends HttpServlet {
+public class CreateUser extends HttpServlet {
 
     ConnectionPool connectionPool;
     UserFacade userFacade;

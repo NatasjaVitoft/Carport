@@ -25,28 +25,24 @@
             <div class="row content d-flex justify-content-center align-items-center">
                 <div class="col-md-5">
                     <div class="box shadow bg-white p-4">
-                        <h3 class="mb-4 text-center fs-1">Din valgte caport</h3>
+                        <h3 class="mb-4 text-center fs-1" style="text-transform: none; font-family: 'Times New Roman',serif">Din valgte caport</h3>
 
                         <br>
 
-                        <h3>Din valgte Bredde: ${sessionScope.width}</h3>
-                        <h3>Din valgte Længde: ${sessionScope.length}</h3>
+                        <h3 style="font-family: 'Times New Roman',Serif; text-transform: none">Bredde: ${sessionScope.width}</h3>
+                        <h3 style="text-transform: none; font-family: 'Times New Roman',serif">Længde: ${sessionScope.length}</h3>
                         <br>
 
-                        <h2>Pris i alt:</h2>
-                        <h3>${sessionScope.totalprice} .- dkk</h3>
-                        <br>
-                        <h3>Carporten set oppefra:</h3>
-                        <br>
-                        <form action="svgtop" method="post">
-                            <input class="button btn-dark btn-lg border-0 rounded-0" type="submit" value="Se tegning">
-                        </form>
+                        <h3 style="text-transform: none; font-family: 'Times New Roman', serif">Pris i alt:</h3>
+                        <h3 style="text-transform: none; font-family: 'Times New Roman',serif">${sessionScope.totalprice} dkk</h3>
                         <br>
                         <br>
-                        <h3>Carporten set fra siden:</h3>
                         <br>
-                        <form action="#" method="post">
-                            <input class="button btn-dark btn-lg border-0 rounded-0" type="submit" value="Se tegning">
+                        <br>
+                        <h3 style="text-transform: none; font-family: 'Times New Roman',serif">Skitse af carporten:</h3>
+                        <br>
+                        <form action="SVGBeforePurchase" method="post">
+                            <input class="button btn-dark btn-lg border-0 rounded-0" type="submit" value="Se tegning" style="font-family: 'Times New Roman',serif; text-transform: none">
                         </form>
                         <br>
                         <br>
@@ -54,10 +50,10 @@
                         <form action="addorder" method="post">
                             <div class="d-grid gap-2 mb-3">
                                 <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                       type="submit" value="Køb Carport"/>
+                                       type="submit" value="Køb Carport" style="text-transform: none; font-family: 'Times New Roman',serif"/>
 
                                 <input class="btn btn-dark btn-lg border-0 rounded-0"
-                                       type="button" value="Tilbage" onclick="history.back(-1)"/>
+                                       type="button" value="Tilbage" style="font-family: 'Times New Roman',serif; text-transform: none" onclick="history.back(-1)"/>
                             </div>
                         </form>
                     </div>

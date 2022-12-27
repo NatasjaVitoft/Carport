@@ -13,9 +13,6 @@ start
 |Admin|
 fork
 :Opdater brugers saldo;
-|System|
-:
- saldo opdateres;
 
 stop
 fork again
