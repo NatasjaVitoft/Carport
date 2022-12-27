@@ -11,8 +11,6 @@ public class HelpFunction {
 
     public static SVGDrawing addRafter(SVGDrawing svg, SVGDrawing svg2, int length, int width) {
 
-        //int additionalRafter1 = width - 600; (DET HER SKAL VI HAVE IND I CALCULATOR
-
         int rafter1 = (int) Math.ceil(length / 55);
 
         int rafter2 = length / rafter1;
@@ -22,6 +20,12 @@ public class HelpFunction {
         while (rafter <= length) {
             svg2.addRect(rafter, 0, width, 4.5);
             svg.addSVG(svg2);
+            svg.addLine(rafter + 2, 0, rafter + 2, -30);
+            svg.addLine(-20, 0, -20, width);
+
+            if(rafter < length - 55) {
+                svg.addText(rafter + 20, -15);
+            }
             rafter = rafter + rafter2;
         }
         return svg;
@@ -60,18 +64,18 @@ public class HelpFunction {
         d = Math.sqrt(Math.pow(width,2)+Math.pow(length,2));
 
         if(shedlength==0 && shedwidth==0) {
-            svg.addLine(0, 35, length, width - 35);
-            svg.addLine(length, 35, 0, width-35);
+            svg.addLine(0, 65, length, width);
+            svg.addLine(length, 65, 0, width);
         } else {
-            svg.addLine(0, 35, length - shedlength, width-35);
-            svg.addLine(length - shedlength, 35, 0, width-35);
+            svg.addLine(0, 65, length - shedlength, width);
+            svg.addLine(length - shedlength, 65, 0, width);
         }
         // noget med width minus det som er tilovers i siderne
         return svg;
     }
 
     public static SVGDrawing addShed (SVGDrawing svg, int length, int width, int shedwidth, int shedlength) {
-        svg.addRect(length - shedlength, 35, shedwidth-35, shedlength);
+        svg.addRect(length - shedlength, 65, shedwidth-35, shedlength);
         return svg;
     }
 

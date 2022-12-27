@@ -34,7 +34,7 @@ public class SVGDrawing {
             "  </g>\n" +
             "</svg>";
 
-    private final static String TEXTTEMPLATE = "<text x=\"%d\" y=\"%d\" fill=\"black\" transform=\"rotate(%d %d,%d)\"> %d cm</text>\n";
+    private final static String TEXTTEMPLATE = "<text x=\"%d\" y=\"%d\" fill=\"black\" transform=\"rotate(%d %d,%d)\"> %d </text>\n";
 
     public void addArrowsDefs() {
         String defs = " <defs>\n" +
@@ -81,7 +81,7 @@ public class SVGDrawing {
         svgString.append(String.format(DASHEDLINETEMPLATE, height, width, diagonal));
     }
 
-    public void addText (int height, int width, int x, int y) {
+    public void addText (int x, int y) {
         svgString.append(String.format(TEXTTEMPLATE, x, y, 0, 0, 0, 55));
     }
 
