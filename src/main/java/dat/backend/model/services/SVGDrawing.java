@@ -2,7 +2,6 @@ package dat.backend.model.services;
 
 public class SVGDrawing {
 
-
     private int x;
     private int y;
     private int height;
@@ -27,12 +26,6 @@ public class SVGDrawing {
 
     private final static String ARROWTEMPLATE = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n" + "marker-end: url(#endArrow);\"/>\n";
-
-    private final static String DASHEDLINETEMPLATE = "<svg height=\"%d%%\" width=\"%d%%\">\n" +
-            "  <g fill=\"none\" stroke=\"black\" stroke-width=\"4\">\n" +
-            "    <path stroke-dasharray=\"10,10\" d=\"M5 40 l%d%% 0\" />\n" +
-            "  </g>\n" +
-            "</svg>";
 
     private final static String TEXTTEMPLATE = "<text x=\"%d\" y=\"%d\" fill=\"black\" transform=\"rotate(%d %d,%d)\"> %d </text>\n";
 
@@ -77,36 +70,8 @@ public class SVGDrawing {
         svgString.append(String.format(ARROWTEMPLATE, x1, y1, x2, y2));
     }
 
-    public void addDashedLine(int height, int width, double diagonal) {
-        svgString.append(String.format(DASHEDLINETEMPLATE, height, width, diagonal));
-    }
-
     public void addText (int x, int y) {
         svgString.append(String.format(TEXTTEMPLATE, x, y, 0, 0, 0, 55));
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public int getWidth() {
@@ -115,14 +80,6 @@ public class SVGDrawing {
 
     public void setWidth(int width) {
         this.width = width;
-    }
-
-    public String getViewbox() {
-        return viewbox;
-    }
-
-    public void setViewbox(String viewbox) {
-        this.viewbox = viewbox;
     }
 
     public String toString() {

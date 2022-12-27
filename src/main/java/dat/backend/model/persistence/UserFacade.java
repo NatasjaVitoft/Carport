@@ -18,8 +18,4 @@ public class UserFacade
     public static User getUserByUsername(String username, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserByUsername(username, connectionPool);
     }
-
-    public static void readUser(HttpServletRequest request, ConnectionPool connectionPool, String username) {
-        UserMapper.readUser(request, connectionPool, username);
-    }
 }

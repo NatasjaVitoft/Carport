@@ -70,6 +70,5 @@ public class CreateUser extends HttpServlet {
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-        //response.sendRedirect("index.jsp");
     }
 }

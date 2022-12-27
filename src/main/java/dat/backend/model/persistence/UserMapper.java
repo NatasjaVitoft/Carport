@@ -1,14 +1,9 @@
 package dat.backend.model.persistence;
 
-import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -105,43 +100,5 @@ class UserMapper {
             throw new DatabaseException(ex, "User already exits");
         }
         return null;
-    }
-
-    public static void readUser(HttpServletRequest request, ConnectionPool connectionPool, String username) {
-
-        List<User> userList = new ArrayList<>();
-        HttpSession session = request.getSession();
-
-        String sql = "select * from bomvariant WHERE orders_id = ? ";
-
-        try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            ps.setString(1, username);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-
-                String username2 = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String role = resultSet.getString("role");
-                String email = resultSet.getString("email");
-                String address = resultSet.getString("address");
-                String city = resultSet.getString("city");
-                int postcode = resultSet.getInt("postcode");
-                String name = resultSet.getString("name");
-                int phoneNumber = resultSet.getInt("phonenumber");
-
-
-                User users = new User(username2, password, role, email, address, city, postcode, name, phoneNumber);
-                userList.add(users);
-            }
-            session.setAttribute("userliste", userList);
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
     }
 }
