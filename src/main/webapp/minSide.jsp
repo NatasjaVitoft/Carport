@@ -44,7 +44,7 @@
                         <th scope="col" style="width: 10%">Carport</th>
                         <th scope="col" style="width: 10%">Længde</th>
                         <th scope="col" style="width: 10%">Bredde</th>
-                        <th scope="col" style="width: 12%">Stk liste</th>
+                        <th scope="col" style="width: 12%">Stykliste</th>
                         <th scope="col" style="width: 12%">Skitse ovenfra</th>
                         <th scope="col">Skitse fra siden</th>
                     </tr>
@@ -67,7 +67,7 @@
                             </form>
                         </td>
                         <td>
-                            <form action="svgtop" method="get">
+                            <form action="svgafterpurchase" method="get">
                                 <input class="btn btn-secondary border-0 rounded-0" type="submit" value="skitse"/>
                                 <input type="hidden" name="ID" value="${item.order_id}"/>
                             </button>

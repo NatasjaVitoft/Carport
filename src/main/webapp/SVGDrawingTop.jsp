@@ -21,7 +21,7 @@
         <br>
         <br>
 
-        <form action="svgtop" method="post">
+        <form action="svgafterpurchase" method="post">
             <input class="btn btn-secondary border-0 rounded-0" type="submit" value="Se tegning"/>
             <br>
             <br>
@@ -31,6 +31,7 @@
 
 
         ${requestScope.svg}
+
         </form>
 
 

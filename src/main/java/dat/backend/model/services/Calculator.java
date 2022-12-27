@@ -17,6 +17,7 @@ public class Calculator {
      */
 
     // Spær
+    // Beregnes ved at dividere længden med afstanden mellem hvert spær (55)
     public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
 
         int rafter = (int) Math.ceil(length / 55);
@@ -30,23 +31,38 @@ public class Calculator {
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
         if (shedWidth == 0 && shedLength == 0) {
-            int strap = (int) Math.ceil(length * 2);
-            int strap_result = strap / 600;
+            int strap = (int) length * 2;
+            int strap_result = (int) Math.ceil(strap / 600.0);
             Item items = ItemFacade.getItemByID(8, connectionPool);
             int price = strap_result * items.getPrice();
             return new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), strap_result, ID);
         } else {
             double n_length = length - shedLength;
             int strap = (int) (n_length * 2);
-            int strap_result = strap / 600;
+            int strap_result = (int) Math.ceil(strap / 600.0);
             Item items = ItemFacade.getItemByID(8, connectionPool);
             int price = strap_result * items.getPrice();
             return new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), strap_result, ID);
         }
     }
 
-    public static BillOfMaterialLine calcMeasurementTape (int ID, double width, double length, int shedwidth, int shedlength, ConnectionPool connectionPool) {
-        return null;
+    public static BillOfMaterialLine calcMeasurementTape (int ID, double width, double length, int shedwidth, int shedlength, ConnectionPool connectionPool) throws DatabaseException {
+
+        if(shedwidth == 0 && shedlength == 0) {
+            double diagonal = Math.sqrt(width * width) + Math.sqrt(length * length);
+            int measurementTape = (int) Math.ceil(diagonal / 1000);
+            ItemVariant itemVariant = ItemVariantFacade.getItemByID(2, connectionPool);
+            int price = (int) (measurementTape * 2);
+            return new BillOfMaterialLine(itemVariant.getItemVariant_id(), itemVariant.getItemVariant_name(), itemVariant.getUnit(), price, itemVariant.getItemVariant_description(), measurementTape, ID);
+        }
+        else {
+            int lengthWithShed = (int) (length - shedlength);
+            double diagonal = Math.sqrt(width * width) + Math.sqrt(lengthWithShed * lengthWithShed);
+            int measurementTape = (int) Math.ceil(diagonal / 1000);
+            ItemVariant itemVariant = ItemVariantFacade.getItemByID(2, connectionPool);
+            int price = (int) (measurementTape * 2);
+            return new BillOfMaterialLine(itemVariant.getItemVariant_id(), itemVariant.getItemVariant_name(), itemVariant.getUnit(), price, itemVariant.getItemVariant_description(), measurementTape, ID);
+        }
     }
 
     // Calc post
@@ -54,7 +70,7 @@ public class Calculator {
     public static BillOfMaterialLine calcPost(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int post = (int) (length - 120);
-        int post2 = (int) Math.ceil(post / 300);
+        int post2 = (int) Math.ceil(post / 300.0);
         int post3 = post2 * 2;
 
         Item items = ItemFacade.getItemByID(11, connectionPool);
@@ -71,7 +87,7 @@ public class Calculator {
         int stern1 = (int) (width + 5);
         int stern2 = (int) (width + 5);
         int stern3 = stern1 + stern2;
-        int stern_result = (int) Math.ceil(stern3 / 360);
+        int stern_result = (int) Math.ceil(stern3 / 360.0);
 
         Item items = ItemFacade.getItemByID(1, connectionPool);
         int price = stern_result * items.getPrice();
@@ -84,21 +100,24 @@ public class Calculator {
     // 25x200 mm. trykimp. Brædt 540 4 Stk understernbrædder til siderne
     public static BillOfMaterialLine calcUnderSternSides(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
-        int stern1 = (int) (length + 5);
-        int stern2 = (int) (length + 5);
-        int stern3 = stern1 + stern2;
-        int stern_result = (int) Math.ceil(stern3 / 540);
+        int sternsideOneLength = (int) (length + 5);
+        int sternsideTwoLength = (int) (length + 5);
+
+        int sternsideOne = (int) Math.ceil(sternsideOneLength / 540.0);
+        int sternsideTwo = (int) Math.ceil(sternsideTwoLength / 540.0);
+
+        int allStern = sternsideOne + sternsideTwo;
 
         Item items = ItemFacade.getItemByID(2, connectionPool);
-        int price = items.getPrice() * stern_result;
-        return new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), stern_result, ID);
+        int price = items.getPrice() * allStern;
+        return new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), allStern, ID);
     }
 
     // 25x125mm. trykimp. Brædt 360 2 Stk oversternbrædder til forenden
     public static BillOfMaterialLine calcUnderSternSmall(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int stern1 = (int) (width + 5);
-        double stern2 = stern1 / 360;
+        double stern2 = stern1 / 360.0;
         int stern_result = (int) Math.ceil(stern2);
 
         Item items = ItemFacade.getItemByID(3, connectionPool);
@@ -177,7 +196,7 @@ public class Calculator {
     }
 
     // 4,5 x 60 mm. skruer 200 stk. 1 Pakke Til montering af stern &v andbrædt
-    // Vi har valgt at sætte en default værdi så alle tage skal bruge 1 pakker
+    // Vi har valgt at sætte en default værdi så alle tage skal bruge 1 pakke
 
     public static BillOfMaterialLine calcSkruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int skruer = 1;
@@ -187,7 +206,7 @@ public class Calculator {
     }
 
     // firkantskiver 40x40x11mm 12 Stk Til montering af rem på stolper
-    // Vi har valgt at sætte en default værdi så alle tage skal bruge 12
+    // Vi har valgt at sætte en default værdi så alle tage skal bruge 12 stk firkantskiver
     public static BillOfMaterialLine calcFirkant(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int firkant = 12;

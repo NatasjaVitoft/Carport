@@ -1,19 +1,25 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.BillOfMaterialLine;
+import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.*;
 
+import dat.backend.model.services.Calculator;
+import dat.backend.model.services.CalculatorList;
 import dat.backend.model.services.HelpFunction;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 
-@WebServlet(name = "bestil", value = "/bestil")
-public class Bestil extends HttpServlet {
+@WebServlet(name = "CreateOrder", value = "/createorder")
+public class CreateOrder extends HttpServlet {
 
     private ConnectionPool connectionPool;
 
@@ -55,7 +61,35 @@ public class Bestil extends HttpServlet {
         session.setAttribute("shedwidth", shedWidth);
         session.setAttribute("shedlength", shedLength);
 
-        //session.setAttribute("price", price);
+        ArrayList<BillOfMaterialLine> materials1 = new ArrayList<>();
+        ArrayList<BillOfMaterialLine> materials2 = new ArrayList<>();
+
+        try {
+            materials1 = CalculatorList.calculateCarport(connectionPool, 0, width, length, shedLength, shedWidth);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            materials2 = CalculatorList.calculateCarport2(connectionPool, 0, width, length, shedWidth, shedLength);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+
+        int price = 0;
+
+        for (BillOfMaterialLine b : materials1) {
+            price += b.getPrice();
+        }
+
+        for (BillOfMaterialLine b : materials2) {
+            price += b.getPrice();
+        }
+
+        session.setAttribute("totalprice", price);
 
         //forward to svgpage.jsp
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);

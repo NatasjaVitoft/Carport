@@ -21,14 +21,14 @@
         <br>
         <br>
 
-        <form action="bestil" method="post">
+        <form action="createorder" method="post">
             <section class="container">
                 <div class="row content d-flex justify-content-center align-items-center">
                     <div class="col-md-5">
                         <div class="box shadow bg-white p-4">
                             <h3 class="mb-4 text-center fs-1">Carport med fladt tag</h3>
 
-                            <form class="mb-3" action="bestil" method="post">
+                            <form class="mb-3" action="createorder" method="post">
                                 <div class="mb-3">
                                     <p>Vælg bredde(Cm)</p>
                                     <select class="form-control rounded-0" name="width" id="width">
