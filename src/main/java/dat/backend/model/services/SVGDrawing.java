@@ -34,6 +34,8 @@ public class SVGDrawing {
             "  </g>\n" +
             "</svg>";
 
+    private final static String TEXTTEMPLATE = "<text x=\"%d\" y=\"%d\" fill=\"black\" transform=\"rotate(%d %d,%d)\"> %d cm</text>\n";
+
     public void addArrowsDefs() {
         String defs = " <defs>\n" +
                 "        <marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
@@ -47,6 +49,7 @@ public class SVGDrawing {
 
         svgString.append(String.format(defs));
     }
+
 
     public SVGDrawing(int height, int width, String viewbox, int x, int y) {
         svgString.append(String.format(HEADERTEMPLATE, x, y, height, width, viewbox));
@@ -65,8 +68,8 @@ public class SVGDrawing {
         svgString.append(String.format(LINETEMPLATE, x1, y1, x2, y2));
     }
 
-    public void addInnerSVG(SVGDrawing innerSVGDrawing) {
-        svgString.append(innerSVGDrawing);
+    public void addSVG(SVGDrawing svg) {
+        svgString.append(svg);
     }
 
     public void addArrows(int x1, int y1, int x2, int y2) {
@@ -78,6 +81,9 @@ public class SVGDrawing {
         svgString.append(String.format(DASHEDLINETEMPLATE, height, width, diagonal));
     }
 
+    public void addText (int height, int width, int x, int y) {
+        svgString.append(String.format(TEXTTEMPLATE, x, y, 0, 0, 0, 55));
+    }
 
     public int getX() {
         return x;

@@ -16,17 +16,16 @@ public class Calculator {
      * STYKLISTE : TRÆ (FØRSTE DEN AF LISTEN)
      */
 
-    // Calc Rafter
     // Spær
     public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
 
         int rafter = (int) Math.ceil(length / 55);
         Item items = ItemFacade.getItemByID(10, connectionPool);
+
         int price = items.getPrice() * rafter;
         return new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), rafter, ID);
     }
 
-    // Calc Strap
     // Rem
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
@@ -46,6 +45,9 @@ public class Calculator {
         }
     }
 
+    public static BillOfMaterialLine calcMeasurementTape (int ID, double width, double length, int shedwidth, int shedlength, ConnectionPool connectionPool) {
+        return null;
+    }
 
     // Calc post
     // Stolpe
@@ -230,93 +232,3 @@ public class Calculator {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-   /*
-    public static BillOfMaterialLine calcStrap(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
-        if(shed == true) {
-            int n1 = (int) Math.ceil(shed.length/480);
-            Item items = ItemFacade.getItemByID(9, connectionPool);
-            int price = items.getPrice() * n1;
-            BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), price, items.getItem_description(), n1, ID);
-            return billOfMaterialLine;
-        }
-        else {
-            return null;
-        }
-    }
-
-     */
-
-
-// 45x195 mm. spærtræ ubh. 480 1 Stk
-//Remme i sider, sadles ned i stolper ( skur del,
-//deles)
-
-
-
-
-    /*
-
-    // hulbånd 1x20 mm. 10 mtr. 2 Rulle Til vindkryds på spær
-    public static BillOfMaterialLine calcMeasurementTapeQuantity(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
-        int n_measurement = 0;
-
-        int n = measurementTape(width, length);
-
-        if(n >= 10 && n < 20) {
-            n_measurement = 1;
-        }
-        if(n >= 20 && n < 30) {
-            n_measurement = 2;
-        }
-        if(n >= 30 && n < 40) {
-            n_measurement = 3;
-        }
-        if(n >= 40 && n < 50) {
-            n_measurement = 4;
-        }
-
-        Item items = ItemFacade.getItemByID(4, connectionPool);
-        BillOfMaterialLine billOfMaterialLine = new BillOfMaterialLine(items.getItem_id(), items.getItem_name(), items.getUnit(), items.getLength(), items.getPrice(), items.getItem_description(), 1, n_measurement, ID);
-        return billOfMaterialLine;
-    }
-
-    */
-
-
-// Calc measurement tape
-// med skur kan man sige length - 55 på den ene side, og så minus skur bredde på 210. det giver 265
-// uden skur kan man sige length - 110 (starter lide ud fra det første spær)
-
-
-
-    /*
-    // Hulbånd
-    public static BillOfMaterialLine measurementTape(double width, double length, ConnectionPool connectionPool) {
-
-     if (skur == true){
-     int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length -265, 2));
-        int n_measurementTape = n * 2;
-
-         Item items = ItemFacade.getItemByID(3, connectionPool);
-
-        return BillOfMaterialLine;
-
-     } else {
-     int n = (int) Math.sqrt(Math.pow(width, 2) + Math.pow(length -110, 2));
-        int n_measurementTape = n * 2;
-        return n_measurementTape;
-     }
-    }
-
-     */

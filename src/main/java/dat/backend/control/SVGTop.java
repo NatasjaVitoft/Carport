@@ -51,12 +51,15 @@ public class SVGTop extends HttpServlet {
         int shedlength = currentOrder.getShedlength();
 
         SVGDrawing carport = HelpFunction.createNewSVG(0, 0, 80, 60, "0 0 1500 1500");
-        HelpFunction.addRafter(carport, length, width);
-        HelpFunction.addPost(carport, length, width);
-        HelpFunction.addStrap1(carport, length, width);
-        HelpFunction.addStrap2(carport, length, width);
+        SVGDrawing carport2 = HelpFunction.createNewSVG(0, 0, 100, 100, "0 0 1500 1500");
+
         HelpFunction.addShed(carport, length, width, shedwidth, shedlength);
-        HelpFunction.addPostToShed(carport, length, width, shedwidth, shedlength);
+        HelpFunction.addRafter(carport, carport2, length, width);
+        HelpFunction.addStrap1(carport, carport2, length, width);
+        HelpFunction.addStrap2(carport, carport2, length, width);
+        HelpFunction.addPostToShed(carport, carport2, length, width, shedwidth, shedlength);
+        HelpFunction.addDashedLines(carport, length, width, shedwidth, shedlength);
+        HelpFunction.addPost(carport, carport2, length, width);
 
         request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("SVGDrawingTop.jsp").forward(request, response);

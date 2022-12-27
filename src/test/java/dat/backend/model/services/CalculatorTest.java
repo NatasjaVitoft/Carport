@@ -22,7 +22,6 @@ class CalculatorTest {
 
     }
 
-
     // OBS ALLE TEST ER KØRT MED MÅL 600X600 UDEN SKUR!
 
 
@@ -43,15 +42,12 @@ class CalculatorTest {
 
     @Test
         // udregning af antal stolper vi skal bruge
-        // denne udregning er ikke rigtig
     void calcPost() throws DatabaseException {
 
-        int post = 0;
-
-        post = Calculator.calcPost(0, 0, 600, connectionPool).getQuantity();
+        int post = Calculator.calcPost(0, 600, 780, connectionPool).getQuantity();
 
         // sætter forventede antal post vi skal bruge ud fra vores bredde
-        int expectedpost = 6;
+        int expectedpost = 4;
 
         //sammenligner resultatet af forventet post og faktisk post fra udregningen
         assertEquals(expectedpost, post);
@@ -62,32 +58,52 @@ class CalculatorTest {
     @Test
     void calcStrap() throws DatabaseException {
 
-        int strap = 0;
-
-        strap = Calculator.calcStrap(0, 0, 600, 0, 0, connectionPool).getQuantity();
+        int strap = Calculator.calcStrap(0, 600, 780, 0, 0, connectionPool).getQuantity();
 
         // sætter forventede antal rem vi skal bruge ud fra vores længde
         int expectedStrap = 2;
 
         //sammenligner resultatet af forventet rem og faktisk rem fra udregningen
         assertEquals(expectedStrap, strap);
-
     }
+
 
     // udregning af spær til carporten
     @Test
     void calcRafter() throws DatabaseException, SQLException {
 
-        int rafter = 0;
-
-        rafter = Calculator.calcRafter(connectionPool, 0, 0, 600).getQuantity();
+        int rafter = Calculator.calcRafter(connectionPool, 0, 600, 780).getQuantity();
 
         // sætter forventede antal stern vi skal bruge ud fra vores bredde
-        int expectedRafter = 11;
+        int expectedRafter = 15;
 
         //sammenligner resultatet af forventet stern og faktisk stern fra udregningen
         assertEquals(expectedRafter, rafter);
 
     }
 
+    /** Calc til stern brædderne giver ikke helt mening. Det er som om den bliver halveret. Det skal vi lige kigge på */
+
+    @Test
+    void calcUndersternFrontAndBack () throws DatabaseException {
+        int stern = Calculator.calcUnderSternFrontAndBack(0, 600, 780, connectionPool).getQuantity();
+        int expectedStern = 4;
+        assertEquals(expectedStern, stern);
+    }
+
+    @Test
+    void calcUnderSternSides () throws DatabaseException {
+        int stern = Calculator.calcUnderSternSides(0, 600, 780, connectionPool).getQuantity();
+        int expectedStern = 4;
+        assertEquals(expectedStern, stern);
+    }
+
+    @Test
+    void calcUndersternSmall () throws DatabaseException {
+        int stern = Calculator.calcUnderSternSmall(0, 600, 780, connectionPool).getQuantity();
+        int expectedStern = 2;
+        assertEquals(expectedStern, stern);
+    }
 }
+
+
