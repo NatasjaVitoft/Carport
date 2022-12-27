@@ -1,81 +1,81 @@
 @startuml
-'https://plantuml.com/class-diagram
 
+class BillOfMaterialsLine {
+- int item_id;
+- int itemVariant_id;
+- String name;
+- String unit;
+- int length;
+- int price;
+- String description;
+- int carport_id;
+- int quantity;
+- int orders_id;
++ int getItem_id()
++ int getOrders_id()
++ String getName()
++ void setName(String name)
++ String getUnit()
++ void setUnit(String unit)
++ int getLength()
++ void setLength(int length)
++ int getPrice()
++ void setPrice(int price)
++ String getDescription()
++ int getQuantity()
++ int getItemVariant_id()
++ tostring()
+}
 
-
-class BillOfMaterials {
-- List<Carport> inventory()
-- int totalPrice
-+ void add(Carport carport)
-+ int getNumberOfCarport()
-+ List<Carport> getCarportList()
-+ int getTotalPriceOfCarport()
-+ void setTotalPriceOfCarport(int totalPrice)
-
-
+Class Services {
 
 }
 
-class Carport {
-- int height
-- int length
-- int price
-ArrayList<Item> itemList
+Class Controle {
 
-+ int getHeight()
-+ int getLength()
+}
+
+Class Entities {
+
+}
+
+Class Persistence {
+
 }
 
 class Item{
 - int item_id
 - String item_name
 - String item_description
-- int price = 0
+- int price
 - String unit
 - int quantity
 - int length
-
 + int getItem_id()
 + String getItem_name()
 + String getItem_description()
 + int getPrice()
 + String getUnit()
-+ int getQuantity()
 + int getLength()
 + void setPrice(int price)
-+ void setItem_id(int item_id)
-+ void setItem_name(String item_name)
-+ void setItem_description(String item_description)
 + void setUnit(String unit)
-+ void setQuantity(int quantity)
 + void setLength(int length)
 + String toString()
-
-
-
-
 }
 
 class ItemVariant{
 - int itemVariant_id
 - String itemVariant_name
 - String itemVariant_description
-- int price = 0
+- int price
 - String unit
-- int quantity
-
 + int getItemVariant_id()
-+ void setItemVariant_id
 + String getItemVariant_name()
-+ void setItemVariant_name(String itemVariant_name)
 + String getItemVariant_description()
-+ void setItemVariant_description(String itemVariant_description)
 + int getPrice()
 + void setPrice(int price)
 + String getUnit()
 + void setUnit(String unit)
-+ int getQuantity()
-+ void setQuantity(int quantity)
 }
 
 class Order{
@@ -85,9 +85,12 @@ class Order{
 - int price
 - String email
 - String carport
-
+- String carportID
+- int length
+- int width
+- int shedwidth
+- int shedlength
 + Timestamp getDate()
-+ void setDate(Timestamp date)
 + String getUsername()
 + void setUsername(String username)
 + int getOrder_id()
@@ -96,26 +99,15 @@ class Order{
 + void setPrice(int price)
 + String getEmail()
 + void setEmail(String email)
-+ String getCarport()
-+ void setCarport(String carport)
-+ String toString()
-
-}
-
-class Orderline{
-- int item_id
-- int various_id
-- int shed_id
-- int price
-
-+ int getItem_id()
-+ void setItem_id(int item_id)
-+ int getVarious_id()
-+ void setVarious_id(int various_id)
-+ int getShed_id()
-+ void setShed_id(int shed_id)
-+ int getPrice()
-+ void setPrice(int price)
++ String getCarportID()
++ String getLength()
++ String setLength(int length)
++ String getWidth()
++ String setWidth(int width)
++ String getShedWidth()
++ String setShedWidth(int shedWidth)
++ String getShedLength()
++ String setShedLength(int ShedLength)
 + String toString()
 }
 
@@ -129,7 +121,6 @@ class User{
 - int postcode
 - String name
 - int phoneNumber
-
 + String getUsername()
 + void setUsername(String username)
 + String getPassword()
@@ -138,20 +129,15 @@ class User{
 + void setRole(String role)
 + String getEmail()
 + void setEmail(String email)
-+ String getAddress()
 + void setAddress(String address)
-+ String getCity()
 + void setCity(String city)
-+ int getPostcode()
 + void setPostcode(int postcode)
 + String getName()
 + void setName(String name)
-+ int getPhoneNumber()
 + void setPhoneNumber(int phoneNumber)
 + boolean equals(Object o)
 + int hashCode()
 + String toString()
-
 }
 
 class ConnectionPool {
@@ -165,49 +151,146 @@ class ConnectionPool {
  + void close()
 }
 
-class itemFacade {
-+ ArrayList<Item> itemList(ConnectionPool connectionPool)
+class ItemFacade {
++ Item getItemByID (int ID, ConnectionPool connectionPool)
 }
 
-class itemMapper {
-+ static ArrayList<Item> getItemList(ConnectionPool connectionPool)
+class ItemMapper {
++ Item getItemByID(int ID, ConnectionPool connectionPool)
 }
 
-class itemVariantMapper {
-+ static ArrayList<ItemVariant> ItemVariantList(ConnectionPool connectionPool)
+class ItemVariantMapper {
++ ItemVariant getItemVariantByID(int ID, ConnectionPool connectionPool)
 }
 
-class itemVariantFacade{
-+static ArrayList<ItemVariant> itemVariantList(ConnectionPool connectionPool)
+class ItemVariantFacade{
++ ItemVariant getItemVariantByID(int ID, ConnectionPool connectionPool)
 }
 
-class orderFacade {
-+ static Order createOrder(String username, int price, String email, String carport, ConnectionPool connectionPool)
+class OrderFacade {
++ static Order createOrder(String username, int price, String email, String carport, int length, int width, int shedwidth, int shedlength, ConnectionPool connectionPool)
 + static void readOrder(HttpServletRequest request, ConnectionPool connectionPool)
++ static Order getOrderByID(int ID, ConnectionPool connectionPool)
 }
 
-class orderMapper {
-+ static Order createOrder(String username, int price, String email, String carport, ConnectionPool connectionPool)
+class OrderMapper {
++ static Order createOrder(String username, int price, String email, String carport, int length, int width, int shedwidth, int shedlength, ConnectionPool connectionPool)
 + static void readOrder(HttpServletRequest request, ConnectionPool connectionPool)
++ static Order getOrderByID(int ID, ConnectionPool connectionPool)
 }
 
-class userFacade {
+class UserFacade {
 + static User login(String username, String password, ConnectionPool connectionPool)
 + static User createUser(String username, String password, String email, String role, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool)
 + static User getUserByUsername(String username, ConnectionPool connectionPool)
 }
 
-class userMapper {
+class UserMapper {
 + User login(String username, String password, ConnectionPool connectionPool)
 + User createUser(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber, ConnectionPool connectionPool)
 + User getUserByUsername(String username, ConnectionPool connectionPool)
 }
+
+class BillOfMaterialLineFacade{
++ BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int quantity, int orders_id, ConnectionPool connectionPool)
++ void readBOM(HttpServletRequest request, ConnectionPool connectionPool, int ordersID)
+}
+
+class BillOfMaterialLineMapper{
++ BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int quantity, int orders_id, ConnectionPool connectionPool)
++ void readBOM(HttpServletRequest request, ConnectionPool connectionPool, int ordersID)
+}
+
+class BomVariantFacade{
++ BillOfMaterialLine createBOMLVariant(String name, String unit, int price, String description, int quantity, int orders_id, int itemvariant_id, ConnectionPool connectionPool)
++ void readBOM(HttpServletRequest request, ConnectionPool connectionPool, int ordersID)
+}
+
+class BomVariantMapper{
++ BillOfMaterialLine createBOMLVariant(String name, String unit, int price, String description, int quantity, int orders_id, int itemvariant_id, ConnectionPool connectionPool)
++ void readBOM(HttpServletRequest request, ConnectionPool connectionPool, int ordersID)
+}
+
+
+class SVGDrawing {
+- int x
+- int y
+- int height
+- int width
+- String viewbox
+- StringBuilder svgString
+- String HEADERTEMPLATE
+- String RECTTEMPLATE
+- String ARROWHEADSTEMPLATE
+- String LINETEMPLATE
+- String ARROWTEMPLATE
+- String TEXTTEMPLATE
++ void addRect(int x, int y, double height, double width)
++ void addLine(int x1, int y1, int x2, int y2)
++ void addSVG(SVGDrawing svg)
++ void addArrows(int x1, int y1, int x2, int y2)
++ void addText (int x, int y)
++ int getWidth()
++ void setWidth(int width)
++ String toString()
+}
+
+class HelpFuction {
++ SVGDrawing createNewSVG(int x, int y, int height, int width, String viewbox)
++ SVGDrawing addRafter(SVGDrawing svg, SVGDrawing svg2, int length, int width)
++ SVGDrawing addPost(SVGDrawing svg, SVGDrawing svg2, int length, int width)
++ SVGDrawing addStrap1(SVGDrawing svg, SVGDrawing svg2, int length, int width)
++ SVGDrawing addStrap2(SVGDrawing svg, SVGDrawing svg2, int length, int width)
++ SVGDrawing addArrows(SVGDrawing svg, int x1, int x2, int y1, int y2)
++ SVGDrawing addDashedLines(SVGDrawing svg, int length, int width, int shedwidth, int shedlength)
++ SVGDrawing addShed(SVGDrawing svg, int length, int width, int shedwidth, int shedlength)
++ SVGDrawing addPostToShed(SVGDrawing svg, SVGDrawing svg2, int length, int width, int shedwidth, int shedlength)
+}
+
+class CalculatorShed{
++ BillOfMaterialLine calcStrapForShed(int ID, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine calcLægte(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine calcLøsholter(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine calcLøsholterSide(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine stalddørsgreb(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine hængsel(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine vinkelbeslag(int ID, int width, int length, double shedWidth, double shedLength, ConnectionPool connectionPool)
+}
+
+class CalculatorList{
++ ArrayList<BillOfMaterialLine> calculateCarport(ConnectionPool connectionPool, int ID, int width, int length, int shedLength, int shedWidth)
++ ArrayList<BillOfMaterialLine> calculateCarport2(ConnectionPool connectionPool, int ID, int width, int length, int shedWidth, int shedLength)
+}
+
+class Calulator{
++ BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length)
++ BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool)
++ BillOfMaterialLine calcMeasurementTape (int ID, double width, double length, int shedwidth, int shedlength, ConnectionPool connectionPool)
++ BillOfMaterialLine calcPost(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcUnderSternFrontAndBack(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcUnderSternSides(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcUnderSternSmall(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcLongRafterTree(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcBolts(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcUniversalRight(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcUniversalLeft(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcBeslagSkruer(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcBundskruer(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcSkruer(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcFirkant(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcSkruer2(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcSkruer3(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcWeatherboard1(int ID, double width, double length, ConnectionPool connectionPool)
++ BillOfMaterialLine calcWeatherboard2(int ID, double width, double length, ConnectionPool connectionPool)
+}
+
+
 class AddOrder {
 void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
 
-class Bestil {
+class CreateOrder {
 void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
@@ -219,34 +302,72 @@ class logout {
 void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
-class Opret {
+class CreateUser {
 void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
-class SVG {
+class SVGAfterPurchase {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class SVGBeforePurchase {
+void doPost(HttpServletRequest request, HttpServletResponse response)
+void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+class Bom {
 void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
 
+
+Services --> CalculatorList
+Services --> CalculatorShed
+Services --> Calulator
+Services --> HelpFuction
+Services --> SVGDrawing
+
+Controle --> AddOrder
+Controle --> Bom
+Controle --> CreateOrder
+Controle --> CreateUser
+Controle --> Login
+Controle --> Logout
+Controle --> SVGBeforePurchase
+Controle --> SVGAfterPurchase
+
+Persistence --> BillOfMaterialLineFacade
+Persistence --> BillOfMaterialLineMapper
+Persistence --> BomVariantFacade
+Persistence --> BomVariantMapper
+Persistence --> ConnectionPool
+Persistence --> ItemFacade
+Persistence --> ItemMapper
+Persistence --> ItemVariantFacade
+Persistence --> ItemVariantMapper
+Persistence --> OrderFacade
+Persistence --> OrderMapper
+Persistence --> UserFacade
+Persistence --> UserMapper
+
+Entities --> BillOfMaterialsLine
+Entities --> Item
+Entities --> ItemVariant
+Entities --> Order
+Entities --> User
+
 User --> Login
-BillOfMaterials --> Carport
-Carport --> Item
-Carport --> ItemVariant
-Carport --> SVG
-Orderline --> Order
-Order --> BillOfMaterials
-Opret --> User
-Login --> logout
-Item --> itemFacade
-itemFacade --> itemMapper
-User --> userFacade
-userFacade --> userMapper
-Order --> orderFacade
-orderFacade --> orderMapper
-ItemVariant --> itemVariantFacade
-itemVariantFacade --> itemVariantMapper
-User --> Bestil
-User --> AddOrder
+User --> Logout
+User --> Bom
+User --> Order
+User --> CreateUser
+
+
+
+
+
+
+
+
 
 
 @enduml
