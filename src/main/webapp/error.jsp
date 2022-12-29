@@ -15,6 +15,9 @@
 
     <jsp:body>
 
+        <br>
+        <br>
+        <br>
         <p>An error has occured. This is the best message we can come up
             with right now: </p>
 
