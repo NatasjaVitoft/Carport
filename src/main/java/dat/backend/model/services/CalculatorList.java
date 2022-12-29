@@ -2,6 +2,8 @@ package dat.backend.model.services;
 
 import dat.backend.model.entities.BillOfMaterialLine;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.BillOfMaterialLineFacade;
+import dat.backend.model.persistence.BomVariantFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
 import java.sql.SQLException;
@@ -11,6 +13,48 @@ public class CalculatorList {
 
     // Method that adds all BOMLines to a list and returns it
     // Metode som skal tilføje alle BillOfMaterialLines til en liste og returnerer den
+
+    public static int calculateTotalPrice(ConnectionPool connectionPool, int ID, int width, int length, int shedLength, int shedWidth) throws SQLException, DatabaseException {
+
+        int totalPrice = 0;
+
+        ArrayList<BillOfMaterialLine> priceForMaterial1;
+        ArrayList<BillOfMaterialLine> priceForMaterial2;
+
+        priceForMaterial1 = calculateCarport(connectionPool, ID, width, length, shedLength, shedWidth);
+        priceForMaterial2 = calculateCarport2(connectionPool, ID, width, length, shedLength, shedWidth);
+
+        for (BillOfMaterialLine b : priceForMaterial1) {
+            totalPrice += b.getPrice();
+        }
+
+        for (BillOfMaterialLine b : priceForMaterial2) {
+            totalPrice += b.getPrice();
+        }
+
+        return totalPrice;
+    }
+
+
+    /** FÅ ALT DET HER TIL AT VIRKE. MEGET SMARTERE MÅDE AT GØRE DET PÅ. FÅ ALLE TING VÆK FRA SERVLET
+    public static void addBOMlines(ConnectionPool connectionPool, int ID, int width, int length, int shedlength, int shedwidth) throws DatabaseException, SQLException {
+
+
+        ArrayList<BillOfMaterialLine> allMaterial;
+        ArrayList<BillOfMaterialLine> allMaterial2;
+
+        allMaterial = CalculatorList.calculateCarport(connectionPool, ID, width, length, shedlength, shedwidth);
+        allMaterial2 = CalculatorList.calculateCarport2(connectionPool, ID, width, length, shedlength, shedwidth);
+
+        for (BillOfMaterialLine b : allMaterial) {
+            BillOfMaterialLineFacade.createBOML(b.getItem_id(), b.getName(), b.getUnit(), b.getLength(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), connectionPool);
+        }
+
+        for (BillOfMaterialLine b : allMaterial2) {
+            BomVariantFacade.createBOMLVariant(b.getName(), b.getUnit(), b.getPrice(), b.getDescription(), b.getQuantity(), b.getOrders_id(), b.getItemVariant_id(), connectionPool);
+        }
+    }
+     **/
 
     public static ArrayList<BillOfMaterialLine> calculateCarport(ConnectionPool connectionPool, int ID, int width, int length, int shedLength, int shedWidth) throws DatabaseException, SQLException {
 

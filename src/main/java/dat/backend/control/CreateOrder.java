@@ -59,32 +59,14 @@ public class CreateOrder extends HttpServlet {
         session.setAttribute("shedwidth", shedWidth);
         session.setAttribute("shedlength", shedLength);
 
-        ArrayList<BillOfMaterialLine> materials1 = new ArrayList<>();
-        ArrayList<BillOfMaterialLine> materials2 = new ArrayList<>();
-
-        try {
-            materials1 = CalculatorList.calculateCarport(connectionPool, 0, width, length, shedLength, shedWidth);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            materials2 = CalculatorList.calculateCarport2(connectionPool, 0, width, length, shedWidth, shedLength);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-
         int price = 0;
 
-        for (BillOfMaterialLine b : materials1) {
-            price += b.getPrice();
-        }
-
-        for (BillOfMaterialLine b : materials2) {
-            price += b.getPrice();
+        try {
+            price = CalculatorList.calculateTotalPrice(connectionPool, 0, length, width, shedLength, shedWidth);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
         }
 
         session.setAttribute("totalprice", price);

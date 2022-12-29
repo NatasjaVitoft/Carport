@@ -59,7 +59,7 @@ public class CreateUser extends HttpServlet {
 
         try {
             if (UserFacade.getUserByUsername(username, connectionPool) != null) {
-                request.setAttribute("opretError", "Bruger navnet findes allerede");
+                request.setAttribute("opretError", "Brugernavnet findes allerede");
                 request.getRequestDispatcher("opret.jsp").forward(request, response);
             } else {
                 userFacade.createUser(username, password, email, role, address, city, postcode, name, phoneNumber, connectionPool);
