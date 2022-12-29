@@ -14,10 +14,15 @@ public class Calculator {
 
     /**
      * STYKLISTE : TRÆ (FØRSTE DEN AF LISTEN)
+     * All methods have BillOfMaterialLine as returntype
+     * All methods have connectionpool, ID, width and length as parameters
+     * Some methods have shedwidth and shedlength as parameters if its material that are also used for a carport with shed
+     * In every method we inistialize a new object of item or itemvariant that equals the "getitembyID" method
+     * GetItemByID is used to get information about
      */
 
     // Spær
-    // Beregnes ved at dividere længden med afstanden mellem hvert spær (55)
+    //
     public static BillOfMaterialLine calcRafter(ConnectionPool connectionPool, int ID, double width, double length) throws DatabaseException, SQLException {
 
         int rafter = (int) Math.ceil(length / 55);
@@ -28,6 +33,7 @@ public class Calculator {
     }
 
     // Rem
+    //
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
         if (shedWidth == 0 && shedLength == 0) {
