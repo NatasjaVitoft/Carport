@@ -5,6 +5,8 @@ import java.util.Objects;
 public class User
 {
 
+    // Fields
+
     private String username;
     private String password;
     private String role;
@@ -15,6 +17,8 @@ public class User
     private String name;
     private int phoneNumber;
 
+
+    // Constructor
 
     public User(String username, String password, String role, String email, String address, String city, int postcode, String name, int phoneNumber) {
         this.username = username;
@@ -31,6 +35,7 @@ public class User
     public User() {
     }
 
+    // Methods
 
     public String getUsername()
     {

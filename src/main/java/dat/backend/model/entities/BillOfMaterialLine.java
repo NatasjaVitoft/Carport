@@ -16,6 +16,8 @@ public class BillOfMaterialLine {
     private int orders_id;
 
 
+    // Constructor
+
     public BillOfMaterialLine(int itemVariant_id, String name, String unit, int price, String description, int quantity, int orders_id) {
         this.name = name;
         this.unit = unit;

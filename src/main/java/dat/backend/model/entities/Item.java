@@ -2,6 +2,8 @@ package dat.backend.model.entities;
 
 public class Item {
 
+    // Fields
+
     int item_id;
     String item_name;
     String item_description;
@@ -10,6 +12,7 @@ public class Item {
     int quantity;
     int length;
 
+    // Constructor
 
     public Item(int item_id, String item_name, String item_description, int price, String unit, int length) {
         this.item_id = item_id;
@@ -19,6 +22,8 @@ public class Item {
         this.unit = unit;
         this.length = length;
     }
+
+    // Methods
 
     public int getItem_id() {
         return item_id;

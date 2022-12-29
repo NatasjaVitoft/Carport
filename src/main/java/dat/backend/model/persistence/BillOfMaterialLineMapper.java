@@ -13,12 +13,19 @@ import java.util.logging.Logger;
 
 public class BillOfMaterialLineMapper {
 
+    // Mapper
+
     public static BillOfMaterialLine createBOML(int item_id, String name, String unit, int length, int price, String description, int quantity, int orders_id, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         BillOfMaterialLine billOfMaterialLine;
+
+        // Insert data into database bom
         String sql = "insert into bom (item_id, name, unit, length, price, description, quantity, orders_id ) values (?,?,?,?,?,?,?,?)";
+        // get connection
         try (Connection connection = connectionPool.getConnection()) {
+            // Make a prepared statement
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                // sets the new values into a new database object
                 ps.setInt(1, item_id);
                 ps.setString(2, name);
                 ps.setString(3, unit);
@@ -28,6 +35,7 @@ public class BillOfMaterialLineMapper {
                 ps.setInt(7, quantity);
                 ps.setInt(8, orders_id);
 
+                // executing update
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     billOfMaterialLine = new BillOfMaterialLine(item_id, name, unit, length, price, description, quantity, orders_id);
@@ -35,6 +43,7 @@ public class BillOfMaterialLineMapper {
                     throw new DatabaseException("Could not be inserted into the database");
                 }
             }
+            // exception thrown if data couldnt insert into database
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert bom into database");
         }

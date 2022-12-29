@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 public class Order {
 
+    // Fields
+
     private Timestamp date;
     private String username;
     private int order_id;
@@ -14,6 +16,8 @@ public class Order {
     private int width;
     private int shedwidth;
     private int shedlength;
+
+    // Constructor
 
     public Order(Timestamp date, String username, int order_id, int price, String email, String carportID, int length, int width) {
         this.date = date;
@@ -43,6 +47,8 @@ public class Order {
         this.shedwidth = shedwidth;
         this.shedlength = shedlength;
     }
+
+    // Methods
 
     public Timestamp getDate() {
         return date;

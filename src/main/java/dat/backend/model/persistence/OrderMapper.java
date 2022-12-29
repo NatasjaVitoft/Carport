@@ -42,6 +42,7 @@ public class OrderMapper {
                 }
             }
         } catch (SQLException | DatabaseException ex) {
+            System.out.println(ex + " her her her");
             throw new DatabaseException(ex, "Could not insert order into database");
         }
         return order;
