@@ -27,21 +27,6 @@ class BillOfMaterialsLine {
 + tostring()
 }
 
-Class Services {
-
-}
-
-Class Controle {
-
-}
-
-Class Entities {
-
-}
-
-Class Persistence {
-
-}
 
 class Item{
 - int item_id
@@ -143,7 +128,7 @@ class User{
 class ConnectionPool {
  - HikariDataSource ds;
  - static String USER = "root";
- - static String PASSWORD = "pllghp1d";
+ - static String PASSWORD = "";
  - static String URL = "jdbc:mysql://localhost:3306/carport";
  + ConnectionPool()
  + ConnectionPool(String USER, String PASSWORD, String URL)
@@ -319,41 +304,33 @@ void doPost(HttpServletRequest request, HttpServletResponse response)
 void doGet(HttpServletRequest request, HttpServletResponse response)
 }
 
+AddOrder --> BillOfMaterialLineFacade
+Bom --> BillOfMaterialLineFacade
+BillOfMaterialLineFacade --> BillOfMaterialLineMapper
 
-Services --> CalculatorList
-Services --> CalculatorShed
-Services --> Calulator
-Services --> HelpFuction
-Services --> SVGDrawing
+AddOrder --> BomVariantFacade
+Bom --> BomVariantFacade
+BomVariantFacade --> BomVariantMapper
 
-Controle --> AddOrder
-Controle --> Bom
-Controle --> CreateOrder
-Controle --> CreateUser
-Controle --> Login
-Controle --> Logout
-Controle --> SVGBeforePurchase
-Controle --> SVGAfterPurchase
+Calulator --> ItemFacade
+CalculatorShed --> ItemFacade
+ItemFacade --> ItemMapper
 
-Persistence --> BillOfMaterialLineFacade
-Persistence --> BillOfMaterialLineMapper
-Persistence --> BomVariantFacade
-Persistence --> BomVariantMapper
-Persistence --> ConnectionPool
-Persistence --> ItemFacade
-Persistence --> ItemMapper
-Persistence --> ItemVariantFacade
-Persistence --> ItemVariantMapper
-Persistence --> OrderFacade
-Persistence --> OrderMapper
-Persistence --> UserFacade
-Persistence --> UserMapper
+Calulator --> ItemVariantFacade
+CalculatorShed --> ItemVariantFacade
+ItemVariantFacade --> ItemVariantMapper
 
-Entities --> BillOfMaterialsLine
-Entities --> Item
-Entities --> ItemVariant
-Entities --> Order
-Entities --> User
+AddOrder --> OrderFacade
+OrderFacade --> OrderMapper
+
+Login --> UserFacade
+CreateUser --> UserFacade
+UserFacade --> UserMapper
+
+SVGAfterPurchase --> HelpFuction
+SVGBeforePurchase --> HelpFuction
+SVGAfterPurchase --> OrderFacade
+
 
 User --> Login
 User --> Logout

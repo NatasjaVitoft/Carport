@@ -1,6 +1,6 @@
 @startuml
 
-class Customer {
+class Kunde {
 - Brugernavn
 - Email
 - Password
@@ -14,16 +14,28 @@ class Customer {
 
 class Carport {
 - Pris
-- Tagtype
-- Tagtype mål
-- Tag hældning
 - Carport Bredde
 - Carport Længde
 - Redskabs bredde
 - Redskabs længde
+- Materialer
 }
 
-class Order {
+class Item {
+- Beskrivelse
+- Længde
+- Pris
+- Enhed
+- Navn/beskrivelse
+}
+
+class Variant {
+- Beskrivelse
+- Pris
+- Enhed
+- Navn/beskrivelse
+}
+class Ordre {
 - Dato
 - Pris
 - Brugernavn
@@ -31,6 +43,15 @@ class Order {
 - Carport
 }
 
+class System {
+- Stykliste
+- SVG
+}
 
+Kunde "1"--"*" Ordre : Has
+Ordre "*"--"*" Carport: Contains
+Carport "1"--"More" Item : Contains
+Carport "1"--"More" Variant : Contains
+Ordre "1"--"*" System : Contains
 
 @enduml
