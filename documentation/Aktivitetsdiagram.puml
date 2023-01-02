@@ -5,21 +5,14 @@ start
 |System|
 :Validerer login/opretter bruger;
 |Kunde|
-:Afgiv bestilling;
+:Sammensætter en carport/bestiller;
 |System|
-:Bestilling/betaler;
-|Admin|
-:Login;
-|Admin|
-fork
-:Opdater brugers saldo;
-
-stop
-fork again
-|Admin|
-:Modtager bestilling/tjekker bestilling;
-:Laver cupcake;
+:Generere en tegning af carporten og en pris;
 |Kunde|
-:Afhent cupcake;
-stop
+:Køber carport;
+|System|
+: Genere stykliste, tegning og tilføjer en ordre;
+|Kunde|
+: Tjekker ordre under min side;
+
 @enduml

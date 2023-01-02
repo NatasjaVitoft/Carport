@@ -37,7 +37,7 @@ class UserMapper {
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "noget gik galt i forbindelsen til databasen");
+            throw new DatabaseException(ex, "Noget gik galt i forbindelsen til databasen");
         }
         return user;
     }

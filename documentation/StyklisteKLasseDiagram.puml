@@ -1,0 +1,59 @@
+@startuml
+
+class CreateOrder {
+}
+
+class AddOrder {
+}
+
+
+class BillOfMaterialLine {
+}
+
+class Item {
+}
+
+class ItemVariant {
+}
+
+class User{
+}
+
+class Order {
+}
+
+
+class BillOfMaterialLineMapper {
+}
+
+class BillOfMaterialLineFacade {
+}
+
+class BomVariantMapper {
+}
+
+class BomVariantFacade {
+}
+
+class ItemMapper {
+}
+
+class ItemFacade {
+}
+
+class ItemVariantMapper {
+}
+
+class ItemVariantFacade {
+}
+
+
+class Calculator {
+}
+
+class CalculatorShed {
+}
+
+class CalculatorList {
+}
+@enduml

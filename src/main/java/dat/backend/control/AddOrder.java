@@ -34,18 +34,16 @@ public class AddOrder extends HttpServlet {
         HttpSession session = request.getSession();
         request.getSession();
 
-        // Gets width and length attribute & username and user attribute from the sessionscope
+        // Gets width, length, shedlength and shedwidth attribute & username and user attribute from the sessionscope
 
         int width = (int) session.getAttribute("width");
         int length = (int) session.getAttribute("length");
-
         int shedWidth = (int) session.getAttribute("shedwidth");
         int shedLength = (int) session.getAttribute("shedlength");
-
         String username = (String) session.getAttribute("username");
         User user = (User) session.getAttribute("user");
 
-        // if user is not null create order (user is logged in)
+        // If user is not null create order (user is logged in)
 
         if (username != null) {
             try {
@@ -63,7 +61,6 @@ public class AddOrder extends HttpServlet {
 
             // Adding the calculated items list to allMaterial list and getting each element of the list by a foreach loop.
             // Creating BOM line in the database by calling createBOML
-
             try {
                 allMaterial = CalculatorList.calculateCarport(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
 
@@ -83,6 +80,9 @@ public class AddOrder extends HttpServlet {
                 }
             }
 
+            // Adding the calculated items list to allMaterial2 list and getting each element of the list by a foreach loop.
+            // Creating BOMVariant line in the database by calling createBOMLVariant
+
             try {
                 allMaterial2 = CalculatorList.calculateCarport2(connectionPool, order.getOrder_id(), width, length, shedWidth, shedLength);
             } catch (SQLException e) {
@@ -90,9 +90,6 @@ public class AddOrder extends HttpServlet {
             } catch (DatabaseException e) {
                 e.printStackTrace();
             }
-
-            // Adding the calculated items list to allMaterial2 list and getting each element of the list by a foreach loop.
-            // Creating BOMVariant line in the database by calling createBOMLVariant
 
             for (BillOfMaterialLine b : allMaterial2) {
                 try {
@@ -114,7 +111,10 @@ public class AddOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        // Gets username attribute from sessionscope
         String username = (String) session.getAttribute("username");
+
+        // Call on readOrder method from OrderFacade to get all orders that belongs to the username in the parameter
         OrderFacade.readOrder(request, connectionPool, username);
         request.getRequestDispatcher("minSide.jsp").forward(request, response);
         response.sendRedirect("minSide.jsp");

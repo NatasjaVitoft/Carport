@@ -14,6 +14,13 @@ public class Calculator {
 
     /**
      * STYKLISTE : TRÆ (FØRSTE DEN AF LISTEN)
+     * All methods are public and have BillOfMaterialLine as a return type
+     * Most methods have connectionpool, ID, width and length as parameters
+     * Some methods also have shedlength and shedwidth as parameters (if the materials are used for a carport with shed)
+     * In every method an instance of either Item or ItemVariant are created and equals a method from a facade class
+     * The method that it equals are used to get read information the database (either Item or ItemVariant table)
+     * In every method the price is multiplied with the quantity of the material
+     * Every method return a new BillOfMaterialLine where most of the information we get from the database. The quantity and price varies.
      */
 
     // Spær
@@ -28,6 +35,10 @@ public class Calculator {
     }
 
     // Rem
+    // Hvis bredden og længden på skur er 0 beregnes remmen ved at gange længden med 2 (en til hver side af carporten)
+    // Derefter dividere vi dette med 600 da det er længden på det træ der bruges til remmen
+    // Hvis bredden og længden på skur ikke er lig med 0 starter vi med at minus længden med skur længden
+    // Derefter dividere vi dette med 600
     public static BillOfMaterialLine calcStrap(int ID, double width, double length, int shedWidth, int shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
         if (shedWidth == 0 && shedLength == 0) {
@@ -46,6 +57,10 @@ public class Calculator {
         }
     }
 
+    // Hulbånd
+    // Vi beregner hulbånd ved at benytte pythagors sætning til at finde diagonalen af carporten/rectangle
+    // Derefter dividere vi diagonalen med 1000 da hver rulle af hulbånd er 10 meter
+    // Hvis carporten har et skur skal vi lige minus længden med skur længden, herefter finde diagnoalen og dividere med 1000
     public static BillOfMaterialLine calcMeasurementTape (int ID, double width, double length, int shedwidth, int shedlength, ConnectionPool connectionPool) throws DatabaseException {
 
         if(shedwidth == 0 && shedlength == 0) {
@@ -65,8 +80,9 @@ public class Calculator {
         }
     }
 
-    // Calc post
     // Stolpe
+    // Vi antager at stolpen først begynder 120 cm inde i carporten
+    // Vi beregner antal af stolper ved at minus længden med 120 og derefter dividere med 300, som vi antager er afstanden mellem hver stolpe
     public static BillOfMaterialLine calcPost(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int post = (int) (length - 120);
@@ -80,7 +96,7 @@ public class Calculator {
     }
 
 
-    // calc under stern in front and back end of the garage.
+    // Calc under stern in front and back end of the garage.
     // 5x200 mm. trykimp. Brædt 360 4 Stk understernbrædder til for & bag ende
     public static BillOfMaterialLine calcUnderSternFrontAndBack(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
@@ -142,6 +158,9 @@ public class Calculator {
 
     // Calc bolts
     // Bræddebolt	10	x	120	mm.	 18 Stk Til	montering	af	rem	på	stolper
+    // Vi beregner først antal af stolper
+    // Vi antager at der skal være 2 bræddebolte til hver stolpe (står i teksten i hvert fald)
+    // Vi ganger derfor antal af stolper med 2
     public static BillOfMaterialLine calcBolts(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
 
         int post1 = (int) Math.floor(length - 120);
@@ -154,6 +173,7 @@ public class Calculator {
 
 
     // universal	190	mm	højre 15 Stk Til	montering	af	spær	på	rem
+    // 1 universal til hvert spær
     public static BillOfMaterialLine calcUniversalRight(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
         int universal = (int) Math.ceil(length / 55);
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(3, connectionPool);
@@ -163,6 +183,7 @@ public class Calculator {
 
 
     // universal 190	mm	venstre 15 Stk Til	montering	af	spær	på	rem
+    // 1 universal til hvert spær
     public static BillOfMaterialLine calcUniversalLeft(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
         int universal = (int) Math.ceil(length / 55);
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(4, connectionPool);
@@ -187,7 +208,6 @@ public class Calculator {
 
     // Plastmo bundskruer 200 stk. 3 pakke Skruer til tagplader
     // Vi har valgt at sætte en default værdi så alle tage skal bruge 3 pakker bundskruer
-
     public static BillOfMaterialLine calcBundskruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int bundskruer = 3;
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(1, connectionPool);
@@ -197,7 +217,6 @@ public class Calculator {
 
     // 4,5 x 60 mm. skruer 200 stk. 1 Pakke Til montering af stern &v andbrædt
     // Vi har valgt at sætte en default værdi så alle tage skal bruge 1 pakke
-
     public static BillOfMaterialLine calcSkruer(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int skruer = 1;
         ItemVariant itemVariants = ItemVariantFacade.getItemByID(5, connectionPool);
@@ -234,6 +253,7 @@ public class Calculator {
     }
 
     // 19x100 mm. trykimp. Brædt 540 4 Stk vandbrædt på stern i sider
+    // Vi antager at der skal være det samme antal af træ til vandbrædt som til understernsbrædder i siderne
     public static BillOfMaterialLine calcWeatherboard1(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = calcUnderSternSides(ID, width, length, connectionPool).getQuantity();
         Item items = ItemFacade.getItemByID(13, connectionPool);
@@ -242,6 +262,7 @@ public class Calculator {
     }
 
     // 19x100 mm. trykimp. Brædt 360 2 Stk vandbrædt på stern i forende
+    // Vi antager at der skal være det samme antal af træ til vandbrædt som til understernsbrædder i forenden
     public static BillOfMaterialLine calcWeatherboard2(int ID, double width, double length, ConnectionPool connectionPool) throws DatabaseException {
         int n = calcUnderSternSmall(ID, width, length, connectionPool).getQuantity();
         Item items = ItemFacade.getItemByID(14, connectionPool);

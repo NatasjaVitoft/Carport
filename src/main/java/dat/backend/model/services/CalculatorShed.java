@@ -10,10 +10,20 @@ import dat.backend.model.persistence.ItemVariantFacade;
 
 public class CalculatorShed {
 
+    /**
+     * All methods are public and have BillOfMaterialLine as a return type
+     * Most methods have connectionpool, ID, width, shedlength, shedwidth and length as parameters
+     * In every method an instance of either Item or ItemVariant are created and equals a method from a facade class
+     * The method that it equals are used to get read information the database (either Item or ItemVariant table)
+     * In every method the price is multiplied with the quantity of the material
+     * Every method return a new BillOfMaterialLine where most of the information we get from the database. The quantity and price varies.
+     */
+
     /*** STYKLISTE : HVIS SKUR VÆLGES (TREDJE DEL) */
 
+
     // 45x195 mm. spærtræ ubh. 480 1 Stk Remme i sider
-    // Beregnes ved at vi antager at remmen i siderne skal være det samme som længden på skuret * 2
+    // Beregnes ved at vi antager at remmen i siderne skal være det samme som længden på skuret gange 2
     public static BillOfMaterialLine calcStrapForShed(int ID, double shedWidth, double shedLength, ConnectionPool connectionPool) throws DatabaseException {
 
         int strap = (int) (shedLength * 2);

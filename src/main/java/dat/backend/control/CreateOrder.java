@@ -41,24 +41,21 @@ public class CreateOrder extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Locale.setDefault(new Locale("US"));
 
-        // gets parameter from user input
-
+        // Gets parameters from user input
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
-
         int shedWidth = Integer.parseInt(request.getParameter("shedwidth"));
         int shedLength = Integer.parseInt(request.getParameter("shedlength"));
 
-        //int price = (int) session.getAttribute("price");
-
-        //sets the attribute from session
-
+        // Sets session attributes to be what we get from user input
         session.setAttribute("width", width);
         session.setAttribute("length", length);
-
         session.setAttribute("shedwidth", shedWidth);
         session.setAttribute("shedlength", shedLength);
 
+
+        // Initialize variable and surround method call with a try catch statement.
+        // Method that calculates total price for each carport. Order ID is always 0 because it shouldn't create an order yet.
         int price = 0;
 
         try {
@@ -69,9 +66,10 @@ public class CreateOrder extends HttpServlet {
             e.printStackTrace();
         }
 
+        // Set totalprice attribute
         session.setAttribute("totalprice", price);
 
-        //forward to svgpage.jsp
+        // Forward to svgpage.jsp
         request.getRequestDispatcher("SVGPage.jsp").forward(request, response);
     }
 }
